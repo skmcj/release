@@ -1,0 +1,12 @@
+/* color palette from <https://github.com/vuejs/theme> */
+:root {}
+
+@media (prefers-color-scheme: dark) {
+  :root {}
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
