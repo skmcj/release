@@ -1,12 +1,37 @@
 /* color palette from <https://github.com/vuejs/theme> */
-:root {}
-
-@media (prefers-color-scheme: dark) {
-  :root {}
-}
-
 html,
 body {
   padding: 0;
   margin: 0;
+}
+
+body,
+body.light {
+
+  --bg: #eaeef1;
+
+
+  /* text */
+  --primary-text: #61677c;
+
+  /* border */
+  --w-border: rgba(255, 255, 255, 0.1);
+
+  /* box-shadow */
+  --t-bshadow: rgba(255, 255, 255, 0.7);
+  --b-bshadow: rgba(0, 0, 0, 0.15);
+  --it-bshadow: #BABECC;
+  --ib-bshadow: #fff;
+}
+
+body.dark {
+  --bg: #1d1e1f;
+  /* text */
+  --primary-text: #61677c;
+
+  /* box-shadow */
+  --t-bshadow: rgba(121, 121, 121, 0.3);
+  --b-bshadow: rgba(0, 0, 0, 0.85);
+  --it-bshadow: #000;
+  --ib-bshadow: #454133;
 }

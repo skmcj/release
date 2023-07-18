@@ -1,5 +1,10 @@
-<template></template>
+<template>
+  <Pc />
+</template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onBeforeMount } from 'vue';
+import Pc from '@/views/Pc.vue';
+</script>
 
-<style scoped></style>
+<style></style>
