@@ -6,4 +6,21 @@
     min-height: 100vh;
     background-color: var(--bg);
     transition: background-color 0.2s ease-in-out;
+    font-family: Source Han Sans CN;
+}
+
+@font-face {
+    font-family: "YouSheBiaoTiHei";
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+    src: url('./font/YouSheBiaoTiHei.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "zcool-kuaile";
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+    src: url('./font/zcool-kuaile.ttf') format('truetype');
 }

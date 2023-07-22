@@ -21,7 +21,7 @@
             </div>
             <div class="top-mess_mode"><VMSwitch v-model="isDark" /></div>
           </div>
-          <div class="top-tools"></div>
+          <div class="top-tools">今日运势</div>
         </div>
       </div>
     </div>
