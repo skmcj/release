@@ -4,6 +4,7 @@
       <HeaderSvg class="bg" />
       <div class="top-content">
         <div class="right">
+          <!-- 顶部信息：昵称、籍贯、社交账号、主题按钮 -->
           <div class="top-mess">
             <div class="top-mess_content">
               <VMBlock class="top-mess-item" padding="0 33px" message="SKMCJ" radius="21px" in />
@@ -19,9 +20,19 @@
                 color="var(--bilibili-ic)"
                 @on-click="() => openLink('https://www.bilibili.com/bangumi/media/md28228814')"></VMButton>
             </div>
-            <div class="top-mess_mode"><VMSwitch v-model="isDark" /></div>
+            <div class="top-mess_mode show-title" data-title="切换主题">
+              <VMSwitch
+                v-model="isDark"
+                show-icon
+                icon="ir-sun"
+                active-icon="ir-dark"
+                color="var(--mode-c)"
+                active-color="var(--mode-ac)" />
+            </div>
           </div>
-          <div class="top-tools">今日运势</div>
+          <div class="top-tools">
+            <VMClock />
+          </div>
         </div>
       </div>
     </div>
@@ -35,6 +46,7 @@ import HeaderSvg from '@/components/HeaderSvg.vue';
 import VMBlock from '@/components/VMBlock.vue';
 import VMButton from '@/components/VMButton.vue';
 import VMSwitch from '@/components/VMSwitch.vue';
+import VMClock from '@/components/VMClock.vue';
 
 const topBox = ref(null);
 
@@ -106,6 +118,8 @@ watch(isDark, val => {
   .top-tools {
     width: 100%;
     height: 58%;
+    display: flex;
+    align-items: flex-end;
   }
 }
 @media (max-width: 1080px) {

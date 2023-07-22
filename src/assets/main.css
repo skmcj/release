@@ -24,3 +24,30 @@
     font-display: auto;
     src: url('./font/zcool-kuaile.ttf') format('truetype');
 }
+
+.show-title[data-title] {
+    position: relative;
+}
+
+.show-title[data-title]:hover::after {
+    opacity: 1;
+    transition: all 0.1s ease 1s;
+    visibility: visible;
+}
+
+.show-title[data-title]::after {
+    content: attr(data-title);
+    background-color: rgba(50, 50, 50, 0.8);
+    color: #a7a7a7;
+    font-size: 12px;
+    position: absolute;
+    padding: 4px 10px;
+    left: 30%;
+    bottom: -1.5em;
+    border-radius: 5px;
+    white-space: nowrap;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+}

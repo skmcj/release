@@ -1,6 +1,12 @@
 <template>
   <div class="vm-switch" :class="{ 'is-active': modelValue }">
-    <div class="vm-switch_inner" @click.stop="changeValue"></div>
+    <div class="vm-switch_inner" @click.stop="changeValue">
+      <i
+        v-if="showIcon"
+        class="vm-switch-ic"
+        :class="modelValue ? activeIcon : icon"
+        :style="{ color: modelValue ? activeColor : color }"></i>
+    </div>
   </div>
 </template>
 
@@ -9,9 +15,19 @@ import { ref } from 'vue';
 
 interface VMSwitchProps {
   modelValue?: boolean;
+  showIcon?: boolean;
+  icon?: string;
+  activeIcon?: string;
+  color?: string;
+  activeColor?: string;
 }
 const props = withDefaults(defineProps<VMSwitchProps>(), {
-  modelValue: false
+  modelValue: false,
+  showIcon: false,
+  icon: undefined,
+  activeIcon: undefined,
+  color: '#3d3d3d',
+  activeColor: '#3d3d3d'
 });
 
 const changeValue = () => {
@@ -38,6 +54,11 @@ const emits = defineEmits(['update:modelValue']);
     .vm-switch_inner {
       left: -58px;
     }
+    .vm-switch-ic {
+      width: 42px;
+      height: 42px;
+      left: 58px;
+    }
     &.is-active {
       .vm-switch_inner {
         left: 58px;
@@ -49,6 +70,11 @@ const emits = defineEmits(['update:modelValue']);
     height: 24px;
     .vm-switch_inner {
       left: -32px;
+    }
+    .vm-switch-ic {
+      width: 24px;
+      height: 24px;
+      left: 32px;
     }
     &.is-active {
       .vm-switch_inner {
@@ -69,7 +95,20 @@ const emits = defineEmits(['update:modelValue']);
   &.is-active {
     .vm-switch_inner {
       left: 40px;
+      .vm-switch-ic {
+        left: 0px;
+      }
     }
+  }
+  .vm-switch-ic {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    position: absolute;
+    left: 40px;
+    text-shadow: -1px -1px #333;
   }
 }
 </style>
