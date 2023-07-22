@@ -47,15 +47,16 @@ const getPropsStyle = (val: number | string) => {
   user-select: none;
   height: 42px;
   border-radius: 12px;
+  transition: background-color 0.2s ease-in-out;
   background-color: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
   &:not(.is-in) {
-    box-shadow: -6px -6px 10px -1px var(--t-bshadow), 6px 6px 10px -1px var(--b-bshadow);
+    box-shadow: -6px -6px 10px -1px var(--wshadow70), 6px 6px 10px -1px var(--bshadow15);
   }
   &.is-in {
-    box-shadow: inset 2px 2px 3px 0px var(--it-bshadow), inset -2px -2px 3px 0px var(--ib-bshadow);
+    box-shadow: inset 2px 2px 3px 0px var(--wshadow1), inset -2px -2px 3px 0px var(--wshadow0);
   }
   .vm-mess {
     font-size: 16px;

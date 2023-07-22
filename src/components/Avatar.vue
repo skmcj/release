@@ -36,7 +36,7 @@ const aStyle = computed(() => {
   height: 120px;
   border-radius: 50%;
   background-color: var(--bg);
-  box-shadow: -6px -6px 10px -1px var(--t-bshadow), 6px 6px 10px -1px var(--b-bshadow);
+  box-shadow: -6px -6px 10px -1px var(--wshadow70), 6px 6px 10px -1px var(--bshadow15);
   box-sizing: border-box;
   border: 1px solid var(--w-border);
   display: flex;

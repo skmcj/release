@@ -1,0 +1,280 @@
+@font-face {
+  font-family: "relefont";
+  src: url('relefont.woff2') format('woff2'),
+       url('relefont.woff') format('woff'),
+       url('relefont.ttf') format('truetype');
+}
+
+[class*=' ir-'],
+[class^='ir-'] {
+  font-family: 'relefont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.releasefont {
+  font-family: "relefont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ir-css3:before {
+  content: "\ea8b";
+}
+
+.ir-taiji:before {
+  content: "\e653";
+}
+
+.ir-calendar:before {
+  content: "\e628";
+}
+
+.ir-dir:before {
+  content: "\e61e";
+}
+
+.ir-lots:before {
+  content: "\e640";
+}
+
+.ir-code:before {
+  content: "\e612";
+}
+
+.ir-q-fill:before {
+  content: "\e72c";
+}
+
+.ir-vue:before {
+  content: "\f25f";
+}
+
+.ir-q-line:before {
+  content: "\e669";
+}
+
+.ir-q-circle:before {
+  content: "\e67c";
+}
+
+.ir-js:before {
+  content: "\e620";
+}
+
+.ir-dark:before {
+  content: "\e611";
+}
+
+.ir-sun:before {
+  content: "\e697";
+}
+
+.ir-shape:before {
+  content: "\e71d";
+}
+
+.ir-wechat-line:before {
+  content: "\e64f";
+}
+
+.ir-wechat:before {
+  content: "\e60d";
+}
+
+.ir-detail-line:before {
+  content: "\e614";
+}
+
+.ir-email:before {
+  content: "\e63f";
+}
+
+.ir-link:before {
+  content: "\e60e";
+}
+
+.ir-copyright-line:before {
+  content: "\e6f6";
+}
+
+.ir-air-line:before {
+  content: "\e619";
+}
+
+.ir-air:before {
+  content: "\e615";
+}
+
+.ir-wind:before {
+  content: "\e6a2";
+}
+
+.ir-info-circle:before {
+  content: "\e64a";
+}
+
+.ir-nickname:before {
+  content: "\e61a";
+}
+
+.ir-info-line:before {
+  content: "\eb51";
+}
+
+.ir-qq:before {
+  content: "\ec19";
+}
+
+.ir-info:before {
+  content: "\e696";
+}
+
+.ir-mail:before {
+  content: "\e60f";
+}
+
+.ir-copyright:before {
+  content: "\e8a7";
+}
+
+.ir-cg:before {
+  content: "\e6b5";
+}
+
+.ir-aquarius:before {
+  content: "\e601";
+}
+
+.ir-pisces:before {
+  content: "\e602";
+}
+
+.ir-capricom:before {
+  content: "\e603";
+}
+
+.ir-virgo:before {
+  content: "\e604";
+}
+
+.ir-leo:before {
+  content: "\e605";
+}
+
+.ir-cacer:before {
+  content: "\e606";
+}
+
+.ir-scorpio:before {
+  content: "\e607";
+}
+
+.ir-sagittarius:before {
+  content: "\e608";
+}
+
+.ir-libra:before {
+  content: "\e609";
+}
+
+.ir-gemini:before {
+  content: "\e60a";
+}
+
+.ir-taurus:before {
+  content: "\e60b";
+}
+
+.ir-aries:before {
+  content: "\e60c";
+}
+
+.ir-sagittarius-line:before {
+  content: "\e631";
+}
+
+.ir-gemini-line:before {
+  content: "\e633";
+}
+
+.ir-pisces-line:before {
+  content: "\e634";
+}
+
+.ir-taurus-line:before {
+  content: "\e635";
+}
+
+.ir-capricom-line:before {
+  content: "\e636";
+}
+
+.ir-libra-line:before {
+  content: "\e638";
+}
+
+.ir-leo-line:before {
+  content: "\e639";
+}
+
+.ir-cacer-line:before {
+  content: "\e63a";
+}
+
+.ir-aquarius-line:before {
+  content: "\e63b";
+}
+
+.ir-virgo-line:before {
+  content: "\e63c";
+}
+
+.ir-aries-line:before {
+  content: "\e63d";
+}
+
+.ir-scorpio-line:before {
+  content: "\e63e";
+}
+
+.ir-logo:before {
+  content: "\e632";
+}
+
+.ir-github-fill:before {
+  content: "\e691";
+}
+
+.ir-bilibili:before {
+  content: "\e6b4";
+}
+
+.ir-git:before {
+  content: "\e72a";
+}
+
+.ir-github:before {
+  content: "\e66f";
+}
+
+.ir-github-line:before {
+  content: "\e885";
+}
+
+.ir-bilibili-b:before {
+  content: "\e600";
+}
+
+.ir-bilibili-tv:before {
+  content: "\e637";
+}
+
+.ir-github-alt:before {
+  content: "\e610";
+}
+

@@ -18,10 +18,16 @@ body.light {
   --w-border: rgba(255, 255, 255, 0.1);
 
   /* box-shadow */
-  --t-bshadow: rgba(255, 255, 255, 0.7);
-  --b-bshadow: rgba(0, 0, 0, 0.15);
-  --it-bshadow: #BABECC;
-  --ib-bshadow: #fff;
+  --wshadow70: rgba(255, 255, 255, 0.7);
+  --bshadow15: rgba(0, 0, 0, 0.15);
+  --bshadow20: rgba(0, 0, 0, 0.2);
+  --bshadow5: rgba(0, 0, 0, 0.05);
+  --wshadow2: #d1d9e6;
+  --wshadow1: #BABECC;
+  --wshadow0: #fff;
+  /* other */
+  --github-ic: #24292e;
+  --bilibili-ic: #00b3ef;
 }
 
 body.dark {
@@ -29,9 +35,16 @@ body.dark {
   /* text */
   --primary-text: #61677c;
 
+  /* border */
+  --w-border: rgba(0, 0, 0, 0.1);
+
   /* box-shadow */
-  --t-bshadow: rgba(121, 121, 121, 0.3);
-  --b-bshadow: rgba(0, 0, 0, 0.85);
-  --it-bshadow: #000;
-  --ib-bshadow: #454133;
+  --wshadow70: rgba(121, 121, 121, 0.3);
+  --bshadow15: rgba(0, 0, 0, 0.85);
+  --wshadow2: #17181a;
+  --wshadow1: #000;
+  --wshadow0: #454133;
+
+  /* other */
+  --github-ic: #f5f3f2;
 }

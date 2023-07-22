@@ -1,7 +1,9 @@
 @import './base.css';
+@import './font/relefont.css';
 
 .main {
     width: 100%;
     min-height: 100vh;
     background-color: var(--bg);
+    transition: background-color 0.2s ease-in-out;
 }
