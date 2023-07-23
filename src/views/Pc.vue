@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div class="top" ref="topBox">
+    <div class="top">
       <HeaderSvg class="bg" />
       <div class="top-content">
         <div class="right">
@@ -30,8 +30,14 @@
                 active-color="var(--mode-ac)" />
             </div>
           </div>
-          <div class="top-tools">
-            <VMClock />
+          <div class="top-tools" ref="toolsBox">
+            <VMClock :size="toolHeight" />
+            <div class="tools-date-box">
+              <VMBlock message="23/07/26 星期日" />
+              <VMDigitalClock />
+            </div>
+            <div></div>
+            <div></div>
           </div>
         </div>
       </div>
@@ -41,27 +47,23 @@
 
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
-import { changeThemeMode } from '@/utils/commonUtil';
+import { changeThemeMode, openLink } from '@/utils/commonUtil';
 import HeaderSvg from '@/components/HeaderSvg.vue';
 import VMBlock from '@/components/VMBlock.vue';
 import VMButton from '@/components/VMButton.vue';
 import VMSwitch from '@/components/VMSwitch.vue';
 import VMClock from '@/components/VMClock.vue';
+import VMDigitalClock from '@/components/VMDigitalClock.vue';
 
-const topBox = ref(null);
+const toolsBox = ref<HTMLElement>();
+const toolHeight = ref(120);
 
 const isDark = ref(false);
 
-onMounted(() => {});
-
-/**
- * 打开link
- * @param link
- * @param target
- */
-const openLink = (link: string, target: string = '_blank') => {
-  window.open(link, target);
-};
+onMounted(() => {
+  const toolsEl = toolsBox.value as HTMLElement;
+  toolHeight.value = toolsEl.clientHeight - 12;
+});
 
 watch(isDark, val => {
   changeThemeMode(val ? 1 : 0);
@@ -116,10 +118,21 @@ watch(isDark, val => {
     }
   }
   .top-tools {
+    box-sizing: border-box;
+    padding-top: 12px;
     width: 100%;
     height: 58%;
     display: flex;
     align-items: flex-end;
+    justify-content: space-between;
+  }
+  .tools-date-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 12px 0;
   }
 }
 @media (max-width: 1080px) {

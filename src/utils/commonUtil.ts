@@ -14,3 +14,12 @@ export const changeThemeMode = function (mode: number = 0) {
   }
   document.body.className = modeStr;
 };
+
+/**
+ * 打开link
+ * @param link
+ * @param target
+ */
+export const openLink = (link: string, target: string = '_blank') => {
+  window.open(link, target);
+};

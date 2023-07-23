@@ -42,7 +42,8 @@ const getPropsStyle = (val: number | string) => {
 };
 
 onMounted(() => {
-  clock();
+  // 开发阶段暂时关闭
+  // clock();
 });
 
 // 控制时钟转动

@@ -19,12 +19,14 @@ interface VMBlockProps {
   radius?: number | string;
   padding?: number | string;
   message?: string;
+  fontSize?: number | string;
 }
 const props = withDefaults(defineProps<VMBlockProps>(), {
   in: false,
   width: undefined,
   height: undefined,
-  radius: undefined
+  radius: undefined,
+  fontSize: undefined
 });
 
 const bStyle = computed(() => {
@@ -33,6 +35,7 @@ const bStyle = computed(() => {
   props.height && (style.height = getPropsStyle(props.height));
   props.radius && (style.borderRadius = getPropsStyle(props.radius));
   props.padding && (style.padding = getPropsStyle(props.padding));
+  props.fontSize && (style.fontSize = getPropsStyle(props.fontSize));
   return style;
 });
 
@@ -52,6 +55,8 @@ const getPropsStyle = (val: number | string) => {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  padding: 0 12px;
   &:not(.is-in) {
     box-shadow: -6px -6px 10px -1px var(--wshadow70), 6px 6px 10px -1px var(--bshadow15);
   }
