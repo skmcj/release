@@ -36,7 +36,7 @@
               <VMBlock message="23/07/26 星期日" />
               <VMDigitalClock />
             </div>
-            <div></div>
+            <VMWeather :height="toolHeight" />
             <div></div>
           </div>
         </div>
@@ -54,6 +54,7 @@ import VMButton from '@/components/VMButton.vue';
 import VMSwitch from '@/components/VMSwitch.vue';
 import VMClock from '@/components/VMClock.vue';
 import VMDigitalClock from '@/components/VMDigitalClock.vue';
+import VMWeather from '@/components/VMWeather.vue';
 
 const toolsBox = ref<HTMLElement>();
 const toolHeight = ref(120);
@@ -63,6 +64,7 @@ const isDark = ref(false);
 onMounted(() => {
   const toolsEl = toolsBox.value as HTMLElement;
   toolHeight.value = toolsEl.clientHeight - 12;
+  console.log(toolHeight);
 });
 
 watch(isDark, val => {

@@ -11,6 +11,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { getPropsStyle } from '@/utils/commonUtil';
 
 interface VMBlockProps {
   in?: boolean;
@@ -38,11 +39,6 @@ const bStyle = computed(() => {
   props.fontSize && (style.fontSize = getPropsStyle(props.fontSize));
   return style;
 });
-
-const getPropsStyle = (val: number | string) => {
-  if (typeof val === 'number') return `${val}px`;
-  else return val;
-};
 </script>
 
 <style lang="less" scoped>

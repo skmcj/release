@@ -11,6 +11,7 @@
 
 <script setup lang="ts">
 import { computed, onBeforeMount, ref } from 'vue';
+import { getPropsStyle } from '@/utils/commonUtil';
 
 const time = ref('00:00');
 
@@ -50,11 +51,6 @@ const bStyle = computed(() => {
   props.fontSize && (style.fontSize = getPropsStyle(props.fontSize));
   return style;
 });
-
-const getPropsStyle = (val: number | string) => {
-  if (typeof val === 'number') return `${val}px`;
-  else return val;
-};
 
 onBeforeMount(() => {
   // 开发阶段暂时关闭

@@ -12,6 +12,15 @@ body.light {
 
   /* text */
   --primary-text: #61677c;
+  --city-text: #99BCAC;
+  --weather-text: #3D8E86;
+  --air-text: #A0D8EF;
+  --air-1: #26cc80;
+  --air-2: #fde333;
+  --air-3: #fda033;
+  --air-4: #fd333c;
+  --air-5: #f333ad;
+  --air-6: #9b2105;
 
   --mode-c: #e83929;
   --mode-ac: #ffec47;

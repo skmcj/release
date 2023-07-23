@@ -23,3 +23,12 @@ export const changeThemeMode = function (mode: number = 0) {
 export const openLink = (link: string, target: string = '_blank') => {
   window.open(link, target);
 };
+
+/**
+ * 返回CSS规则值
+ * @param val
+ */
+export const getPropsStyle = (val: number | string) => {
+  if (typeof val === 'number') return `${val}px`;
+  else return val;
+};

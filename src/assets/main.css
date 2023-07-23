@@ -6,7 +6,7 @@
     min-height: 100vh;
     background-color: var(--bg);
     transition: background-color 0.2s ease-in-out;
-    font-family: Source Han Sans CN;
+    font-family: 'Source Han Sans CN';
 }
 
 @font-face {

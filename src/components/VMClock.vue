@@ -17,6 +17,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
+import { getPropsStyle } from '@/utils/commonUtil';
 
 // 各个时针
 const hours = ref<HTMLDivElement>();
@@ -36,10 +37,6 @@ const cStyle = computed(() => {
   props.size && (style.height = getPropsStyle(props.size));
   return style;
 });
-const getPropsStyle = (val: number | string) => {
-  if (typeof val === 'number') return `${val}px`;
-  else return val;
-};
 
 onMounted(() => {
   // 开发阶段暂时关闭

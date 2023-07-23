@@ -7,6 +7,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { getPropsStyle } from '@/utils/commonUtil';
 
 interface VMButtonProps {
   width?: number | string;
@@ -33,11 +34,6 @@ const btnStyle = computed(() => {
   props.color && (style.color = props.color);
   return style;
 });
-
-const getPropsStyle = (val: number | string) => {
-  if (typeof val === 'number') return `${val}px`;
-  else return val;
-};
 
 const onClick = () => {
   emits('onClick');
