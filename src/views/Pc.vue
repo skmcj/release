@@ -37,7 +37,7 @@
               <VMDigitalClock />
             </div>
             <VMWeather :height="toolHeight" />
-            <div></div>
+            <VMFate :height="toolHeight" />
           </div>
         </div>
       </div>
@@ -55,6 +55,7 @@ import VMSwitch from '@/components/VMSwitch.vue';
 import VMClock from '@/components/VMClock.vue';
 import VMDigitalClock from '@/components/VMDigitalClock.vue';
 import VMWeather from '@/components/VMWeather.vue';
+import VMFate from '@/components/VMFate.vue';
 
 const toolsBox = ref<HTMLElement>();
 const toolHeight = ref(120);
@@ -63,8 +64,7 @@ const isDark = ref(false);
 
 onMounted(() => {
   const toolsEl = toolsBox.value as HTMLElement;
-  toolHeight.value = toolsEl.clientHeight - 12;
-  console.log(toolHeight);
+  toolsEl && (toolHeight.value = toolsEl.clientHeight - 12);
 });
 
 watch(isDark, val => {

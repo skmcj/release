@@ -3,12 +3,17 @@ html,
 body {
   padding: 0;
   margin: 0;
+  position: relative;
 }
 
 body,
 body.light {
 
   --bg: #eaeef1;
+
+  --select-bg: #eaeef1;
+  --select-hbg: #dee1e3;
+  --select-ac: #7ab5e1;
 
   /* text */
   --primary-text: #61677c;
@@ -21,6 +26,8 @@ body.light {
   --air-4: #fd333c;
   --air-5: #f333ad;
   --air-6: #9b2105;
+
+  --light-gray: #a3a3a3;
 
   --mode-c: #e83929;
   --mode-ac: #ffec47;
@@ -40,6 +47,8 @@ body.light {
   --bshadow15: rgba(0, 0, 0, 0.15);
   --bshadow20: rgba(0, 0, 0, 0.2);
   --bshadow5: rgba(0, 0, 0, 0.05);
+  --pshadow1: #fff;
+  --pshadow2: #B9B9B9;
   --wshadow4: #fff;
   --wshadow3: #C8D0E7;
   --wshadow2: #d1d9e6;
@@ -48,10 +57,16 @@ body.light {
   /* other */
   --github-ic: #24292e;
   --bilibili-ic: #00b3ef;
+  /* 渐变 */
+  --progress-bg: linear-gradient(180deg, #83CCD2 0%, #50C2A2 48%, #52F3B5 100%);
 }
 
 body.dark {
   --bg: #1d1e1f;
+
+  --select-bg: #1d1e1f;
+  --select-hbg: #343638;
+  --select-ac: #66b5f2;
   /* text */
   --primary-text: #61677c;
 
@@ -64,6 +79,9 @@ body.dark {
   /* box-shadow */
   --wshadow70: rgba(121, 121, 121, 0.3);
   --bshadow15: rgba(0, 0, 0, 0.85);
+
+  --pshadow1: #464646;
+  --pshadow2: #000;
   --wshadow4: #2C2F2A;
   --wshadow3: #000;
   --wshadow2: #17181a;

@@ -1,27 +1,32 @@
 <template>
-  <div class="vm-weather" :style="wStyle">
-    <div class="vm-weather-inner">
-      <template v-if="weather">
-        <div v-if="bg" class="vm-weather-bg">
-          <img src="@/assets/images/cat.gif" />
-        </div>
-        <!-- 天气信息 -->
-        <span class="vm-weather_city">{{ weather.city }}</span>
-        <span class="vm-weather_t">{{ `${getTVal(weather.info.low)}℃~${getTVal(weather.info.high)}℃` }}</span>
-        <span class="vm-weather_w">{{ `${weather.info.type}·${weather.info.fengxiang}` }}</span>
-        <span class="vm-weather_air">
-          <i class="icon ir-air"></i>
-          <span class="text" :style="getAirColor(weather.info.air.aqi_level)">{{ weather.info.air.aqi_name }}</span>
-        </span>
-      </template>
+  <div class="vm-weather" ref="weatherBox">
+    <div class="vm-weather-box" :style="wStyle" ref="weatherInner">
+      <div class="vm-weather-inner">
+        <template v-if="weather">
+          <div v-if="bg" class="vm-weather-bg">
+            <img src="@/assets/images/cat.gif" />
+          </div>
+          <!-- 天气信息 -->
+          <span class="vm-weather_city">{{ weather.city }}</span>
+          <span class="vm-weather_t">{{ `${getTVal(weather.info.low)}℃~${getTVal(weather.info.high)}℃` }}</span>
+          <span class="vm-weather_w">{{ `${weather.info.type}·${weather.info.fengxiang}` }}</span>
+          <span class="vm-weather_air">
+            <i class="icon ir-air"></i>
+            <span class="text" :style="getAirColor(weather.info.air.aqi_level)">{{ weather.info.air.aqi_name }}</span>
+          </span>
+        </template>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeMount, ref } from 'vue';
+import { computed, onBeforeMount, onMounted, ref } from 'vue';
 import { getPropsStyle } from '@/utils/commonUtil';
 import { getWeatherApi } from '@/api/otherApi';
+
+const weatherBox = ref<HTMLElement>();
+const weatherInner = ref<HTMLElement>();
 
 const weather = ref();
 
@@ -45,24 +50,44 @@ const props = withDefaults(defineProps<VMWeatherProps>(), {
   width: undefined,
   height: undefined,
   radius: undefined,
-  scale: 1,
+  scale: undefined,
   bg: true
 });
 
 const wStyle = computed(() => {
   const style: any = {};
-  if (props.width && !props.height) {
-    style.transform = `scale(${getSize(props.width, 'w')})`;
-  } else if (!props.width && props.height) {
-    style.transform = `scale(${getSize(props.height)})`;
-  } else if (props.width && props.height) {
+  if (props.width && props.height) {
     style.width = getPropsStyle(props.width);
     style.height = getPropsStyle(props.height);
   }
   props.radius && (style.borderRadius = getPropsStyle(props.radius));
-  props.scale !== 1 && (style.transform = `scale(${props.scale})`);
+  caleScale();
   return style;
 });
+
+/**
+ * 计算缩放比例
+ */
+function caleScale() {
+  if (!weatherInner.value || !weatherBox.value) return;
+  const boxEl = weatherBox.value;
+  const innerEl = weatherInner.value;
+  let scale = 1;
+  if (props.width && !props.height) {
+    scale = getSize(props.width, 'w');
+  } else if (!props.width && props.height) {
+    scale = getSize(props.height);
+  } else if (props.scale) {
+    scale = props.scale;
+  }
+  if (scale !== 1) {
+    innerEl.style.transform = `scale(${scale})`;
+    innerEl.style.transformOrigin = 'left top';
+    let innerRect = innerEl.getBoundingClientRect();
+    boxEl.style.width = `${innerRect.width}px`;
+    boxEl.style.height = `${innerRect.height}px`;
+  }
+}
 
 // 获取对应尺码
 function getSize(val: number | string, type: string = 'h') {
@@ -98,18 +123,21 @@ function getTVal(t: string) {
 
 <style lang="less" scoped>
 .vm-weather {
-  width: 240px;
-  height: 162px;
   user-select: none;
   border-radius: 12px;
   transition: background-color 0.2s ease-in-out;
   background-color: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: 8px;
   box-shadow: -6px -6px 10px -1px var(--wshadow70), 6px 6px 10px -1px var(--bshadow15);
+  .vm-weather-box {
+    overflow: hidden;
+    width: 240px;
+    height: 162px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 8px;
+  }
   .vm-weather-inner {
     position: relative;
     overflow: hidden;

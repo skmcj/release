@@ -51,3 +51,33 @@
     visibility: hidden;
     opacity: 0;
 }
+
+/* transition 动画 */
+
+/* 淡入 */
+.vm-fadein-enter-active,
+.vm-fadein-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.vm-fadein-enter-from,
+.vm-fadein-leave-to {
+    opacity: 0;
+}
+
+/* 划入 */
+.vm-slidein-enter-to,
+.vm-slidein-leave-from {
+    transform: translateY(0);
+}
+
+.vm-slidein-enter-active,
+.vm-slidein-leave-active {
+    transition: opacity 0.3s ease, transform 0.5s ease;
+}
+
+.vm-slidein-enter-from,
+.vm-slidein-leave-to {
+    opacity: 0;
+    transform: translateY(-20%);
+}
