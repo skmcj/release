@@ -6,6 +6,10 @@ body {
   position: relative;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body,
 body.light {
 
@@ -27,7 +31,12 @@ body.light {
   --air-5: #f333ad;
   --air-6: #9b2105;
 
+  --sentence-ic: #99bcac;
+
+
   --light-gray: #a3a3a3;
+
+  --author-text: linear-gradient(109deg, #8bdeda 2%, #43add0 22%, #998ee0 48%, #e17dc2 74%, #ef9393 100%);
 
   --mode-c: #e83929;
   --mode-ac: #ffec47;

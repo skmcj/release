@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <!-- 顶部 -->
     <div class="top">
       <HeaderSvg class="bg" />
       <div class="top-content">
@@ -42,11 +43,24 @@
         </div>
       </div>
     </div>
+    <!-- 中部 -->
+    <div class="mid" ref="midBox">
+      <VMSentence message="如果我是木乃伊的话，那么属于我的那座金字塔在哪?" />
+      <div class="mid-content" ref="midContent">
+        <div class="mid-content-inner" ref="midInner">
+          <div class="test"></div>
+        </div>
+      </div>
+    </div>
+    <!-- 尾部 -->
+    <div class="footer">
+      <VMFooter :day="128" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, onUpdated } from 'vue';
 import { changeThemeMode, openLink } from '@/utils/commonUtil';
 import HeaderSvg from '@/components/HeaderSvg.vue';
 import VMBlock from '@/components/VMBlock.vue';
@@ -56,20 +70,47 @@ import VMClock from '@/components/VMClock.vue';
 import VMDigitalClock from '@/components/VMDigitalClock.vue';
 import VMWeather from '@/components/VMWeather.vue';
 import VMFate from '@/components/VMFate.vue';
+import VMSentence from '@/components/VMSentence.vue';
+import VMFooter from '@/components/VMFooter.vue';
 
 const toolsBox = ref<HTMLElement>();
 const toolHeight = ref(120);
+
+const midBox = ref<HTMLElement>();
+const midContent = ref<HTMLElement>();
+const midInner = ref<HTMLElement>();
 
 const isDark = ref(false);
 
 onMounted(() => {
   const toolsEl = toolsBox.value as HTMLElement;
   toolsEl && (toolHeight.value = toolsEl.clientHeight - 12);
+  caleMidContent();
+});
+
+onUpdated(() => {
+  caleMidContent();
 });
 
 watch(isDark, val => {
   changeThemeMode(val ? 1 : 0);
 });
+
+function caleMidContent() {
+  if (!midContent.value || !midInner.value) return;
+  const contentEl = midContent.value;
+  const innerEl = midInner.value;
+  const midEl = midBox.value as HTMLElement;
+  const midWidth = midEl.getBoundingClientRect().width;
+  const scale = midWidth / 1200;
+  if (scale !== 1) {
+    innerEl.style.transform = `scale(${scale})`;
+    innerEl.style.transformOrigin = 'left top';
+    const newRect = innerEl.getBoundingClientRect();
+    contentEl.style.width = `${midWidth}px`;
+    contentEl.style.height = `${newRect.height}px`;
+  }
+}
 </script>
 
 <style lang="less" scoped>
@@ -137,23 +178,55 @@ watch(isDark, val => {
     padding: 12px 0;
   }
 }
+
+.mid {
+  margin: 0 auto;
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  .mid-content {
+    margin-top: 24px;
+    .mid-content-inner {
+      width: 1200px;
+      height: 540px;
+      background-color: #ccc;
+    }
+  }
+}
+
+.footer {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: 36px;
+  padding-bottom: 48px;
+}
 @media (max-width: 1080px) {
-  .top-content {
+  .top-content,
+  .mid,
+  .footer {
     width: 62.5%;
   }
 }
 @media (min-width: 1081px) and (max-width: 1680px) {
-  .top-content {
+  .top-content,
+  .mid,
+  .footer {
     width: 1000px;
   }
 }
 @media (min-width: 1681px) and (max-width: 1920px) {
-  .top-content {
+  .top-content,
+  .mid,
+  .footer {
     width: 1200px;
   }
 }
 @media (min-width: 1921px) {
-  .top-content {
+  .top-content,
+  .mid,
+  .footer {
     width: 62.5%;
   }
 }

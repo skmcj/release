@@ -1,0 +1,54 @@
+<template>
+  <div class="vm-footer">
+    <i class="icon ir-copyright-line"></i>
+    <span class="year">2023</span>
+    <span class="author">SKMCJ</span>
+    <span class="tip" v-if="day">{{ `本站已稳定运行 ${day} 天` }}</span>
+  </div>
+</template>
+
+<script setup lang="ts">
+interface VMFooterProps {
+  day?: number;
+}
+const props = withDefaults(defineProps<VMFooterProps>(), {
+  day: undefined
+});
+</script>
+
+<style lang="less" scoped>
+.vm-footer {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  padding: 8px 24px;
+  box-sizing: border-box;
+  color: var(--primary-text);
+  font-family: 'Source Han Sans CN';
+  background-color: var(--bg);
+  box-shadow: -6px -6px 10px -1px var(--wshadow70), 6px 6px 10px -1px var(--bshadow15);
+  .icon {
+    font-size: 18px;
+  }
+  .year {
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .author {
+    margin-left: 9px;
+    font-family: 'zcool-kuaile';
+    font-size: 18px;
+    background: var(--author-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  .tip {
+    margin-left: 32px;
+    font-size: 14px;
+  }
+}
+</style>
