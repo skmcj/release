@@ -19,8 +19,12 @@ body.light {
   --select-hbg: #dee1e3;
   --select-ac: #7ab5e1;
 
+  --thumb-bg: #dddddd;
+
   /* text */
   --primary-text: #61677c;
+  --date-text: #BCBCBC;
+  --word-text: #6F6F6F;
   --city-text: #99BCAC;
   --weather-text: #3D8E86;
   --air-text: #A0D8EF;
@@ -30,6 +34,7 @@ body.light {
   --air-4: #fd333c;
   --air-5: #f333ad;
   --air-6: #9b2105;
+  --placeholder-text: #B9B9B9;
 
   --mnls-s: #61677c;
   --fixed-mask: rgba(0, 0, 0, 0.3);

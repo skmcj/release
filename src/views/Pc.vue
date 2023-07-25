@@ -50,6 +50,7 @@
         <div class="mid-content-inner" ref="midInner">
           <div class="mid-left">
             <VMImage />
+            <VMLWord />
           </div>
           <div class="mid-mid"></div>
           <div class="mid-right"></div>
@@ -77,6 +78,7 @@ import VMFate from '@/components/VMFate.vue';
 import VMSentence from '@/components/VMSentence.vue';
 import VMFooter from '@/components/VMFooter.vue';
 import VMImage from '@/components/VMImage.vue';
+import VMLWord from '@/components/VMLWord.vue';
 
 const toolsBox = ref<HTMLElement>();
 const toolHeight = ref(120);
