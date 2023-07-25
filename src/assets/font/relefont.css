@@ -14,12 +14,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.releasefont {
+.relefont {
   font-family: "relefont" !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.ir-download:before {
+  content: "\e623";
+}
+
+.ir-close:before {
+  content: "\e62b";
 }
 
 .ir-css3:before {

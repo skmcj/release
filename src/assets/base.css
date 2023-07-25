@@ -31,6 +31,11 @@ body.light {
   --air-5: #f333ad;
   --air-6: #9b2105;
 
+  --mnls-s: #61677c;
+  --fixed-mask: rgba(0, 0, 0, 0.3);
+  --download-ic: #a4c9cc;
+  --close-ic: #e94829;
+
   --sentence-ic: #99bcac;
 
 

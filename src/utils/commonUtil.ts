@@ -62,3 +62,59 @@ export const copyToClipboard = function (content: string) {
   // 基于 navigator.clipboard
   return navigator.clipboard.writeText(content);
 };
+
+/**
+ * 异步加载图片
+ * @param imgUrl
+ */
+export const loadImage = function (imgUrl: string) {
+  return new Promise<HTMLImageElement>((resolve, reject) => {
+    const img = new Image();
+    img.src = imgUrl;
+    img.onload = () => {
+      resolve(img);
+    };
+    img.onerror = () => {
+      reject('图片加载失败');
+    };
+  });
+};
+
+/**
+ * 根据URL下载文件
+ * @param url
+ */
+export const downloadUrl = function (url: string) {
+  const a = document.createElement('a');
+  a.download = `file-${Date.now()}`;
+  a.href = url;
+  a.style.display = 'none';
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+};
+
+/**
+ * 根据URL下载文件
+ * @param url
+ */
+export const downloadImg = function (src: string) {
+  const img = new Image();
+  img.setAttribute('crossOrigin', 'anonymous');
+  img.src = src;
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    ctx?.drawImage(img, 0, 0, img.width, img.height);
+    const url = canvas.toDataURL();
+    const a = document.createElement('a');
+    a.download = `file-${Date.now()}`;
+    a.href = url;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
+};

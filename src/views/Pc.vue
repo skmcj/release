@@ -48,7 +48,11 @@
       <VMSentence message="如果我是木乃伊的话，那么属于我的那座金字塔在哪?" />
       <div class="mid-content" ref="midContent">
         <div class="mid-content-inner" ref="midInner">
-          <div class="test"></div>
+          <div class="mid-left">
+            <VMImage />
+          </div>
+          <div class="mid-mid"></div>
+          <div class="mid-right"></div>
         </div>
       </div>
     </div>
@@ -72,6 +76,7 @@ import VMWeather from '@/components/VMWeather.vue';
 import VMFate from '@/components/VMFate.vue';
 import VMSentence from '@/components/VMSentence.vue';
 import VMFooter from '@/components/VMFooter.vue';
+import VMImage from '@/components/VMImage.vue';
 
 const toolsBox = ref<HTMLElement>();
 const toolHeight = ref(120);
@@ -189,7 +194,19 @@ function caleMidContent() {
     .mid-content-inner {
       width: 1200px;
       height: 540px;
-      background-color: #ccc;
+      display: flex;
+      justify-content: space-between;
+    }
+    .mid-left,
+    .mid-mid,
+    .mid-right {
+      display: flex;
+      height: 100%;
+    }
+    .mid-left {
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 }
