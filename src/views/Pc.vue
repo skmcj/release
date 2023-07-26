@@ -34,7 +34,7 @@
           <div class="top-tools" ref="toolsBox">
             <VMClock :size="toolHeight" />
             <div class="tools-date-box">
-              <VMBlock message="23/07/26 星期日" />
+              <VMBlock :message="datetime" />
               <VMDigitalClock />
             </div>
             <VMWeather :height="toolHeight" />
@@ -53,7 +53,7 @@
             <VMLWord />
           </div>
           <VMSkillBar />
-          <div class="mid-right"></div>
+          <VMWorkList />
         </div>
       </div>
     </div>
@@ -65,8 +65,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, onUpdated } from 'vue';
-import { changeThemeMode, openLink } from '@/utils/commonUtil';
+import { ref, onMounted, watch, onUpdated, onBeforeMount } from 'vue';
+import { changeThemeMode, openLink, formatDate } from '@/utils/commonUtil';
 import HeaderSvg from '@/components/HeaderSvg.vue';
 import VMBlock from '@/components/VMBlock.vue';
 import VMButton from '@/components/VMButton.vue';
@@ -80,15 +80,26 @@ import VMFooter from '@/components/VMFooter.vue';
 import VMImage from '@/components/VMImage.vue';
 import VMLWord from '@/components/VMLWord.vue';
 import VMSkillBar from '@/components/VMSkillBar.vue';
+import VMWorkList from '@/components/VMWorkList.vue';
 
+// 顶部下方工具栏
 const toolsBox = ref<HTMLElement>();
 const toolHeight = ref(120);
 
+// 中间盒子
 const midBox = ref<HTMLElement>();
 const midContent = ref<HTMLElement>();
 const midInner = ref<HTMLElement>();
 
+// 模式
 const isDark = ref(false);
+
+// 当前日期
+const datetime = ref('70/01/01 星期四');
+
+onBeforeMount(() => {
+  datetime.value = formatDate(new Date(), 'yy/MM/dd W');
+});
 
 onMounted(() => {
   const toolsEl = toolsBox.value as HTMLElement;

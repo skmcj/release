@@ -4,3 +4,10 @@ export interface SelectItem {
   type: string;
   iconClass?: string;
 }
+
+export interface WorkLabel {
+  icon?: string;
+  tip?: string;
+  link?: string;
+  color?: string;
+}

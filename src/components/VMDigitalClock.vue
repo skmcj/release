@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { computed, onBeforeMount, ref } from 'vue';
-import { getPropsStyle } from '@/utils/commonUtil';
+import { getPropsStyle, formatDate } from '@/utils/commonUtil';
 
 const time = ref('00:00');
 
@@ -74,44 +74,6 @@ const dclock = () => {
       break;
   }
 };
-
-interface DateFormatMap {
-  [key: string]: number | string;
-}
-
-/**
- *
- * @param date
- * @param format
- */
-function formatDate(date: Date, format: string = 'HH:mm') {
-  const re = /(y+)/;
-  if (re.test(format)) {
-    const t = re.exec(format)![1];
-    format = format.replace(t, (date.getFullYear() + '').substring(4 - t.length));
-  }
-
-  const o: DateFormatMap = {
-    'M+': date.getMonth() + 1, // 月
-    'd+': date.getDate(), // 日
-    'h+': date.getHours() % 12 === 0 ? 12 : date.getHours() % 12, // 小时[12]
-    'H+': date.getHours(), // 小时[24]
-    'm+': date.getMinutes(), // 分
-    's+': date.getSeconds(), // 秒
-    'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
-    S: date.getMilliseconds(), // 毫秒
-    a: date.getHours() < 12 ? '上午' : '下午', // 上午/下午
-    A: date.getHours() < 12 ? 'AM' : 'PM' // AM/PM
-  };
-  for (let k in o) {
-    const regx = new RegExp('(' + k + ')');
-    if (regx.test(format)) {
-      const t = regx.exec(format)![1];
-      format = format.replace(t, t.length === 1 ? `${o[k]}` : `00${o[k]}`.slice(t.length * -1));
-    }
-  }
-  return format;
-}
 </script>
 
 <style lang="less" scoped>

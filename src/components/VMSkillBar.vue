@@ -32,7 +32,7 @@ interface VMSkillProps {
 const props = withDefaults(defineProps<VMSkillProps>(), {
   title: '境界',
   skillList: () => ['成仙', '渡劫', '大乘', '合体', '炼虚', '化神', '元婴', '结丹', '筑基', '练气'],
-  value: 20
+  value: 19
 });
 
 onBeforeMount(() => {
