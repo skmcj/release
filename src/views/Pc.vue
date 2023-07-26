@@ -52,7 +52,7 @@
             <VMImage />
             <VMLWord />
           </div>
-          <div class="mid-mid"></div>
+          <VMSkillBar />
           <div class="mid-right"></div>
         </div>
       </div>
@@ -79,6 +79,7 @@ import VMSentence from '@/components/VMSentence.vue';
 import VMFooter from '@/components/VMFooter.vue';
 import VMImage from '@/components/VMImage.vue';
 import VMLWord from '@/components/VMLWord.vue';
+import VMSkillBar from '@/components/VMSkillBar.vue';
 
 const toolsBox = ref<HTMLElement>();
 const toolHeight = ref(120);

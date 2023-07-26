@@ -21,6 +21,8 @@ body.light {
 
   --thumb-bg: #dddddd;
 
+  --wave-bg: #cbd5d7;
+
   /* text */
   --primary-text: #61677c;
   --date-text: #BCBCBC;
@@ -82,6 +84,8 @@ body.light {
 
 body.dark {
   --bg: #1d1e1f;
+
+  --wave-bg: #151617;
 
   --select-bg: #1d1e1f;
   --select-hbg: #343638;
