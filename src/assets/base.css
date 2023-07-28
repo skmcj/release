@@ -81,6 +81,7 @@ body.light {
   --bilibili-ic: #00b3ef;
   /* 渐变 */
   --progress-bg: linear-gradient(180deg, #83CCD2 0%, #50C2A2 48%, #52F3B5 100%);
+  --progress-v-bg: linear-gradient(90deg, #83CCD2 0%, #50C2A2 48%, #52F3B5 100%);
 }
 
 body.dark {

@@ -1,16 +1,32 @@
 <!-- 今日运势 -->
 <template>
-  <div class="vm-fate" ref="fateBox">
+  <div class="vm-fate" ref="fateBox" :class="{ 'is-vertical': direction === 'vertical' }">
     <div class="vm-fate-box" :style="fStyle" ref="fateInner">
       <div class="vm-fate-title">
         <span class="text">今日运势</span>
         <VMStarSignSelect class="select" :select-list="selectList" v-model="selectValue" type="icon" />
       </div>
       <div class="vm-fate-inner">
-        <VMProgress label="爱情" :percentage="qlove" />
-        <VMProgress label="事业" :percentage="qwork" />
-        <VMProgress label="财富" :percentage="qmoney" />
-        <VMProgress label="健康" :percentage="qhealth" />
+        <VMProgress
+          label="爱情"
+          :percentage="qlove"
+          :direction="direction"
+          :c-deg="direction === 'vertical' ? 90 : 180" />
+        <VMProgress
+          label="事业"
+          :percentage="qwork"
+          :direction="direction"
+          :c-deg="direction === 'vertical' ? 90 : 180" />
+        <VMProgress
+          label="财富"
+          :percentage="qmoney"
+          :direction="direction"
+          :c-deg="direction === 'vertical' ? 90 : 180" />
+        <VMProgress
+          label="健康"
+          :percentage="qhealth"
+          :direction="direction"
+          :c-deg="direction === 'vertical' ? 90 : 180" />
       </div>
     </div>
   </div>
@@ -55,13 +71,15 @@ interface VMfateProps {
   radius?: number | string;
   scale?: number;
   bg?: boolean;
+  direction?: string;
 }
 const props = withDefaults(defineProps<VMfateProps>(), {
   width: undefined,
   height: undefined,
   radius: undefined,
   scale: undefined,
-  bg: true
+  bg: true,
+  direction: 'horizontal'
 });
 
 const fStyle = computed(() => {
@@ -153,6 +171,11 @@ function getPVal(p: string) {
   transition: background-color 0.2s ease-in-out;
   background-color: var(--bg);
   box-shadow: -6px -6px 10px -1px var(--wshadow70), 6px 6px 10px -1px var(--bshadow15);
+  &.is-vertical {
+    .vm-fate-inner {
+      flex-direction: row;
+    }
+  }
   .vm-fate-box {
     overflow: hidden;
     width: 290px;

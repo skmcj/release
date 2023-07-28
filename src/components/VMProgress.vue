@@ -1,5 +1,8 @@
 <template>
-  <div class="vm-progress show-title" :data-title="`${percentage}%`">
+  <div
+    class="vm-progress show-title"
+    :class="{ 'is-vertical': direction === 'vertical' }"
+    :data-title="`${percentage}%`">
     <span class="vm-progress_label" v-if="label">{{ label }}</span>
     <div class="vm-progress-box">
       <div class="vm-progress-inner" :style="innerStyle"></div>
@@ -17,18 +20,25 @@ interface VMProgressProps {
   label?: string;
   color?: string[] | string;
   cDeg?: number;
+  direction?: string;
 }
 const props = withDefaults(defineProps<VMProgressProps>(), {
   percentage: 0,
   showTag: false,
   label: undefined,
   color: undefined,
-  cDeg: 180
+  cDeg: 180,
+  direction: 'horizontal'
 });
 
 const innerStyle = computed(() => {
   const style: any = {};
-  style.width = `${props.percentage}%`;
+  if (props.direction === 'vertical') {
+    style.height = `${props.percentage}%`;
+  } else {
+    style.width = `${props.percentage}%`;
+  }
+
   if (props.color) {
     if (typeof props.color === 'string') {
       style.background = props.color;
@@ -45,6 +55,23 @@ const innerStyle = computed(() => {
   display: flex;
   align-items: center;
   font-family: 'zcool-kuaile';
+  &.is-vertical {
+    flex-direction: column-reverse;
+    .vm-progress-box {
+      width: 8px;
+      .vm-progress-inner {
+        width: 8px;
+        height: 0%;
+        bottom: 0;
+        top: auto;
+        background: var(--progress-v-bg);
+      }
+    }
+    .vm-progress_label {
+      margin-top: 8px;
+      margin-right: 0;
+    }
+  }
   .vm-progress_label {
     margin-right: 12px;
     font-size: 14px;
@@ -67,7 +94,7 @@ const innerStyle = computed(() => {
       border-radius: 4px;
       background: var(--progress-bg);
       box-shadow: 1px 1px 5px 0px var(--pshadow2);
-      transition: width 0.5s ease-in-out;
+      transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
     }
   }
   .vm-progress-tag {

@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <!-- 顶部信息 -->
     <div class="top">
       <Avatar size="36vw" />
       <div class="top-right">
@@ -23,15 +24,51 @@
         </div>
       </div>
     </div>
+    <!-- tool -->
+    <div class="tool-box">
+      <VMClock size="36vw" />
+      <VMWeather width="54vw" height="36vw" />
+    </div>
+    <div class="tool-box">
+      <VMFate width="49.6vw" height="67.2vw" direction="vertical" />
+      <div class="mess-list">
+        <VMDigitalClock class="mess-item" width="40vw" height="14.4vw" />
+        <VMBlock class="mess-item" width="40vw" height="9vw" font-size="14px" :message="datetime" />
+        <div class="mess-bottom">
+          <VMBlock
+            width="12.8vw"
+            height="37vw"
+            direction="vertical"
+            message="每日一图"
+            font-size="24px"
+            font-family="YouSheBiaoTiHei"
+            is-btn />
+          <div class="mess-br">
+            <VMBlock width="24vw" height="9.6vw" message="留言" font-size="18px" font-family="YouSheBiaoTiHei" is-btn />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { openLink } from '@/utils/commonUtil';
+import { ref, onBeforeMount } from 'vue';
+import { openLink, formatDate } from '@/utils/commonUtil';
 import Avatar from '@/components/Avatar.vue';
 import VMBlock from '@/components/VMBlock.vue';
 import VMButton from '@/components/VMButton.vue';
+import VMClock from '@/components/VMClock.vue';
+import VMWeather from '@/components/VMWeather.vue';
+import VMFate from '@/components/VMFate.vue';
+import VMDigitalClock from '@/components/VMDigitalClock.vue';
+
+// 当前日期
+const datetime = ref('70/01/01 星期四');
+
+onBeforeMount(() => {
+  datetime.value = formatDate(new Date(), 'yy/MM/dd W');
+});
 </script>
 
 <style lang="less" scoped>
@@ -64,6 +101,29 @@ import VMButton from '@/components/VMButton.vue';
     align-items: center;
     gap: 10px 12px;
     flex-wrap: wrap;
+  }
+}
+.tool-box {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  justify-content: space-between;
+}
+.mess-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .mess-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .mess-br {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
   }
 }
 </style>
