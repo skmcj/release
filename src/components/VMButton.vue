@@ -16,6 +16,7 @@ interface VMButtonProps {
   color?: string;
   text?: string;
   iconClass?: string;
+  fontSize?: number | string;
 }
 const props = withDefaults(defineProps<VMButtonProps>(), {
   width: undefined,
@@ -31,6 +32,7 @@ const btnStyle = computed(() => {
   props.width && (style.width = getPropsStyle(props.width));
   props.height && (style.height = getPropsStyle(props.height));
   props.radius && (style.borderRadius = getPropsStyle(props.radius));
+  props.fontSize && (style.fontSize = getPropsStyle(props.fontSize));
   props.color && (style.color = props.color);
   return style;
 });

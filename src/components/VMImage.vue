@@ -62,6 +62,7 @@ onBeforeMount(() => {
       loaded.value = true;
     })
     .catch(err => {
+      console.log(err);
       loading.value = false;
       loadTip.value = '她，迷路了(｀ﾟДﾟ´)ゞ';
     });

@@ -67,16 +67,17 @@ export const copyToClipboard = function (content: string) {
  * 异步加载图片
  * @param imgUrl
  */
-export const loadImage = function (imgUrl: string) {
+export const loadImage = function (imgUrl: string, isCross: boolean = false) {
   return new Promise<HTMLImageElement>((resolve, reject) => {
     const img = new Image();
-    img.src = imgUrl;
+    isCross && img.setAttribute('crossOrigin', 'anonymous');
     img.onload = () => {
       resolve(img);
     };
     img.onerror = () => {
       reject('图片加载失败');
     };
+    img.src = imgUrl;
   });
 };
 

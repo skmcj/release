@@ -9,9 +9,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import avatarUrl from '@/assets/images/default-avatar.png';
+import { getPropsStyle } from '@/utils/commonUtil';
 
 interface AvatarProps {
-  size?: number;
+  size?: number | string;
   url?: string;
 }
 const props = withDefaults(defineProps<AvatarProps>(), {
@@ -22,8 +23,8 @@ const props = withDefaults(defineProps<AvatarProps>(), {
 const aStyle = computed(() => {
   const style: any = {};
   if (props.size) {
-    style.width = `${props.size}px`;
-    style.height = `${props.size}px`;
+    style.width = getPropsStyle(props.size);
+    style.height = getPropsStyle(props.size);
   }
   return style;
 });
