@@ -31,7 +31,6 @@ const props = withDefaults(defineProps<VMSwitchProps>(), {
 });
 
 const changeValue = () => {
-  console.log('change');
   emits('update:modelValue', !props.modelValue);
 };
 

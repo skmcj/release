@@ -22,6 +22,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ir-taiji:before {
+  content: "\e641";
+}
+
 .ir-download:before {
   content: "\e623";
 }
@@ -32,10 +36,6 @@
 
 .ir-css3:before {
   content: "\ea8b";
-}
-
-.ir-taiji:before {
-  content: "\e653";
 }
 
 .ir-calendar:before {

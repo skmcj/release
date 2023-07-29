@@ -45,6 +45,7 @@
             is-btn />
           <div class="mess-br">
             <VMBlock width="24vw" height="9.6vw" message="留言" font-size="18px" font-family="YouSheBiaoTiHei" is-btn />
+            <VMTaijiSwitch v-model="isDark" size="24vw" />
           </div>
         </div>
       </div>
@@ -53,8 +54,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeMount } from 'vue';
-import { openLink, formatDate } from '@/utils/commonUtil';
+import { ref, onBeforeMount, watch } from 'vue';
+import { openLink, formatDate, changeThemeMode } from '@/utils/commonUtil';
 import Avatar from '@/components/Avatar.vue';
 import VMBlock from '@/components/VMBlock.vue';
 import VMButton from '@/components/VMButton.vue';
@@ -62,6 +63,14 @@ import VMClock from '@/components/VMClock.vue';
 import VMWeather from '@/components/VMWeather.vue';
 import VMFate from '@/components/VMFate.vue';
 import VMDigitalClock from '@/components/VMDigitalClock.vue';
+import VMTaijiSwitch from '@/components/VMTaijiSwitch.vue';
+
+// 模式
+const isDark = ref(false);
+
+watch(isDark, val => {
+  changeThemeMode(val ? 1 : 0);
+});
 
 // 当前日期
 const datetime = ref('70/01/01 星期四');
