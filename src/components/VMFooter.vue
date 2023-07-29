@@ -1,5 +1,5 @@
 <template>
-  <div class="vm-footer">
+  <div class="vm-footer" :class="{ 'vm-footer_small': size === 'small' }">
     <i class="icon ir-copyright-line"></i>
     <span class="year">2023</span>
     <span class="author">SKMCJ</span>
@@ -10,9 +10,11 @@
 <script setup lang="ts">
 interface VMFooterProps {
   day?: number;
+  size: string;
 }
 const props = withDefaults(defineProps<VMFooterProps>(), {
-  day: undefined
+  day: undefined,
+  size: 'default'
 });
 </script>
 
@@ -28,6 +30,17 @@ const props = withDefaults(defineProps<VMFooterProps>(), {
   font-family: 'Source Han Sans CN';
   background-color: var(--bg);
   box-shadow: -6px -6px 10px -1px var(--wshadow70), 6px 6px 10px -1px var(--bshadow15);
+  &.vm-footer_small {
+    .icon {
+      font-size: 16px;
+    }
+    .year {
+      font-size: 14px;
+    }
+    .tip {
+      font-size: 12px;
+    }
+  }
   .icon {
     font-size: 18px;
   }
@@ -47,7 +60,7 @@ const props = withDefaults(defineProps<VMFooterProps>(), {
     text-fill-color: transparent;
   }
   .tip {
-    margin-left: 32px;
+    margin-left: 27px;
     font-size: 14px;
   }
 }

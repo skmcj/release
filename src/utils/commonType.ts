@@ -11,3 +11,11 @@ export interface WorkLabel {
   link?: string;
   color?: string;
 }
+
+export interface WorkItem {
+  logo?: string;
+  name?: string;
+  tip?: string;
+  date?: string;
+  labels?: WorkLabel[];
+}

@@ -50,6 +50,11 @@
         </div>
       </div>
     </div>
+    <VMH5WorkList class="work-list" width="92vw" />
+    <!-- 尾部 -->
+    <div class="footer">
+      <VMFooter :day="128" size="small" />
+    </div>
   </div>
 </template>
 
@@ -64,6 +69,8 @@ import VMWeather from '@/components/VMWeather.vue';
 import VMFate from '@/components/VMFate.vue';
 import VMDigitalClock from '@/components/VMDigitalClock.vue';
 import VMTaijiSwitch from '@/components/VMTaijiSwitch.vue';
+import VMH5WorkList from '@/components/VMH5WorkList.vue';
+import VMFooter from '@/components/VMFooter.vue';
 
 // 模式
 const isDark = ref(false);
@@ -134,5 +141,16 @@ onBeforeMount(() => {
     height: 100%;
     justify-content: space-between;
   }
+}
+.work-list {
+  margin: auto;
+}
+.footer {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: 36px;
+  padding-bottom: 18px;
 }
 </style>

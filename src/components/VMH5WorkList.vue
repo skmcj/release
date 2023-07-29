@@ -5,7 +5,9 @@
     </div>
     <div class="vm-work-content">
       <div class="vm-work-list">
-        <VMWorkItem
+        <VMH5WorkItem
+          width="40vw"
+          height="52vw"
           :labels="workItem.labels"
           :logo="workItem.logo"
           :name="workItem.name"
@@ -19,14 +21,14 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { getPropsStyle } from '@/utils/commonUtil';
-import VMWorkItem from './VMWorkItem.vue';
+import VMH5WorkItem from './VMH5WorkItem.vue';
 import type { WorkItem } from '@/utils/commonType';
 
-interface VMWorkListProps {
+interface VMWorkH5ListProps {
+  width?: number | string;
   workList?: WorkItem[];
-  width?: string | number;
 }
-const props = withDefaults(defineProps<VMWorkListProps>(), {
+const props = withDefaults(defineProps<VMWorkH5ListProps>(), {
   workList: () => [],
   width: undefined
 });
@@ -92,27 +94,18 @@ const workItem = {
   border-radius: 12px;
   box-sizing: border-box;
   display: flex;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 16px 8px;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  padding-bottom: 16px;
   .vm-work-list {
     // z-index: -1;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 16px;
     width: 100%;
     // height: 100%;
     box-sizing: border-box;
-    &::after {
-      content: '';
-      display: block;
-      width: 100%;
-      height: 16px;
-      flex-shrink: 0;
-    }
+  }
+  .vm-work-i {
   }
 }
 </style>

@@ -1,7 +1,14 @@
 <template>
   <Teleport :to="to">
     <Transition name="vm-slidein">
-      <div class="vm-popper" :style="pStyle" v-if="modelValue" @mouseenter="clearTimer" @mouseleave="startTimer">
+      <div
+        class="vm-popper"
+        :style="pStyle"
+        v-if="modelValue"
+        @mouseenter="clearTimer"
+        @mouseleave="startTimer"
+        @touchstart="clearTimer"
+        @touchend="startTimer">
         <slot></slot>
       </div>
     </Transition>
@@ -9,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
+import { computed, watch } from 'vue';
 
 interface VMPopperProps {
   modelValue?: boolean;
@@ -31,9 +38,12 @@ const pStyle = computed(() => {
   return style;
 });
 
-onMounted(() => {
-  startTimer();
-});
+watch(
+  () => props.modelValue,
+  () => {
+    if (props.modelValue) startTimer();
+  }
+);
 
 let dTimer: number | undefined;
 
