@@ -105,3 +105,15 @@
         transform: rotate(360deg);
     }
 }
+
+/* 隐入 */
+.vm-hidein-enter-active,
+.vm-hidein-leave-active {
+    transition: opacity 0.5s linear, transform 0.2s ease-in-out;
+}
+
+.vm-hidein-enter-from,
+.vm-hidein-leave-to {
+    opacity: 0;
+    transform: translateZ(-8px);
+}
