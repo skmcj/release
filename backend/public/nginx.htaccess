@@ -1,5 +1,5 @@
-location / {
+location /api {
 	if (!-f $request_filename) {
-		rewrite  ^(.*)$  /index.php/$1  last;
+		rewrite  ^(.*)$ /backend/publice/index.php/$1  last;
 	}
 }

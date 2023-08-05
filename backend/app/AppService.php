@@ -3,6 +3,7 @@ declare (strict_types = 1);
 
 namespace app;
 
+use app\common\Result;
 use think\Service;
 
 /**
@@ -19,4 +20,8 @@ class AppService extends Service
     {
         // 服务启动
     }
+
+    public $bind = [
+        'result' => Result::class
+    ];
 }
