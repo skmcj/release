@@ -56,4 +56,16 @@ class Status {
     public static function UNKNOWN() {
         return new Status(599, '未知错误');
     }
+
+    /** 图片请求相关 */
+    public static function IMG_RQM_ERR() {
+        return new Status(403, '请求失败，请检查请求方法是否正确');
+    }
+    /**
+     * 图片上传
+     * 431 图片验证失败
+     */
+    public static function IMG_ERR() {
+        return new Status(403, '请求失败，请检查请求参数是否正确');
+    }
 }

@@ -20,5 +20,10 @@ return [
             'visibility' => 'public',
         ],
         // 更多的磁盘配置信息
+        // 存储临时文件
+        'tmp' => [
+            'type' => 'local',
+            'root' => app()->getRootPath() . 'public/tmp',
+        ]
     ],
 ];
