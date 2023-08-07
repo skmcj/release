@@ -4,7 +4,7 @@ namespace app\model;
 use think\Model;
 class Image extends Model
 {
-    protected $table = 'image';
+    // protected $table = 'image';
 
     // 设置字段信息
     protected $schema = [

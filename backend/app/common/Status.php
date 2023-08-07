@@ -51,10 +51,17 @@ class Status {
     }
 
     /**
-     * 404
+     * 未知错误
      */
     public static function UNKNOWN() {
         return new Status(599, '未知错误');
+    }
+
+    /**
+     * 服务器出错
+     */
+    public static function SERVICE_ERR() {
+        return new Status(512, '系统繁忙，请稍后再试！');
     }
 
     /** 图片请求相关 */
@@ -65,7 +72,14 @@ class Status {
      * 图片上传
      * 431 图片验证失败
      */
-    public static function IMG_ERR() {
+
+    /** 用户相关 */
+
+
+
+    public static function COMMON_ERR() {
         return new Status(403, '请求失败，请检查请求参数是否正确');
     }
+
+
 }

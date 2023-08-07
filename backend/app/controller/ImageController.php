@@ -11,7 +11,7 @@ class ImageController extends BaseController
 {
     public function index()
     {
-        return result()::error(Status::IMG_ERR());
+        return result()::error(Status::COMMON_ERR());
     }
 
     /**
