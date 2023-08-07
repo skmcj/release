@@ -8,10 +8,11 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
+
 use think\facade\Route;
 
-Route::get('think', function () {
-    return 'hello,ThinkPHP6!';
-});
-
-Route::get('hello/:name', 'index/hello');
+// User 相关 api
+Route::get('user/:id', 'User/getById');
+Route::delete('user/:id', 'User/deleteById');
+Route::post('user', 'User/save');
+Route::put('user', 'User/update');

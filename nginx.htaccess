@@ -3,3 +3,15 @@ location /api {
 		rewrite  ^/api/(.*)$  /backend/public/index.php/$1  last;
 	}
 }
+
+location /oss {
+	if (!-f $request_filename) {
+		rewrite  ^/oss/(.*)$  /backend/public/storage/$1  last;
+	}
+}
+
+location /tmp {
+	if (!-f $request_filename) {
+		rewrite  ^/tmp/(.*)$  /backend/public/tmp/$1  last;
+	}
+}
