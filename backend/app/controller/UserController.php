@@ -17,7 +17,7 @@ class UserController extends BaseController
      * 根据ID获取用户
      */
     public function getById($id = '') {
-        $user = User::find('11490593028968173');
+        $user = User::find($id);
         return result()::success($user);
     }
 
@@ -32,7 +32,7 @@ class UserController extends BaseController
      * 保存用户
      */
     public function save() {
-        $status = User::add($this -> request -> param());
+        $status = User::add($this -> request -> post());
         return result()::success(null, $status);
     }
 
@@ -40,6 +40,7 @@ class UserController extends BaseController
      * 修改用户
      */
     public function update() {
-        return result()::success('update');
+        $status = User::edit($this -> request -> put());
+        return result()::success(null, $status);
     }
 }

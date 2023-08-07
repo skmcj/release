@@ -57,4 +57,16 @@ class UserValidate extends Validate
     protected $scene = [
         'add' => ['nickname', 'address', 'sex', 'level', 'year', 'author', 'startTime']
     ];
+
+    /**
+     * 修改场景的验证规则
+     */
+    public function sceneEdit() {
+        return $this -> only(['id', 'nickname', 'address', 'sex', 'level', 'year', 'author', 'startTime'])
+            -> remove('nickname', 'require')
+            -> remove('address', 'require')
+            -> remove('year', 'require')
+            -> remove('author', 'require')
+            -> remove('startTime', 'require');
+    }
 }

@@ -3,11 +3,13 @@
 namespace app\model;
 
 use app\common\IDGenerator;
+use app\common\RegValidate;
 use app\common\Status;
 use app\validate\UserValidate;
 use Exception;
 use think\exception\ValidateException;
 use think\Model;
+
 class User extends Model
 {
     // 数据转换为驼峰命名
@@ -31,6 +33,18 @@ class User extends Model
         }
     }
 
+    public function getAvatarAttr($val)
+    {
+        $host = config('common.img_host');
+        if(RegValidate::validUrl($val)) {
+            return $val;
+        }
+        return "{$host}{$val}";
+    }
+
+    /**
+     * 添加用户
+     */
     public static function add($data) {
         try {
             validate(UserValidate::class)
@@ -40,6 +54,24 @@ class User extends Model
             return new Status(211, '添加成功');
         } catch(ValidateException $e) {
             return new Status(411, $e -> getMessage());
+        } catch(Exception $e) {
+            return Status::SERVICE_ERR();
+        }
+    }
+
+    /**
+     * 修改用户
+     */
+    public static function edit($data) {
+        try {
+            validate(UserValidate::class)
+            ->scene('edit')
+            ->check($data);
+            // 过滤字段
+            self::update($data, ['id' => $data['id']], ['nickname', 'address', 'sex', 'level', 'year', 'author', 'start_time']);
+            return new Status(212, '修改成功');
+        } catch(ValidateException $e) {
+            return new Status(412, $e -> getMessage());
         } catch(Exception $e) {
             return Status::SERVICE_ERR();
         }
