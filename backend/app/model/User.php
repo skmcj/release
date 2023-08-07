@@ -69,9 +69,9 @@ class User extends Model
             ->check($data);
             // 过滤字段
             self::update($data, ['id' => $data['id']], ['nickname', 'address', 'sex', 'level', 'year', 'author', 'start_time']);
-            return new Status(212, '修改成功');
+            return new Status(213, '修改成功');
         } catch(ValidateException $e) {
-            return new Status(412, $e -> getMessage());
+            return new Status(413, $e -> getMessage());
         } catch(Exception $e) {
             return Status::SERVICE_ERR();
         }

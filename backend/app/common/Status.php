@@ -74,7 +74,16 @@ class Status {
      */
 
     /** 用户相关 */
+    public static function USER_FIND_ERR() {
+        return new Status(414, 'ID错误，查无该用户');
+    }
 
+    public static function USER_DEL_ERR() {
+        return new Status(412, '删除失败，请稍候再试');
+    }
+    public static function USER_DEL_OK() {
+        return new Status(212, '删除成功');
+    }
 
 
     public static function COMMON_ERR() {

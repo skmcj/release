@@ -18,6 +18,9 @@ class UserController extends BaseController
      */
     public function getById($id = '') {
         $user = User::find($id);
+        if($user === null) {
+            return result()::error(Status::USER_FIND_ERR());
+        }
         return result()::success($user);
     }
 
@@ -25,7 +28,13 @@ class UserController extends BaseController
      * 根据ID删除用户
      */
     public function deleteById($id = '') {
-        return result()::success('delete '.$id);
+        $user = User::find($id);
+        if($user === null) {
+            return result()::error(Status::USER_FIND_ERR());
+        }
+        $flag = $user -> delete();
+        if(!$flag) return result()::error(Status::USER_DEL_ERR());
+        return result()::success($flag, Status::USER_DEL_OK());
     }
 
     /**
