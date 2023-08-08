@@ -3,8 +3,9 @@
 namespace app\controller;
 use app\BaseController;
 use app\common\Status;
+use app\model\Social;
 use app\model\User;
-use think\Request;
+use app\pojo\PageEntity;
 
 class UserController extends BaseController
 {
@@ -22,6 +23,44 @@ class UserController extends BaseController
             return result()::error(Status::USER_FIND_ERR());
         }
         return result()::success($user);
+    }
+
+    /**
+     * 根据ID获取用户
+     */
+    public function getAllById($id = '') {
+        $user = User::find($id);
+        if($user === null) {
+            return result()::error(Status::USER_FIND_ERR());
+        }
+        // 获取用户设计信息
+        $list = Social::userId($id) -> disabled(0) -> order('sort', 'desc') -> select();
+        $user -> social = $list;
+        return result()::success($user);
+    }
+
+    /**
+     * 获取缩略列表
+     */
+    public function getList() {
+        $user = User::scope('sm') -> select();
+        if($user === null) {
+            return result()::error(Status::USER_GET_ERR());
+        }
+        return result()::success($user);
+    }
+
+    /**
+     * 分页获取
+     */
+    public function getPage(int $page = 1, int $pageSize = 5) {
+        $user = User::page($page, $pageSize) -> select();
+        if($user === null) {
+            return result()::error(Status::USER_GET_ERR());
+        }
+        $total = User::count();
+        $page = new PageEntity($user, $total, $page, $pageSize);
+        return result()::success($page);
     }
 
     /**

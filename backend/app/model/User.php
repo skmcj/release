@@ -27,6 +27,10 @@ class User extends Model
         'update_time' => 'datetime'
     ];
 
+    protected $type = [
+        'social' => 'json'
+    ];
+
     public static function onBeforeInsert($user) {
         if($user -> id === null || $user -> id === '') {
             $user -> id = IDGenerator::getId();
@@ -43,6 +47,13 @@ class User extends Model
     }
 
     /**
+     * 获取用户缩略信息
+     */
+    public function scopeSm($query) {
+        $query -> field('id, nickname');
+    }
+
+    /**
      * 添加用户
      */
     public static function add($data) {
@@ -51,9 +62,9 @@ class User extends Model
             ->scene('add')
             ->check($data);
             self::create($data);
-            return new Status(211, '添加成功');
+            return Status::ADD_OK();
         } catch(ValidateException $e) {
-            return new Status(411, $e -> getMessage());
+            return Status::create(411, $e -> getMessage());
         } catch(Exception $e) {
             return Status::SERVICE_ERR();
         }
@@ -69,9 +80,9 @@ class User extends Model
             ->check($data);
             // 过滤字段
             self::update($data, ['id' => $data['id']], ['nickname', 'address', 'sex', 'level', 'year', 'author', 'start_time']);
-            return new Status(213, '修改成功');
+            return Status::EDIT_OK();
         } catch(ValidateException $e) {
-            return new Status(413, $e -> getMessage());
+            return Status::create(413, $e -> getMessage());
         } catch(Exception $e) {
             return Status::SERVICE_ERR();
         }

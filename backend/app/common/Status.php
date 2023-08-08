@@ -68,6 +68,35 @@ class Status {
     public static function IMG_RQM_ERR() {
         return new Status(403, '请求失败，请检查请求方法是否正确');
     }
+
+    public static function ADD_OK() {
+        return new Status(211, '添加成功');
+    }
+    public static function DEL_OK() {
+        return new Status(212, '删除成功');
+    }
+    public static function EDIT_OK() {
+        return new Status(213, '修改成功');
+    }
+    public static function GET_OK() {
+        return new Status(214, '查询成功');
+    }
+
+    
+    public static function ADD_ERR() {
+        return new Status(411, '添加失败');
+    }
+    public static function DEL_ERR() {
+        return new Status(412, '删除失败');
+    }
+    public static function EDIT_ERR() {
+        return new Status(413, '修改失败');
+    }
+    public static function GET_ERR() {
+        return new Status(414, '查询失败');
+    }
+
+
     /**
      * 图片上传
      * 431 图片验证失败
@@ -78,6 +107,10 @@ class Status {
         return new Status(414, 'ID错误，查无该用户');
     }
 
+    public static function USER_GET_ERR() {
+        return new Status(414, '查询失败，没有更多数据了');
+    }
+
     public static function USER_DEL_ERR() {
         return new Status(412, '删除失败，请稍候再试');
     }
@@ -85,9 +118,17 @@ class Status {
         return new Status(212, '删除成功');
     }
 
+    public static function COMMON_FIND_ERR() {
+        return new Status(414, 'ID错误，查无该记录');
+    }
+
 
     public static function COMMON_ERR() {
         return new Status(403, '请求失败，请检查请求参数是否正确');
+    }
+
+    public static function create(int $code = 599, string $msg = '未知错误') {
+        return new Status($code, $msg);
     }
 
 
