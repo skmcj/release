@@ -62,7 +62,7 @@ class ExceptionHandle extends Handle
 
         if (env('app_debug')) {
             // return result()::error($e -> getTraceAsString(), $e -> getCode(), $e -> getMessage());
-            // return parent::render($request, $e);
+            return parent::render($request, $e);
         }
 
         // 参数验证错误

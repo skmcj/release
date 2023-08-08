@@ -29,3 +29,11 @@ Route::get('social/:id', 'Social/getById');
 Route::post('social', 'Social/save');
 Route::put('social', 'Social/edit');
 Route::delete('social/:id', 'Social/deleteById');
+
+// 境界标签相关
+Route::get('level/list', 'Level/getList');
+Route::get('level/page', 'Level/getPage');
+Route::get('level/:id', 'Level/getById');
+Route::post('level', 'Level/save');
+Route::put('level', 'Level/edit');
+Route::delete('level/:id', 'Level/deleteById');
