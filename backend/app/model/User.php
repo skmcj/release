@@ -28,6 +28,7 @@ class User extends Model
     ];
 
     protected $type = [
+        'days' => 'int',
         'social' => 'json'
     ];
 

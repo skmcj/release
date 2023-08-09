@@ -69,4 +69,22 @@ class CommonUtil {
         }
         return null;
     }
+
+    /**
+     * 计算日期差值
+     */
+    public static function caleDateDiff(string $start, string $end) {
+        $startDate = date_create($start);
+        $endDate = date_create($end);
+        return date_diff($startDate, $endDate);
+    }
+
+    /**
+     * 计算当前日期差值
+     */
+    public static function caleDateDiffOfCurrent(string $start) {
+        $startDate = date_create($start);
+        $endDate = date_create(date('Y-m-d H:i:s'));
+        return date_diff($startDate, $endDate);
+    }
 }

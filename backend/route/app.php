@@ -37,3 +37,13 @@ Route::get('level/:id', 'Level/getById');
 Route::post('level', 'Level/save');
 Route::put('level', 'Level/edit');
 Route::delete('level/:id', 'Level/deleteById');
+
+// 每日一句
+Route::get('sentence/page', 'Sentence/getPage');
+Route::get('sentence/random', 'Sentence/getRandom');
+Route::get('sentence/daily', 'Sentence/getDaily');
+Route::get('sentence/:id', 'Sentence/getById');
+Route::post('sentence/batch', 'Sentence/saveBatch');
+Route::post('sentence', 'Sentence/save');
+Route::put('sentence', 'Sentence/edit');
+Route::delete('sentence', 'Sentence/deleteByIds');

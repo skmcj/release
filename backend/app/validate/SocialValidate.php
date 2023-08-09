@@ -35,7 +35,7 @@ class SocialValidate extends Validate
         'icon.max' => '图标类不能超过128个字符',
         'label.max' => '标签不能超过32个字符',
         'link.checkLink' => '链接格式错误',
-        'disabled.number' => 'disabled需为布尔值',
+        'disabled.boolean' => 'disabled需为布尔值',
         'sort.number' => 'sort需为数字'
     ];
     /**

@@ -2,6 +2,7 @@
 
 namespace app\controller;
 use app\BaseController;
+use app\common\CommonUtil;
 use app\common\Status;
 use app\model\Social;
 use app\model\User;
@@ -33,9 +34,11 @@ class UserController extends BaseController
         if($user === null) {
             return result()::error(Status::USER_FIND_ERR());
         }
+        $days = CommonUtil::caleDateDiffOfCurrent($user -> startTime) -> days;
         // 获取用户设计信息
         $list = Social::userId($id) -> disabled(0) -> order('sort', 'desc') -> select();
         $user -> social = $list;
+        $user -> days = $days;
         return result()::success($user);
     }
 

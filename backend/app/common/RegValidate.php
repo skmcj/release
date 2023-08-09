@@ -14,4 +14,14 @@ class RegValidate {
         $patt = '/^(((ht|f)tps?):\/\/)([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/';
         return preg_match($patt, $url) > 0;
     }
+
+    /**
+     * 验证日期 yyyy-MM-dd
+     */
+    public static function validDate($date) {
+        $patt = '/^\d{1,4}(-)(1[0-2]|0?[1-9])\1(0?[1-9]|[1-2]\d|30|31)$/';
+        return preg_match($patt, $date) > 0;
+    }
+
+    
 }
