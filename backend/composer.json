@@ -1,5 +1,5 @@
 {
-    "name": "skmcj-release-api",
+    "name": "skmcj/release-api",
     "description": "the api by thinkphp",
     "type": "project",
     "keywords": [
@@ -12,14 +12,15 @@
     "authors": [
         {
             "name": "skmcj",
-            "email": ""
+            "email": "example-eamil@skmcj.top"
         }
     ],
     "require": {
         "php": ">=8.0.0",
         "topthink/framework": "^8.0",
         "topthink/think-orm": "^3.0",
-        "topthink/think-filesystem": "^2.0"
+        "topthink/think-filesystem": "^2.0",
+        "zoujingli/ip2region": "^2.0"
     },
     "require-dev": {
         "symfony/var-dumper": ">=4.2",

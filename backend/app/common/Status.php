@@ -127,6 +127,10 @@ class Status {
         return new Status(403, '请求失败，请检查请求参数是否正确');
     }
 
+    public static function IP_PARSE_ERR() {
+        return new Status(512, 'ip获取失败，请稍后再试');
+    }
+
     public static function create(int $code = 599, string $msg = '未知错误') {
         return new Status($code, $msg);
     }

@@ -57,3 +57,9 @@ Route::post('image/batch', 'Image/saveBatch');
 Route::post('image', 'Image/save');
 Route::put('image', 'Image/edit');
 Route::delete('image', 'Image/deleteByIds');
+
+// 留言路由
+
+
+// 其它路由
+Route::get('ipinfo', 'Other/getIpInfo');
