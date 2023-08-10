@@ -103,7 +103,7 @@ class Sentence extends Model
             self::update($data, ['id' => $data['id']], ['content', 'disabled', 'show_date']);
             return Status::EDIT_OK();
         } catch (ValidateException $e) {
-            return Status::create(411, $e -> getMessage());
+            return Status::create(413, $e -> getMessage());
         } catch (Exception $th) {
             return Status::SERVICE_ERR();
         }

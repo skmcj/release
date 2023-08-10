@@ -47,3 +47,13 @@ Route::post('sentence/batch', 'Sentence/saveBatch');
 Route::post('sentence', 'Sentence/save');
 Route::put('sentence', 'Sentence/edit');
 Route::delete('sentence', 'Sentence/deleteByIds');
+
+// 每日一图
+Route::get('image/page', 'Image/getPage');
+Route::get('image/random', 'Image/getRandom');
+Route::get('image/daily', 'Image/getDaily');
+Route::get('image/:id', 'Image/getById');
+Route::post('image/batch', 'Image/saveBatch');
+Route::post('image', 'Image/save');
+Route::put('image', 'Image/edit');
+Route::delete('image', 'Image/deleteByIds');
