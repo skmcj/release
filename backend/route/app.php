@@ -59,7 +59,12 @@ Route::put('image', 'Image/edit');
 Route::delete('image', 'Image/deleteByIds');
 
 // 留言路由
-
+Route::get('comment/page', 'Comment/getPage');
+Route::get('comment/:id', 'Comment/getById');
+Route::get('comment', 'Comment/getComment');
+Route::post('comment', 'Comment/save');
+Route::put('comment', 'Comment/edit');
+Route::delete('comment/:id', 'Comment/deleteById');
 
 // 其它路由
 Route::get('ipinfo', 'Other/getIpInfo');

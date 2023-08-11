@@ -151,31 +151,35 @@ class CommonUtil {
      * 获取ip归属地
      * @param string $ip IP地址
      * 使用ipRegion
+     * @return array|null
      */
     public static function getIpLocationV2($ip){
-        $dbPath = config('common.resource').'data/ip2region.xdb';
-        try {
-            $searcher = XdbSearcher::newWithFileOnly($dbPath);
-        } catch (Exception $e) {
-            // printf("failed to create searcher with '%s': %s\n", $dbPath, $e);
-            return null;
+        return IPRegionUtil::parseIp($ip);
+    }
+
+
+    /**
+     * 将地址信息压缩
+     */
+    public static function encodeLocation(array $location) {
+        if($location === null) return null;
+        $lct = '';
+        if($location[0] === '中国') {
+            if($location[3] === '0' || $location[2] === '0') {
+                $lct = "{$location[0]}·{$location[2]}·{$location[3]}";
+            } else {
+                $lct = "{$location[2]}·{$location[3]}";
+            }
+            $lct = preg_replace('/省|市|·0|0|北京·|天津·|上海·|重庆·/', '', $lct);
+        } else {
+            if($location[0] === '0') {
+                $lct = "{$location[2]}·{$location[3]}";
+            } else {
+                $lct = "{$location[0]}·{$location[2]}";
+            }
+            $lct = preg_replace('/0·|·0|0/', '', $lct);
         }
-        $sTime = XdbSearcher::now();
-        $region = $searcher->search($ip);
-        if ($region === null) {
-            // something is wrong
-            // printf("failed search(%s)\n", $ip);
-            return null;
-        }
-        // printf("{region: %s, took: %.5f ms}\n", $region, XdbSearcher::now() - $sTime);
-        $loaction = explode('|', $region);
-        return [
-            "country" => $loaction[0],
-            "region" => $loaction[1],
-            "province" => $loaction[2],
-            "city" => $loaction[3],
-            "isp" => $loaction[4]
-        ];
+        return $lct;
     }
 
 

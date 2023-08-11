@@ -155,6 +155,9 @@ class ImageController extends BaseController
                     break;
             }
         }
+        if($query === null) {
+            $query = new Image();
+        }
 
         $list = $query -> page($page, $pageSize) -> select();
         $total = $query -> count();
