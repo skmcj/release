@@ -66,5 +66,8 @@ Route::post('comment', 'Comment/save');
 Route::put('comment', 'Comment/edit');
 Route::delete('comment/:id', 'Comment/deleteById');
 
+// 文章
+Route::get('article/:name', 'Article/getProfile');
+
 // 其它路由
 Route::get('ipinfo', 'Other/getIpInfo');

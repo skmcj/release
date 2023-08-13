@@ -22,4 +22,9 @@ return [
     'taglib_begin'  => '{',
     // 标签库标签结束标记
     'taglib_end'    => '}',
+    'tpl_replace_string'    =>      [
+        '__CSS__'=>'/static/css',// 这里指向/public/static/css目录
+        '__JS__' => '/static/js',// 这里指向/public/static/js目录
+        '__LIB__' => '/static/lib',// 这里指向/public/static/lib目录
+    ]
 ];

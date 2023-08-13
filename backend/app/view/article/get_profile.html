@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$title}-简介</title>
+    <link rel="shortcut icon" href="https://color.skmcj.top/favicon.ico">
+    <link rel="stylesheet" href="__CSS__/base.css" />
+    <link rel="stylesheet" href="__CSS__/editormd.min.css" />
+    <link rel="stylesheet" href="__CSS__/article.css" />
+    <link rel="stylesheet" href="__CSS__/ntheme.css" />
+    <!-- 引入相关javascript -->
+    <script src="__LIB__/jquery-3.7.0.min.js"></script>
+    <script src="__LIB__/underscore.min.js"></script>
+    <script src="__LIB__/raphael.min.js"></script>
+    <script src="__LIB__/prettify.min.js"></script>
+    <script src="__LIB__/sequence-diagram.min.js"></script>
+    <script src="__LIB__/marked.min.js"></script>
+    <script src="__JS__/editormd.min.js"></script>
+
+</head>
+
+<body class="{$theme}">
+    <header>
+        <img src="https://w.wallhaven.cc/full/gp/wallhaven-gp26g7.png" alt="header-bg" />
+        <div id="waves">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+                    </path>
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0"></use>
+                    <use xlink:href="#gentle-wave" x="48" y="3"></use>
+                    <use xlink:href="#gentle-wave" x="48" y="5"></use>
+                    <use xlink:href="#gentle-wave" x="48" y="7"></use>
+                </g>
+            </svg>
+        </div>
+    </header>
+    <main>
+        <div class="inner {$themeClass}">
+            <div id="sidebar" class="affix"></div>
+            <div id="markdown-view" class="article-main">
+                <textarea style="display:none;" id="markdown-doc">{$main}</textarea>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+<script>
+    $(function() {
+        editormd.markdownToHTML("markdown-view",{
+            htmlDecode: "style,script,iframe", // filter tags decode
+            emoji: true,
+            taskList: true,
+            previewTheme: "github",
+            tex: true, // 默认不解析
+            flowChart: false, // 默认不解析
+            sequenceDiagram: true, // 默认不解析
+            path: "__LIB__/",
+            tocm: true,    // Using [TOCM]
+            tocContainer: "#sidebar", // 自定义 ToC 容器层
+        });
+    });
+</script>
+
+</html>
