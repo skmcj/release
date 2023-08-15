@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{$title}-简介</title>
-    <link rel="shortcut icon" href="https://color.skmcj.top/favicon.ico">
+    <title>{$title}</title>
+    <link rel="shortcut icon" href="http://localhost:8080/oss/image/134b296/favicon.ico">
     <link rel="stylesheet" href="__CSS__/base.css" />
     <link rel="stylesheet" href="__CSS__/editormd.min.css" />
     <link rel="stylesheet" href="__CSS__/article.css" />
@@ -24,7 +24,11 @@
 
 <body class="{$theme}">
     <header>
-        <img src="https://w.wallhaven.cc/full/gp/wallhaven-gp26g7.png" alt="header-bg" />
+        <img src="{$cover}" alt="header-bg" />
+        <div class="title-box">
+            <span class="title">{$title}</span>
+            <span class="tip">{$tip}</span>
+        </div>
         <div id="waves">
             <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">

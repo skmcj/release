@@ -4,9 +4,21 @@ location /api {
 	}
 }
 
+location /article {
+	if (!-f $request_filename) {
+		rewrite  ^/article/(.*)$  /api/article/$1  last;
+	}
+}
+
 location /oss {
 	if (!-f $request_filename) {
 		rewrite  ^/oss/(.*)$  /backend/public/storage/$1  last;
+	}
+}
+
+location /static {
+	if (!-f $request_filename) {
+		rewrite  ^/static/(.*)$  /backend/public/static/$1  last;
 	}
 }
 

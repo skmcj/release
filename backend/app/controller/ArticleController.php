@@ -3,7 +3,9 @@
 namespace app\controller;
 
 use app\BaseController;
+use app\common\CommonUtil;
 use app\common\Status;
+use app\model\Article;
 use Exception;
 use think\facade\View;
 
@@ -14,6 +16,9 @@ class ArticleController extends BaseController
         return result()::error(Status::COMMON_ERR());
     }
 
+    /**
+     * 获取文章视图
+     */
     public function getProfile($name) {
 
       // TODO: 使用 composer require symfony/yaml 实现md文档内的自定义配置
@@ -30,10 +35,28 @@ class ArticleController extends BaseController
        */
       $theme = $this -> request -> cookie('theme');
       try {
+        // 获取文章信息
+        $article = Article::title($name) -> find();
+        $title = $name;
+        $cover = '';
+        if(!empty($article -> cover)) {
+          $cover = $article -> cover;
+        } else {
+          $cover = CommonUtil::getImageDaily();
+        }
+        if(!empty($article -> title)){
+          $title = $article -> title;
+        } else {
+          $title = $name;
+        }
+        if(!empty($article -> description)) {
+          View::assign('tip', $article -> description);
+        }
         $text = file_get_contents(config('common.resource')."article/{$name}.md");
         View::assign('theme', $theme === 'dark' ? 'dark' : '');
         View::assign('themeClass', $theme === 'dark' ? 'editormd-preview-theme-dark' : '');
-        View::assign('title', $name);
+        View::assign('title', $title);
+        View::assign('cover', $cover);
         View::assign('main', $text);
         return View::fetch();
       } catch (Exception $th) {
@@ -41,5 +64,53 @@ class ArticleController extends BaseController
         return View::fetch('notfound');
       }
         
+    }
+
+    public function getList() {
+      $list = Article::disabled(0) -> scope('sm') -> order('update_time', 'desc') -> select();
+      return result()::success($list);
+    }
+
+    public function getById($id) {
+      $data = Article::find($id);
+      if($data === null) return result()::error(Status::GET_ERR());
+      return result()::success($data, Status::GET_OK());
+    }
+
+    /**
+     * 新增文章
+     */
+    public function save() {
+      $status = Article::add($this -> request -> post());
+      return result()::success(null, $status);
+    }
+
+    /**
+     * 修改文章
+     */
+    public function edit() {
+      $status = Article::edit($this -> request -> put());
+      return result()::success(null, $status);
+    }
+
+    /**
+     * 编辑文章
+     */
+    public function editArticle() {
+      $data = $this -> request -> put();
+      $id = $data['id'];
+      $content = $data['content'];
+      $article = Article::find($id);
+      if($article === null) {
+        return result()::error(Status::EDIT_ERR());
+      }
+      $edata = CommonUtil::editArticle($article -> path, $content);
+      Article::editCount($id, $edata['count']);
+      return result()::success($edata['count'], Status::EDIT_OK());
+    }
+
+    public function deleteById($id) {
+      $status = Article::deleteById($id);
+      return result()::success(null, $status);
     }
 }

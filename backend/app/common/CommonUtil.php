@@ -1,7 +1,10 @@
 <?php
 
 namespace app\common;
+
+use app\model\Image;
 use app\pojo\ImageEntity;
+use ErrorException;
 use Exception;
 use XdbSearcher;
 
@@ -180,6 +183,52 @@ class CommonUtil {
             $lct = preg_replace('/0·|·0|0/', '', $lct);
         }
         return $lct;
+    }
+
+    public static function countArticle($content = '') {
+        $mdReg = "/#{1,6} |- |`|> |\n|\r| |\*\*|<|>|\/|\"|\'|\[|\]/";
+        $str = preg_replace($mdReg, '', $content);
+        return mb_strlen($str);
+    }
+
+
+    /**
+     * 编辑文章
+     */
+    public static function editArticle($name = '', $content = '') {
+        if($name === '') throw new ErrorException('文件名为空');
+        $file = fopen(config('common.article_dir').$name.'.md', 'w');
+        fwrite($file, $content);
+        $count = self::countArticle($content);
+        fclose($file);
+        return [
+            'name' => $name,
+            'count' => $count
+        ];
+    }
+
+    /**
+     * 重命名文章
+     */
+    public static function renameArticle($oldName = '', $newName = '') {
+        if($oldName === '') throw new ErrorException('文件名为空');
+        $newPath = config('common.article_dir').$newName.'.md';
+        $oldPath= config('common.article_dir').$oldName.'.md';
+        rename($oldPath, $newPath);
+        return $newName;
+    }
+
+    public static function getImageDaily() {
+        // 获取当前日期
+        $date = date('Y-m-d');
+        $total = Image::disabled(0) -> count();
+        if($total > 0) {
+            $timp = strtotime($date) / 100;
+            $current = $timp % $total;
+            $list = Image::disabled(0) -> type('pc') -> limit($current, 1) -> select();
+        }
+        if($list === null || count($list) === 0) return config('common.img_host').'/134b296/7025e42fa97b4a21ba2becc7bbdde3e9.png';
+        return $list[0] -> url;
     }
 
 

@@ -66,8 +66,29 @@ Route::post('comment', 'Comment/save');
 Route::put('comment', 'Comment/edit');
 Route::delete('comment/:id', 'Comment/deleteById');
 
+// 作品路由
+Route::get('product', 'Product/getPageFront');
+Route::get('product/page', 'Product/getPage');
+Route::get('product/list', 'Product/getIDList');
+Route::get('product/:id', 'Product/getById');
+Route::post('product', 'Product/save');
+Route::put('product', 'Product/edit');
+Route::delete('product/:id', 'Product/deleteById');
+
+// 标签
+Route::get('plabel/page', 'ProductLabel/getPage');
+Route::post('plabel', 'ProductLabel/save');
+Route::put('plabel', 'ProductLabel/edit');
+Route::delete('plabel/:id', 'ProductLabel/deleteById');
+
 // 文章
+Route::get('article/list', 'Article/getList');
+Route::get('article/id/:id', 'Article/getById');
 Route::get('article/:name', 'Article/getProfile');
+Route::post('article', 'Article/save');
+Route::put('article/edit', 'Article/editArticle');
+Route::put('article', 'Article/edit');
+Route::delete('article/:id', 'Article/deleteById');
 
 // 其它路由
 Route::get('ipinfo', 'Other/getIpInfo');
