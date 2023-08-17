@@ -71,7 +71,7 @@ class Product extends Model
     }
 
     public function scopeSearchName($query, $val) {
-        $query -> where('name', '%'.$val.'%');
+        $query -> where('name', 'like', '%'.$val.'%');
     }
 
     public function scopeDisabled($query, $val) {

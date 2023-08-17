@@ -6,6 +6,7 @@ use app\BaseController;
 use app\common\CommonUtil;
 use app\common\Status;
 use app\model\Article;
+use app\pojo\PageEntity;
 use Exception;
 use think\facade\View;
 
@@ -69,6 +70,18 @@ class ArticleController extends BaseController
     public function getList() {
       $list = Article::disabled(0) -> scope('sm') -> order('update_time', 'desc') -> select();
       return result()::success($list);
+    }
+
+    public function getPage($page = 1, $pageSize = 5, $key = '') {
+      $query = new Article();
+      if($key !== '') {
+          $query = Article::title($key);
+      }
+      $list = $query -> page($page, $pageSize) -> select();
+      $total = $query -> count();
+      if($list === null || count($list) <= 0) return result()::error(Status::GET_ERR());
+      $data = new PageEntity($list, $total, $page, $pageSize);
+      return result()::success($data, Status::GET_OK());
     }
 
     public function getById($id) {

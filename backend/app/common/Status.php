@@ -131,9 +131,33 @@ class Status {
         return new Status(512, 'ip获取失败，请稍后再试');
     }
 
+    // 登录
+
+    public static function LOGIN_OK() {
+        return new Status(220, '登录成功');
+    }
+
+    public static function LOGIN_ERR() {
+        return new Status(420, '登录失败');
+    }
+
+    public static function LOGOUT_OK() {
+        return new Status(221, '退出成功');
+    }
+
+    public static function LOGOUT_ERR() {
+        return new Status(421, '退出失败');
+    }
+
+    public static function TOKEN_ERR($msg = 'Token 校验失败') {
+        return new Status(422, $msg);
+    }
+
     public static function create(int $code = 599, string $msg = '未知错误') {
         return new Status($code, $msg);
     }
+
+    
 
 
 }

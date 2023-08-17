@@ -63,9 +63,7 @@ class Article extends Model
     public function scopeDisabled($query, $val) {
         $query -> where('disabled', $val);
     }
-
     
-
     /**
      * 获取缩略信息
      */
@@ -74,7 +72,7 @@ class Article extends Model
     }
 
     public function scopeTitle($query, $val) {
-        $query -> where('title', $val);
+        $query -> where('title', 'like', '%'.$val.'%');
     }
 
     /**
