@@ -100,5 +100,14 @@ Route::post('logout', 'Role/logout') -> middleware('check');
 Route::put('role', 'Role/edit') -> middleware('check');
 Route::delete('role/:id', 'Role/deleteById') -> middleware('check');
 
+// current
+Route::get('current', 'Current/getCurrent');
+Route::get('current/page', 'Current/getPage') -> middleware('check');
+Route::get('current/:id', 'Current/getById') -> middleware('check');
+Route::post('current', 'Current/save') -> middleware('check');
+Route::put('current', 'Current/edit') -> middleware('check');
+Route::delete('current/:id', 'Current/deleteById') -> middleware('check');
+
+
 // 其它路由
 Route::get('ipinfo', 'Other/getIpInfo');
