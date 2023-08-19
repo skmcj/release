@@ -91,14 +91,14 @@ class ImageController extends BaseController
             if($type !== '') {
                 $total = Image::disabled(0) -> type($type) -> count();
                 if($total > 0) {
-                    $timp = strtotime($date) / 100;
+                    $timp = round(strtotime($date) / 86400);
                     $current = $timp % $total;
                     $list = Image::disabled(0) -> type($type) -> limit($current, 1) -> select();
                 }
             } else {
                 $total = Image::disabled(0) -> count();
                 if($total > 0) {
-                    $timp = strtotime($date) / 100;
+                    $timp = round(strtotime($date) / 86400);
                     $current = $timp % $total;
                     $list = Image::disabled(0) -> limit($current, 1) -> select();
                 }

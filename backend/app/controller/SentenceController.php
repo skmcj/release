@@ -48,7 +48,7 @@ class SentenceController extends BaseController
         if($data === null) {
             // 根据当前日期计算特定数字
             $total = Sentence::disabled(0) -> count();
-            $timp = strtotime($date) / 100;
+            $timp = round(strtotime($date) / 86400);
             $current = $timp % $total;
             $list = Sentence::disabled(0) -> limit($current, 1) -> select();
             if($list === null || count($list) === 0) return result()::error(Status::GET_ERR());
