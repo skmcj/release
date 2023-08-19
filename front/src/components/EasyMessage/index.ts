@@ -47,11 +47,12 @@ const message = (options: MessageOptions | string, context?: AppContext | null) 
 
   vm.props!.onDestroy = () => {
     render(null, container);
+    appendTo?.removeChild(container);
   };
 
   render(vm, container);
 
-  appendTo.appendChild(container.firstElementChild!);
+  appendTo.appendChild(container);
 
   instances.push(vm);
 
@@ -76,10 +77,9 @@ export const close = (vmId: number) => {
   if (len === 0) {
     return;
   }
-
   for (let i = 0; i < len; i++) {
     // TODO Why when using `offsetHeight` will cause bug? And use `style.top` it will be ok?
-    const pos = parseInt(instances[i].el!.style.top, 10) - removedHeight - 16;
+    const pos = parseInt(instances[i].el!.offsetHeight, 10) - removedHeight - 16;
 
     instances[i].component!.props.offset = pos;
   }

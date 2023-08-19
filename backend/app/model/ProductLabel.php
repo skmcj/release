@@ -19,6 +19,7 @@ class ProductLabel extends Model
         'product_id'  => 'string',
         'icon'        => 'string',
         'label'       => 'string',
+        'color'       => 'string',
         'link'        => 'string',
         'sort'        => 'int',
         'disabled'    => 'int',
@@ -30,6 +31,14 @@ class ProductLabel extends Model
         if($data -> id === null || $data -> id === '') {
             $data -> id = IDGenerator::getId();
         }
+    }
+    
+    public function getIdAttr($val) {
+        return strval($val);
+    }
+    
+    public function getProductIdAttr($val) {
+        return strval($val);
     }
 
     public function getDisabledAttr($val) {
@@ -73,7 +82,7 @@ class ProductLabel extends Model
             validate(ProductLabelValidate::class)
                 -> scene('edit')
                 -> check($data);
-            self::update($data, ['id' => $data['id']], ['product_id', 'icon', 'label', 'link', 'sort', 'disabled']);
+            self::update($data, ['id' => $data['id']], ['product_id', 'icon', 'label', 'color', 'link', 'sort', 'disabled']);
             return Status::EDIT_OK();
         } catch(ValidateException $e) {
             return Status::create(413, $e -> getMessage());

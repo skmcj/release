@@ -7,8 +7,14 @@
       </div>
       <div class="vm-lword-inner">
         <div class="vm-lword-list">
-          <VMLWordItem v-for="i in 10" />
+          <VMLWordItem
+            v-for="item of commentList"
+            :key="item.id"
+            :nickname="item.nickname"
+            :date="item.showDate"
+            :text="item.content" />
         </div>
+        <div v-if="currentPage < totalPage" class="load-more" @click.stop="clickMore">加载更多</div>
       </div>
     </div>
     <div class="vm-lword-box vm-lword-behind">
@@ -24,11 +30,38 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import VMLWordItem from './VMLWordItem.vue';
 import VMLWordForm from './VMLWordForm.vue';
+import { getCommentApi, type Comment } from '@/api/indexApi';
 
 const isActive = ref(false);
+const commentList = ref<Comment[]>([]);
+const currentPage = ref(1);
+const totalPage = ref(0);
+
+onBeforeMount(() => {
+  getComment(1);
+});
+
+const getComment = (page = 1) => {
+  getCommentApi(page)
+    .then(res => {
+      if (!res.data) return;
+      const data = res.data.data;
+      if (!data) return;
+      if (data.list.length > 0) {
+        commentList.value.push(...data.list);
+      }
+      totalPage.value = data.totalPage;
+    })
+    .catch(err => {});
+};
+
+const clickMore = () => {
+  currentPage.value += 1;
+  getComment(currentPage.value);
+};
 
 // 翻转版面
 const rotate = () => {
@@ -95,8 +128,18 @@ const rotate = () => {
   box-shadow: inset -3px -3px 6px 0px var(--wshadow70), inset 3px 3px 6px 0px var(--bshadow15);
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   &::-webkit-scrollbar {
     display: none;
+  }
+  .load-more {
+    cursor: pointer;
+    color: var(--more-link-text);
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 5px 0;
+    font-family: 'zcool-kuaile';
   }
 }
 

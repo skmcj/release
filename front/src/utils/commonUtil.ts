@@ -12,6 +12,7 @@ export const changeThemeMode = function (mode: number = 0) {
       modeStr = 'dark';
       break;
   }
+  setCookieItem('theme', modeStr);
   document.body.className = modeStr;
 };
 
@@ -164,4 +165,79 @@ export const formatDate = function (date: Date, format: string = 'HH:mm') {
     }
   }
   return format;
+};
+
+/**
+ * 将数据存入sessionStorage
+ * @param name
+ * @param value
+ */
+export const setSStoreItem = function (name: string, value: any) {
+  // if (typeof value !== 'string') value = JSON.stringify(value);
+  sessionStorage.setItem(name, (value = JSON.stringify(value)));
+};
+
+/**
+ * 取出sessionStorage的项
+ * @param name
+ */
+export const getSStoreItem = function (name: string) {
+  const value = sessionStorage.getItem(name);
+  if (value) return JSON.parse(value);
+  return null;
+};
+
+/**
+ * 将数据存入cookie
+ * @param name
+ * @param value
+ * @param exp 有效天数
+ */
+export const setCookieItem = function (name: string, value: any, exp: number = 15) {
+  const d = new Date();
+  d.setTime(d.getTime() + exp * 24 * 60 * 60 * 1000);
+  const expires = 'expires=' + d.toUTCString();
+  document.cookie = name + '=' + value + '; ' + expires;
+};
+
+/**
+ * 取出cookie的项
+ * @param name
+ */
+export const getCookieItem = function (cname: string) {
+  const name = cname + '=';
+  const cList = document.cookie.split(';');
+  for (let i = 0; i < cList.length; i++) {
+    let cItem = cList[i].trim();
+    if (cItem.indexOf(name) == 0) return cItem.substring(name.length, cItem.length);
+  }
+  return '';
+};
+
+/**
+ * 判断数值是否为空
+ * @param obj
+ */
+export const empty = function (obj: any): boolean {
+  const str = JSON.stringify(obj);
+  if (!str) return true;
+  let flag = false;
+  switch (str) {
+    case '{}':
+      flag = true;
+      break;
+    case '[]':
+      flag = true;
+      break;
+    case '""':
+      flag = true;
+      break;
+    case 'null':
+      flag = true;
+      break;
+    case 'undefined':
+      flag = true;
+      break;
+  }
+  return flag;
 };

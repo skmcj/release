@@ -29,6 +29,10 @@ class Level extends Model
             $data -> id = IDGenerator::getId();
         }
     }
+    
+    public function getIdAttr($val) {
+        return strval($val);
+    }
 
     /**
      * 获取缩略信息

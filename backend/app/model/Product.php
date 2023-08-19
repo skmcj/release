@@ -23,6 +23,7 @@ class Product extends Model
         'tip'         => 'string',
         'logo'        => 'string',
         'comp_date'   => 'datetime',
+        'stars'       => 'string',
         'disabled'    => 'int',
         'create_time' => 'datetime',
         'update_time' => 'datetime'
@@ -40,6 +41,14 @@ class Product extends Model
         if($data -> id === null || $data -> id === '') {
             $data -> id = IDGenerator::getId();
         }
+    }
+    
+    public function getIdAttr($val) {
+        return strval($val);
+    }
+    
+    public function getArticleIdAttr($val) {
+        return strval($val);
     }
 
     public function getDisabledAttr($val) {
@@ -112,7 +121,7 @@ class Product extends Model
                 $img = CommonUtil::saveImageByTmp($data['logo']);
                 $data['logo'] = $img -> getName();
             }
-            self::update($data, ['id' => $data['id']], ['article_id', 'name', 'tip', 'logo', 'comp_date', 'disabled']);
+            self::update($data, ['id' => $data['id']], ['article_id', 'name', 'tip', 'logo', 'comp_date', 'stars', 'disabled']);
             return Status::EDIT_OK();
         } catch(ValidateException $e) {
             return Status::create(413, $e -> getMessage());

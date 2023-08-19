@@ -36,7 +36,7 @@
           style="overflow: visible"
           width="216"
           height="216"
-          :href="avatarUrl"
+          :href="avatar ?? avatarUrl"
           transform="matrix(0.5 0 0 0.5 430 78)"></image>
       </g>
     </g>
@@ -45,6 +45,14 @@
 
 <script setup lang="ts">
 import avatarUrl from '@/assets/images/default-avatar.png';
+
+interface HeaderSvgProps {
+  avatar?: string;
+}
+
+const props = withDefaults(defineProps<HeaderSvgProps>(), {
+  avatar: undefined
+});
 </script>
 
 <style lang="less">

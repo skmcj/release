@@ -8,11 +8,15 @@
         <VMH5WorkItem
           width="40vw"
           height="52vw"
-          :labels="workItem.labels"
-          :logo="workItem.logo"
-          :name="workItem.name"
-          :tip="workItem.tip"
-          :date="workItem.date" />
+          v-for="item of workList"
+          :key="item.id"
+          :labels="item.labels"
+          :logo="item.logoUrl"
+          :name="item.name"
+          :tip="item.tip"
+          :article="item.article"
+          :stars="item.stars"
+          :date="item.compDate" />
       </div>
     </div>
   </div>
@@ -22,11 +26,11 @@
 import { computed } from 'vue';
 import { getPropsStyle } from '@/utils/commonUtil';
 import VMH5WorkItem from './VMH5WorkItem.vue';
-import type { WorkItem } from '@/utils/commonType';
+import type { Product } from '@/api/indexApi';
 
 interface VMWorkH5ListProps {
   width?: number | string;
-  workList?: WorkItem[];
+  workList?: Product[];
 }
 const props = withDefaults(defineProps<VMWorkH5ListProps>(), {
   workList: () => [],
@@ -38,26 +42,6 @@ const wStyle = computed(() => {
   props.width && (style.width = getPropsStyle(props.width));
   return style;
 });
-
-const workItem = {
-  logo: 'https://s.cky.qystu.cc/gh/skmcj/pic-bed@main/common/small-logo.png',
-  name: '颜典',
-  tip: '一款辅助设计师的颜色搭配工具，包含海量色卡信息',
-  date: '2023-05-18',
-  labels: [
-    {
-      icon: 'code',
-      tip: '源码',
-      color: '#21B351'
-    },
-    {
-      icon: 'link',
-      tip: '体验地址',
-      color: '#6F94CD',
-      link: 'https://color.skmcj.top'
-    }
-  ]
-};
 </script>
 
 <style lang="less" scoped>

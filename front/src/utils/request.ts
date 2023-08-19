@@ -1,9 +1,7 @@
 const BaseUrl = {
-  Local: '/src/assets/data',
-  LocalHost: 'http://localhost:8080'
+  // Local: '/src/assets/data',
+  LocalHost: 'http://localhost:8080/api'
 };
-
-type UNIMethod = 'GET' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'POST' | 'PUT' | 'CONNECT' | 'TRACE';
 
 export type Method =
   | 'GET'
@@ -228,21 +226,39 @@ class Request {
    * POST 请求
    */
   public post(url: string, data: any, config: RequestConfig) {
-    return this.generateRequest(url, data, config);
+    return this.generateRequest(
+      url,
+      data,
+      config || {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
   }
 
   /**
    * PUT 请求
    */
   public put(url: string, data: any, config: RequestConfig) {
-    return this.generateRequest(url, data, config);
+    return this.generateRequest(
+      url,
+      data,
+      config || {
+        method: 'put',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
   }
 
   /**
    * DELETE 请求
    */
   public delete(url: string, data: any, config: RequestConfig) {
-    return this.generateRequest(url, data, config);
+    return this.generateRequest(url, data, config || { method: 'delete' });
   }
 }
 
@@ -261,7 +277,7 @@ export interface CustomResponse<T> {
 }
 
 const defaultConfig = {
-  baseUrl: BaseUrl.Local
+  baseUrl: BaseUrl.LocalHost
 };
 
 export default createRequest(defaultConfig);

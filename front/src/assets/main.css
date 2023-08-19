@@ -9,6 +9,10 @@
     font-family: 'Source Han Sans CN';
 }
 
+.lock-scroll {
+    overflow: hidden;
+}
+
 @font-face {
     font-family: "YouSheBiaoTiHei";
     font-weight: 400;
@@ -33,6 +37,11 @@
     opacity: 1;
     transition: all 0.1s ease 1s;
     visibility: visible;
+}
+
+.top.show-title[data-title]::after {
+    top: -100%;
+    bottom: auto;
 }
 
 .show-title[data-title]::after {
@@ -109,11 +118,36 @@
 /* 隐入 */
 .vm-hidein-enter-active,
 .vm-hidein-leave-active {
-    transition: opacity 0.5s linear, transform 0.2s ease-in-out;
+    transition: opacity 0.3s linear, transform 0.2s ease-in-out;
 }
 
 .vm-hidein-enter-from,
 .vm-hidein-leave-to {
     opacity: 0;
     transform: translateZ(-8px);
+}
+
+/* 底部弹框 */
+.vm-lfade-enter-active,
+.vm-lfade-leave-active {
+    transition: opacity 0.5s linear, transform 0.5s ease-in-out;
+}
+
+.vm-lfade-leave-active {
+    transition-delay: 0.35s;
+}
+
+.vm-lfade-enter-from,
+.vm-lfade-leave-to {
+    opacity: 0;
+}
+
+.vm-lfade-enter-active .inner,
+.vm-lfade-leave-active .inner {
+    transition: transform 0.5s ease-in-out;
+}
+
+.vm-lfade-enter-from .inner,
+.vm-lfade-leave-to .inner {
+    transform: translateY(100%);
 }

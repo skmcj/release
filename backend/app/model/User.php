@@ -37,6 +37,10 @@ class User extends Model
             $user -> id = IDGenerator::getId();
         }
     }
+    
+    public function getIdAttr($val) {
+        return strval($val);
+    }
 
     public function getAvatarAttr($val)
     {

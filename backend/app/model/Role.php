@@ -28,6 +28,10 @@ class Role extends Model
             $data -> id = IDGenerator::getId();
         }
     }
+    
+    public function getIdAttr($val) {
+        return strval($val);
+    }
 
     public function getDisabledAttr($val) {
         if($val > 0) return true;

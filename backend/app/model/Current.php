@@ -29,6 +29,18 @@ class Current extends Model
             $data -> id = IDGenerator::getId();
         }
     }
+    
+    public function getIdAttr($val) {
+        return strval($val);
+    }
+    
+    public function getUserIdAttr($val) {
+        return strval($val);
+    }
+    
+    public function getLevelIdAttr($val) {
+        return strval($val);
+    }
 
     public function scopeId($query, $val) {
         $query -> where('id', $val);

@@ -1,6 +1,13 @@
 <template>
-  <div class="vm-image">
-    <div class="vm-image-inner">
+  <div
+    class="vm-image"
+    :class="{
+      'is-default': type === 'default',
+      'is-button': type === 'button',
+      'is-vertical': props.direction === 'vertical'
+    }"
+    :style="bStyle">
+    <div class="vm-image-inner" v-if="type === 'default'">
       <div class="vm-image-box" v-if="loaded" @click.stop="previewImage">
         <img :src="imgSrc" alt="每日一图" ref="imgDom" />
       </div>
@@ -9,6 +16,7 @@
         <span class="tip">{{ loadTip }}</span>
       </div>
     </div>
+    <span class="vm-mess" v-if="type === 'button'" @click.stop="previewImage">{{ message }}</span>
     <Teleport to="body">
       <Transition name="vm-scalein">
         <div class="vm-image-preview" v-if="isPreview">
@@ -39,12 +47,43 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue';
-import { loadImage, downloadImg } from '@/utils/commonUtil';
+import { ref, watch, computed } from 'vue';
+import { loadImage, downloadImg, getPropsStyle } from '@/utils/commonUtil';
 import MNLSLoading from './MNLSLoading.vue';
 import VMButton from '@/components/VMButton.vue';
 
-const imgUrl = 'https://w.wallhaven.cc/full/2y/wallhaven-2y329m.png';
+interface VMImageProps {
+  url?: string;
+  type?: string;
+  width?: number | string;
+  height?: number | string;
+  radius?: number | string;
+  message?: string;
+  direction?: string;
+  fontSize?: number | string;
+  fontFamily?: string;
+}
+
+const props = withDefaults(defineProps<VMImageProps>(), {
+  url: 'https://w.wallhaven.cc/full/2y/wallhaven-2y329m.png',
+  type: 'default', // default | button
+  width: undefined,
+  height: undefined,
+  radius: undefined,
+  fontSize: undefined,
+  direction: 'horizontal',
+  fontFamily: undefined
+});
+
+const bStyle = computed(() => {
+  const style: any = {};
+  props.width && (style.width = getPropsStyle(props.width));
+  props.height && (style.height = getPropsStyle(props.height));
+  props.radius && (style.borderRadius = getPropsStyle(props.radius));
+  props.fontSize && (style.fontSize = getPropsStyle(props.fontSize));
+  props.fontFamily && (style.fontFamily = props.fontFamily);
+  return style;
+});
 
 const imgDom = ref<HTMLElement>();
 const imgSrc = ref('');
@@ -55,18 +94,22 @@ const loading = ref(true);
 
 const loaded = ref(false);
 
-onBeforeMount(() => {
-  loadImage(imgUrl)
-    .then(res => {
-      imgSrc.value = res.src;
-      loaded.value = true;
-    })
-    .catch(err => {
-      console.log(err);
-      loading.value = false;
-      loadTip.value = '她，迷路了(｀ﾟДﾟ´)ゞ';
-    });
-});
+watch(
+  () => props.url,
+  val => {
+    loadImage(val)
+      .then(res => {
+        imgSrc.value = res.src;
+        loaded.value = true;
+      })
+      .catch(err => {
+        // console.log(err);
+        loading.value = false;
+        loadTip.value = '她，迷路了(｀ﾟДﾟ´)ゞ';
+      });
+  }
+);
+
 const previewImage = () => {
   isPreview.value = true;
 };
@@ -82,25 +125,56 @@ const downloadImage = () => {
 
 <style lang="less" scoped>
 .vm-image {
-  width: 360px;
-  height: 223px;
-  box-sizing: border-box;
-  padding: 8px;
-  border-radius: 12px;
-  transition: background-color 0.2s ease-in-out;
-  background-color: var(--bg);
-  box-shadow: -6px -6px 10px -1px var(--wshadow70), 6px 6px 10px -1px var(--bshadow15);
-  .vm-image-inner {
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    box-shadow: inset -3px -3px 6px 0px var(--wshadow70), inset 3px 3px 6px 0px var(--bshadow15);
+  &.is-default {
+    width: 360px;
+    height: 223px;
     box-sizing: border-box;
-    padding: 3px;
+    padding: 8px;
+    border-radius: 12px;
+    transition: background-color 0.2s ease-in-out;
+    background-color: var(--bg);
+    box-shadow: -6px -6px 10px -1px var(--wshadow70), 6px 6px 10px -1px var(--bshadow15);
+    .vm-image-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      box-shadow: inset -3px -3px 6px 0px var(--wshadow70), inset 3px 3px 6px 0px var(--bshadow15);
+      box-sizing: border-box;
+      padding: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &.is-button {
+    user-select: none;
+    height: 42px;
+    border-radius: 12px;
+    transition: box-shadow 0.1s linear, transform 0.1s linear, background-color 0.2s ease-in-out;
+    background-color: var(--bg);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    padding: 0 12px;
+    box-shadow: -6px -6px 10px -1px var(--wshadow70), 6px 6px 10px -1px var(--bshadow15);
+    cursor: pointer;
+    &:active {
+      transform: translate(2px, 2px) scale(0.9);
+      box-shadow: -0.5px -0.5px 0px 0px var(--wshadow0), 0px 2px 3px -10px var(--bshadow5),
+        0.5px 0.5px 0px 0px var(--bshadow15), inset -4px -4px 6px -1px var(--wshadow70),
+        inset 4px 4px 6px -1px var(--bshadow20);
+    }
+    &.is-vertical {
+      writing-mode: vertical-lr;
+    }
+
+    .vm-mess {
+      color: var(--primary-text);
+    }
   }
+
   .vm-image-mask {
     width: 100%;
     height: 100%;

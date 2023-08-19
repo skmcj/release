@@ -74,19 +74,19 @@ class CommentController extends BaseController
      * 前台分页获取留言
      */
     public function getComment($page = 1, $pageSize = 5) {
-        $query = Comment::disabled(0) -> visibled(0) -> order('update_time', 'desc') -> page($page, $pageSize);
-        $list = $query -> select();
+        $query = Comment::disabled(0) -> visibled(0);
+        $list = $query -> field('id,nickname,content,address, update_time') -> order('update_time', 'desc') -> page($page, $pageSize) -> select();
         if($list === null) {
             return result()::error(Status::GET_ERR());
         }
-        $total = $query -> count();
+        $total = Comment::disabled(0) -> visibled(0) -> count();
         $data = new PageEntity($list, $total, $page, $pageSize);
         return result()::success($data);
     }
 
     /**
      * 添加
-     * @param string 用于测试使用
+     * @param string $ip 用于测试使用
      */
     public function save($ip = '') {
         if($ip === '') {

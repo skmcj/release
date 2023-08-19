@@ -16,6 +16,7 @@ class ProductLabelValidate extends Validate
         'id' => 'require',
         'icon' => 'max:128',
         'label' => 'max:64',
+        'color' => 'max:64',
         'link' => 'max:255',
         'sort' => 'number',
         'disabled' => 'boolean'
@@ -31,6 +32,7 @@ class ProductLabelValidate extends Validate
         'id.require' => 'ID不能为空',
         'icon.max' => 'icon不能超过128字符',
         'label.max' => 'label不能超过64个字符',
+        'color.max' => 'color不能超过64个字符',
         'link.max' => 'link不能超过255个字符',
         'sort.number' => 'sort需为number',
         'disabled.boolean' => 'disabled需为布尔值'
@@ -42,7 +44,7 @@ class ProductLabelValidate extends Validate
      * @var array
      */
     protected $scene = [
-        'add' => ['icon', 'label', 'link', 'disabled'],
-        'edit' => ['id', 'icon', 'label', 'link', 'sort', 'disabled']
+        'add' => ['icon', 'label', 'link', 'color', 'disabled'],
+        'edit' => ['id', 'icon', 'label', 'link', 'color', 'sort', 'disabled']
     ];
 }

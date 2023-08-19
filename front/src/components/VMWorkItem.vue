@@ -7,22 +7,38 @@
       <div class="vm-work-item-top">
         <div class="vm-work-item-title">
           <div class="text">{{ name }}</div>
-          <span class="date">{{ date }}</span>
+          <div class="date-box">
+            <span class="date">{{ date }}</span>
+            <img v-if="stars" class="stars" :src="growStars(stars)" alt="stars" />
+          </div>
         </div>
         <span class="vm-work-item-tip">{{ tip ?? '暂时没有相关介绍' }}</span>
       </div>
       <div class="vm-work-item-labels" v-if="labels && labels.length > 0">
         <div
           class="label"
-          v-for="(item, index) in labels"
-          :key="`vm-work-label-${name}-${index}`"
+          v-for="item of labels"
+          :key="item.id"
           :class="{ disabled: !item.link }"
           @click.stop="clickLabel(item.link)"
           :style="{
             color: item.color
           }">
           <i v-if="item.icon" class="icon" :class="`ir-${item.icon}`"></i>
-          <span class="tip" v-if="item.tip">{{ item.tip }}</span>
+          <span class="tip" v-if="item.label">{{ item.label }}</span>
+        </div>
+        <!-- 介绍文章 -->
+        <div
+          v-if="!empty(article)"
+          class="label"
+          :key="article!.id"
+          :class="{ disabled: !article?.path }"
+          @click.stop="clickLabel(article?.path)"
+          :style="{
+            color: 'var(--article-ic)'
+          }">
+          <i class="icon ir-detail-line"></i>
+          <span class="tip">简介</span>
         </div>
       </div>
     </div>
@@ -30,14 +46,18 @@
 </template>
 
 <script setup lang="ts">
-import type { WorkLabel } from '@/utils/commonType';
-
+import useTheme from '@/hooks/useTheme';
+import { empty } from '@/utils/commonUtil';
+import { validateStars } from '@/utils/validateUtil';
+import type { ProductLabel, Article } from '@/api/indexApi';
 interface VMWorkItemProps {
   name?: string;
   date?: string;
   tip?: string;
   logo?: string;
-  labels?: WorkLabel[];
+  labels?: ProductLabel[];
+  stars?: string;
+  article?: Article;
 }
 
 const props = withDefaults(defineProps<VMWorkItemProps>(), {
@@ -45,13 +65,27 @@ const props = withDefaults(defineProps<VMWorkItemProps>(), {
   date: '1970-01-01',
   tip: undefined,
   logo: undefined,
-  labels: undefined
+  labels: undefined,
+  stars: undefined,
+  article: undefined
 });
+
+const { theme } = useTheme();
 
 // 点击label
 const clickLabel = (link: string | undefined) => {
   if (!link) return;
   window.open(link, '_blank');
+};
+
+const growStars = (link: string) => {
+  if (!validateStars(link)) return link;
+  // https://img.shields.io/github/stars/skmcj/dycast?logo=github
+  if (theme.value !== 'dark') {
+    return `${link}?logo=github&logoColor=1f2328&labelColor=eaeef1&color=eaeef1`;
+  } else {
+    return `${link}?logo=github&logoColor=ffffff&labelColor=1d1e1f&color=1d1e1f`;
+  }
 };
 </script>
 
@@ -113,6 +147,11 @@ const clickLabel = (link: string | undefined) => {
     font-size: 18px;
     margin-top: 10px;
   }
+  .date-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
   .date {
     box-sizing: border-box;
     padding: 3px 6px;
@@ -120,6 +159,14 @@ const clickLabel = (link: string | undefined) => {
     box-shadow: inset -3px -3px 6px 0px var(--wshadow70), inset 3px 3px 6px 0px var(--bshadow15);
     color: var(--date-text);
     font-size: 12px;
+  }
+  .stars {
+    margin-top: 6px;
+    height: 1.5em;
+    box-sizing: border-box;
+    padding: 2px 5px;
+    border-radius: 5px;
+    box-shadow: inset -3px -3px 6px 0px var(--wshadow70), inset 3px 3px 6px 0px var(--bshadow15);
   }
 }
 .vm-work-item-tip {

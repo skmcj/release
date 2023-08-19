@@ -23,6 +23,10 @@ body.light {
 
   --wave-bg: #cbd5d7;
 
+  --article-ic: #6F94CD;
+
+  --mask-bg: rgba(234, 238, 241, 0.7);
+
   /* text */
   --primary-text: #61677c;
   --second-text: #9AA7B1;
@@ -30,6 +34,8 @@ body.light {
   --word-text: #6F6F6F;
   --city-text: #99BCAC;
   --weather-text: #3D8E86;
+  --more-link-text: #509296;
+  --check-text: #2e59a7;
   --air-text: #A0D8EF;
   --air-1: #26cc80;
   --air-2: #fde333;
@@ -78,7 +84,7 @@ body.light {
   --wshadow0: #fff;
   /* other */
   --github-ic: #24292e;
-  --bilibili-ic: #00b3ef;
+  --bilibili-tv-ic: #00b3ef;
   /* 渐变 */
   --progress-bg: linear-gradient(180deg, #83CCD2 0%, #50C2A2 48%, #52F3B5 100%);
   --progress-v-bg: linear-gradient(90deg, #83CCD2 0%, #50C2A2 48%, #52F3B5 100%);
@@ -86,6 +92,8 @@ body.light {
 
 body.dark {
   --bg: #1d1e1f;
+
+  --mask-bg: rgba(29, 30, 31, 0.7);
 
   --wave-bg: #151617;
 

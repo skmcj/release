@@ -12,6 +12,7 @@
       <textarea class="input textarea" v-model="text" placeholder="留下属于你的足迹吧~"></textarea>
     </div>
     <div class="vm-lword-form-send">
+      <VMCheckBox class="check-btn show-title top" v-model="visible" data-title="仅对站长可见" />
       <VMButton text="发送" radius="12px" width="72px" height="36px" @on-click="send" />
     </div>
   </div>
@@ -20,12 +21,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import VMButton from './VMButton.vue';
+import VMCheckBox from './VMCheckBox.vue';
 import ESMessage from './EasyMessage';
 import { validateEmail } from '@/utils/validateUtil';
+import { setCommentApi } from '@/api/indexApi';
 
-const nickname = ref('');
-const email = ref('');
-const text = ref('');
+const nickname = ref('测试者');
+const email = ref('test@test.com');
+const text = ref('一条测试留言' + Date.now());
+const visible = ref(false);
 
 // 初始化表单
 const initForm = () => {
@@ -62,6 +66,21 @@ const showMessage = (text: string) => {
 const send = () => {
   if (validateForm()) {
     // 验证通过发送
+    const data = {
+      nickname: nickname.value,
+      email: email.value,
+      content: text.value,
+      visible: visible.value
+    };
+    setCommentApi(data).then(res => {
+      if (!res.data) return;
+      const data = res.data;
+      showMessage(data.msg);
+      if (data.code === 211) {
+        // 添加成功，重新获取留言
+      }
+    });
+    // console.log(data);
     initForm();
   }
 };
@@ -69,6 +88,7 @@ const send = () => {
 
 <style lang="less" scoped>
 .vm-lword-form {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
@@ -109,6 +129,11 @@ const send = () => {
   position: absolute;
   bottom: 18px;
   right: 18px;
+  display: flex;
+  align-items: center;
+  .check-btn {
+    margin-right: 8px;
+  }
 }
 .input {
   outline: none;

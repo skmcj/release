@@ -2,25 +2,20 @@
   <div class="main">
     <!-- 顶部信息 -->
     <div class="top">
-      <Avatar size="36vw" />
+      <Avatar size="36vw" :url="avatar" />
       <div class="top-right">
-        <VMBlock class="top-mess-item" message="SKMCJ" height="32px" padding="0 24px" radius="16px" in />
-        <VMBlock class="top-mess-item" message="Make In China" height="32px" padding="0 24px" radius="16px" in />
+        <VMBlock class="top-mess-item" :message="nickname" height="32px" padding="0 24px" radius="16px" in />
+        <VMBlock class="top-mess-item" :message="address" height="32px" padding="0 24px" radius="16px" in />
         <div class="top-tools">
           <VMButton
-            icon-class="ir-github"
-            color="var(--github-ic)"
+            v-for="item of socialList"
+            :key="item.id"
+            :icon-class="`ir-${item.icon}`"
+            :color="`var(--${item.icon}-ic)`"
             width="32px"
             height="32px"
             radius="16px"
-            @on-click="() => openLink('https://github.com/skmcj')"></VMButton>
-          <VMButton
-            icon-class="ir-bilibili-tv"
-            color="var(--bilibili-ic)"
-            width="32px"
-            height="32px"
-            radius="16px"
-            @on-click="() => openLink('https://www.bilibili.com/bangumi/media/md28228814')"></VMButton>
+            @on-click="() => openLink(item.link)"></VMButton>
         </div>
       </div>
     </div>
@@ -35,34 +30,45 @@
         <VMDigitalClock class="mess-item" width="40vw" height="14.4vw" />
         <VMBlock class="mess-item" width="40vw" height="9vw" font-size="14px" :message="datetime" />
         <div class="mess-bottom">
-          <VMBlock
+          <VMImage
+            type="button"
+            :url="image"
             width="12.8vw"
             height="37vw"
             direction="vertical"
             message="每日一图"
             font-size="24px"
-            font-family="YouSheBiaoTiHei"
-            is-btn />
+            font-family="YouSheBiaoTiHei" />
+
           <div class="mess-br">
-            <VMBlock width="24vw" height="9.6vw" message="留言" font-size="18px" font-family="YouSheBiaoTiHei" is-btn />
+            <VMBlock
+              width="24vw"
+              height="9.6vw"
+              message="留言"
+              font-size="18px"
+              font-family="YouSheBiaoTiHei"
+              is-btn
+              @click.stop="openLWord" />
             <VMTaijiSwitch v-model="isDark" size="24vw" />
           </div>
         </div>
       </div>
     </div>
-    <VMH5WorkList class="work-list" width="92vw" />
+    <VMH5WorkList class="work-list" width="92vw" :work-list="productList" />
     <!-- 尾部 -->
     <div class="footer">
-      <VMFooter :day="128" size="small" />
+      <VMFooter :day="days" :year="year" :author="author" size="small" />
     </div>
+    <VMH5LWord v-model="commentVisible" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onBeforeMount, watch } from 'vue';
-import { openLink, formatDate, changeThemeMode } from '@/utils/commonUtil';
+import { openLink, formatDate, getSStoreItem } from '@/utils/commonUtil';
 import Avatar from '@/components/Avatar.vue';
 import VMBlock from '@/components/VMBlock.vue';
+import VMImage from '@/components/VMImage.vue';
 import VMButton from '@/components/VMButton.vue';
 import VMClock from '@/components/VMClock.vue';
 import VMWeather from '@/components/VMWeather.vue';
@@ -70,13 +76,46 @@ import VMFate from '@/components/VMFate.vue';
 import VMDigitalClock from '@/components/VMDigitalClock.vue';
 import VMTaijiSwitch from '@/components/VMTaijiSwitch.vue';
 import VMH5WorkList from '@/components/VMH5WorkList.vue';
+import VMH5LWord from '@/components/VMH5LWord.vue';
 import VMFooter from '@/components/VMFooter.vue';
+import {
+  getUserInfoApi,
+  getSTDailyApi,
+  getSTRandomApi,
+  getImgDailyApi,
+  getImgRandomApi,
+  getLevelListApi,
+  getProductApi
+} from '@/api/indexApi';
+import type { Social } from '@/api/indexApi';
+import useTheme from '@/hooks/useTheme';
 
 // 模式
 const isDark = ref(false);
+const { theme, setTheme } = useTheme();
+
+// 留言
+const commentVisible = ref(true);
+const openLWord = () => {
+  commentVisible.value = true;
+};
+
+// mess
+const nickname = ref('SKMCJ');
+const address = ref('Make In China');
+const avatar = ref('');
+const days = ref(0);
+const year = ref(1970);
+const author = ref('SKMCJ');
+const level = ref(0);
+const levelList = ref<any[]>(['成仙', '渡劫', '大乘', '合体', '炼虚', '化神', '元婴', '结丹', '筑基', '练气']);
+const socialList = ref<Social[]>([]);
+const sentence = ref('');
+const image = ref('');
+const productList = ref<any>([]);
 
 watch(isDark, val => {
-  changeThemeMode(val ? 1 : 0);
+  setTheme(val ? 'dark' : 'light');
 });
 
 // 当前日期
@@ -84,7 +123,84 @@ const datetime = ref('70/01/01 星期四');
 
 onBeforeMount(() => {
   datetime.value = formatDate(new Date(), 'yy/MM/dd W');
+  const userId = getSStoreItem('userId');
+  const levelId = getSStoreItem('levelId');
+  const imgType = getSStoreItem('imgType');
+  const stType = getSStoreItem('stType');
+  getUserInfo(userId);
+  getImage(imgType);
+  getSentence(stType);
+  getLevelList(levelId);
+  getProductList();
+  getTheme();
 });
+
+const getTheme = () => {
+  if (theme.value === 'dark') isDark.value = true;
+};
+
+const getUserInfo = (userId: string | undefined = undefined) => {
+  if (!userId) return;
+  getUserInfoApi(userId)
+    .then(res => {
+      const data = res.data.data;
+      nickname.value = data.nickname;
+      address.value = data.address;
+      avatar.value = data.avatar;
+      socialList.value = data.social;
+      level.value = data.level;
+      author.value = data.author;
+      days.value = data.days;
+      year.value = data.year;
+    })
+    .catch(err => {});
+};
+
+const getImage = (type = 0) => {
+  let getImageApi = getImgDailyApi;
+  if (type > 0) {
+    getImageApi = getImgRandomApi;
+  }
+  getImageApi('phone')
+    .then(res => {
+      const data = res.data.data;
+      image.value = data.url;
+    })
+    .catch(err => {});
+};
+
+const getSentence = (type = 0) => {
+  let getSentenceApi = getSTDailyApi;
+  if (type > 0) {
+    getSentenceApi = getSTRandomApi;
+  }
+  getSentenceApi()
+    .then(res => {
+      const data = res.data.data;
+      sentence.value = data.content;
+    })
+    .catch(err => {});
+};
+
+const getLevelList = (id: string) => {
+  getLevelListApi(id)
+    .then(res => {
+      const data = res.data.data;
+      levelList.value = data.labels;
+    })
+    .catch(err => {});
+};
+
+const getProductList = (page = 1, pageSize = 5) => {
+  getProductApi(page, pageSize)
+    .then(res => {
+      const data = res.data.data;
+      if (data) {
+        productList.value = data.list;
+      }
+    })
+    .catch(err => {});
+};
 </script>
 
 <style lang="less" scoped>

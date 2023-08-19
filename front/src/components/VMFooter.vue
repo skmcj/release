@@ -1,8 +1,8 @@
 <template>
   <div class="vm-footer" :class="{ 'vm-footer_small': size === 'small' }">
     <i class="icon ir-copyright-line"></i>
-    <span class="year">2023</span>
-    <span class="author">SKMCJ</span>
+    <span class="year">{{ year }}</span>
+    <span class="author">{{ author }}</span>
     <span class="tip" v-if="day">{{ `本站已稳定运行 ${day} 天` }}</span>
   </div>
 </template>
@@ -10,10 +10,14 @@
 <script setup lang="ts">
 interface VMFooterProps {
   day?: number;
-  size: string;
+  year?: number;
+  author?: string;
+  size?: string;
 }
 const props = withDefaults(defineProps<VMFooterProps>(), {
   day: undefined,
+  year: 1970,
+  author: 'SKMCJ',
   size: 'default'
 });
 </script>

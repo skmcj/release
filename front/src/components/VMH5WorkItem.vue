@@ -25,14 +25,26 @@
         <div class="labels" v-if="labels && labels.length > 0">
           <div
             class="label"
-            v-for="(item, index) in labels"
-            :key="`vm-h5work-label-${name}-${index}`"
+            v-for="item of labels"
+            :key="item.id"
             :class="{ disabled: !item.link }"
             @click.stop="clickLabel(item.link)"
             :style="{
               color: item.color
             }">
             <i v-if="item.icon" :class="`ir-${item.icon}`"></i>
+          </div>
+          <!-- 介绍文章 -->
+          <div
+            v-if="!empty(article)"
+            class="label"
+            :key="article!.id"
+            :class="{ disabled: !article?.path }"
+            @click.stop="clickLabel(article?.path)"
+            :style="{
+              color: 'var(--article-ic)'
+            }">
+            <i class="icon ir-detail-line"></i>
           </div>
         </div>
       </div>
@@ -45,8 +57,8 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { getPropsStyle } from '@/utils/commonUtil';
-import type { WorkLabel } from '@/utils/commonType';
+import { getPropsStyle, empty } from '@/utils/commonUtil';
+import type { Article, ProductLabel } from '@/api/indexApi';
 
 const isMore = ref(false);
 
@@ -68,7 +80,9 @@ interface VMBlockProps {
   date?: string;
   tip?: string;
   logo?: string;
-  labels?: WorkLabel[];
+  labels?: ProductLabel[];
+  stars?: string;
+  article?: Article;
 }
 const props = withDefaults(defineProps<VMBlockProps>(), {
   width: undefined,
@@ -78,7 +92,9 @@ const props = withDefaults(defineProps<VMBlockProps>(), {
   date: '1970-01-01',
   tip: undefined,
   logo: undefined,
-  labels: undefined
+  labels: undefined,
+  stars: undefined,
+  article: undefined
 });
 
 const iStyle = computed(() => {
