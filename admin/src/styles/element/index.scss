@@ -1,0 +1,31 @@
+// 自定义 element-plus 主题
+$--colors: (
+  "primary": (
+    "base": #83ccd2,
+  ),
+  "success": (
+    "base": #38b48b,
+  ),
+  "warning": (
+    "base": #f6ad49,
+  ),
+  "danger": (
+    "base": #e83929,
+  ),
+  "error": (
+    "base": #ce5242,
+  ),
+  "info": (
+    "base": #c9cfc1,
+  ),
+);
+
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: $--colors
+);
+
+// 如果只是按需导入，则可以忽略以下内容。
+// 如果你想导入所有样式:
+// @use "element-plus/theme-chalk/src/index.scss" as *;
+
+@use "./dark.scss";
