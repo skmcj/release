@@ -84,19 +84,19 @@ class Token {
 
         } catch(\Firebase\JWT\SignatureInvalidException $e) { //签名不正确
             $res['flag'] = false;
-            $res['msg']="Token 签名不正确";
+            $res['status']=Status::TOKEN_ERR("Token 签名不正确");
             return $res;
         }catch(\Firebase\JWT\BeforeValidException $e) { // 签名在某个时间点之后才能用
             $res['flag'] = false;
-            $res['msg']="Token无效";
+            $res['status']=Status::TOKEN_ERR("Token无效");
             return $res;
         }catch(\Firebase\JWT\ExpiredException $e) { // token过期
             $res['flag'] = false;
-            $res['msg']="Token已过期，请重新登录";
+            $res['status']= Status::TOKEN_FAIL("Token已过期，请重新登录");
             return $res;
         }catch(\Exception $e) { //其他错误
             $res['flag'] = false;
-            $res['msg']="未知错误";
+            $res['status']=Status::TOKEN_UNKNOWN("未知错误");
             return $res;
         }
 

@@ -149,8 +149,20 @@ class Status {
         return new Status(421, '退出失败');
     }
 
+    public static function TOKEN_OK($msg = 'Token 校验成功') {
+        return new Status(222, $msg);
+    }
+
     public static function TOKEN_ERR($msg = 'Token 校验失败') {
         return new Status(422, $msg);
+    }
+
+    public static function TOKEN_FAIL($msg = 'Token 异常') {
+        return new Status(423, $msg);
+    }
+
+    public static function TOKEN_UNKNOWN($msg = 'Token 未知错误') {
+        return new Status(423, $msg);
     }
 
     public static function create(int $code = 599, string $msg = '未知错误') {

@@ -5,7 +5,7 @@
       <template #reference>
         <div class="avatar">{{ firstA(roleinfo.username) }}</div>
       </template>
-      <div class="avatar-role-info">
+      <div class="avatar-role-info" v-if="loginFlag">
         <div class="info-item">
           <span class="tit">用户名：</span>
           <span class="text">{{ roleinfo.username }}</span>
@@ -14,22 +14,45 @@
           <span class="tit">权限：</span>
           <span class="text">{{ roleinfo.roleText }}</span>
         </div>
+        <div class="info-item btn">
+          <el-button link type="warning" @click.stop="logout">退出</el-button>
+        </div>
       </div>
     </el-popover>
   </nav>
 </template>
 
 <script setup lang="ts">
-import { ElPopover } from 'element-plus';
+import { ElPopover, ElButton } from 'element-plus';
 import { storeToRefs } from 'pinia';
 import { useRoleInfoStore } from '@/stores/roleinfo';
 import { useRouteInfoStore } from '@/stores/routeinfo';
+import { useRouter } from 'vue-router';
+import { logoutApi } from '@/api/roleApi';
+import { showMessage } from '@/utils/commonUtil';
 
-const firstA = (str: string) => {
+const firstA = (str: string = 'unknown') => {
+  if (!str) str = 'unknown';
   return str[0];
 };
 
-const { roleinfo } = storeToRefs(useRoleInfoStore());
+const router = useRouter();
+
+const logout = () => {
+  logoutApi()
+    .then(res => {
+      if (res.code === 221) {
+        showMessage(res.msg, 'success');
+        clearLog();
+        router.push('/login');
+      }
+    })
+    .catch(err => {});
+};
+
+const role = useRoleInfoStore();
+const { roleinfo, loginFlag } = storeToRefs(role);
+const { clearLog } = role;
 const { routeinfo } = storeToRefs(useRouteInfoStore());
 </script>
 

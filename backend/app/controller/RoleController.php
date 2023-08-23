@@ -42,8 +42,10 @@ class RoleController extends BaseController
         
         return result()::success([
             'username' => $res['data'] -> username,
-            'role' => $res['data'] -> role
+            'role'     => $res['data'] -> role,
+            'roleText' => $res['data'] -> roleText
         ], $res['status']) -> header([
+            'Access-Control-Expose-Headers' => 'Authorization',
             'Authorization' => $list[2]
         ]);
     }
@@ -56,6 +58,29 @@ class RoleController extends BaseController
         // 清除 session
         session('utoken', null);
         return result()::success(null, Status::LOGOUT_OK());
+    }
+
+    /**
+     * 验证token
+     */
+    public function checkToken() {
+        $roleId = $this -> request -> uData['id'];
+        $role = Role::getById($roleId);
+        if($role === null) return result()::error(Status::TOKEN_ERR());
+        $token = Token::createTokenById($roleId);
+        // 将token分解，只给用户加密部分
+        $list = explode('.', $token);
+        // 存入session
+        session('utoken', $list[0].'.'.$list[1]);
+        
+        return result()::success([
+            'username' => $role -> username,
+            'role'     => $role -> role,
+            'roleText' => $role -> roleText
+        ], Status::TOKEN_OK()) -> header([
+            'Access-Control-Expose-Headers' => 'Authorization',
+            'Authorization' => $list[2]
+        ]);
     }
 
     /**

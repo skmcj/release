@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useRouteInfoStore } from '@/stores/routeinfo';
+import { useRoleInfoStore } from '@/stores/roleinfo';
+import { storeToRefs } from 'pinia';
 import LoginView from '@/views/LoginView.vue';
 import MainView from '@/views/MainView.vue';
 
@@ -79,6 +81,17 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
+  const { loginFlag } = useRoleInfoStore();
+  if (!loginFlag && to.name !== 'login') {
+    return {
+      name: 'login'
+    };
+  }
+  if (loginFlag && to.name === 'login') {
+    return {
+      path: '/'
+    };
+  }
   const { setRouteInfo } = useRouteInfoStore();
   setRouteInfo({
     path: to.path,

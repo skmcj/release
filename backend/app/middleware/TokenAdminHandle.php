@@ -15,16 +15,17 @@ class TokenAdminHandle
         $stoken = $request -> header('Authorization');
         if(empty($stoken)) return result()::error(Status::TOKEN_ERR('Token为空'));
         $utoken = session('utoken');
-        if(empty($utoken)) return result()::error(Status::TOKEN_ERR('用户未登录'));
+        if(empty($utoken)) return result()::error(Status::TOKEN_FAIL('用户未登录'));
         // jwt进行校验token
         $res = Token::checkToken($utoken.'.'.$stoken);
         if (!$res['flag']){
-            return result()::error(Status::TOKEN_ERR($res['msg']));
+            return result()::error($res['status']);
         }
         // 校验权限
         $role = Role::id($res['data'] -> id) -> find();
         if($role === null) {
-            return result()::error(Status::TOKEN_ERR('用户不存在'));
+            // 用户不存在
+            return result()::error(Status::TOKEN_FAIL('Token异常，请重新登录'));
         }
         if($role -> role > 1) {
             return result()::error(Status::TOKEN_ERR('权限不足'));
@@ -33,12 +34,13 @@ class TokenAdminHandle
             'id' => $res['data'] -> id,
             'role' => $role -> role
         ];
-        // 当 token 还有 3 分钟无效时，刷新token
+        // 当 token 还有 5 分钟无效时，刷新token
         if(!empty($res['exp']) && $res['exp'] < time() + config('token.refresh_time')) {
             $token = Token::createToken($res['data']);
             $list = explode('.', $token);
             session('utoken', $list[0].'.'.$list[1]);
             return $next($request) -> header([
+                'Access-Control-Expose-Headers' => 'Authorization',
                 'Authorization' => $stoken
             ]);
         }

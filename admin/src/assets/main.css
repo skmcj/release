@@ -11,14 +11,17 @@ html {
     font-size: 16px;
 }
 
+@font-face {
+    font-family: "YouSheBiaoTiHei";
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+    src: url('./font/YouSheBiaoTiHei.ttf') format('truetype');
+}
+
 @media (min-width: 1024px) {}
 
 /* 划入 */
-.rl-pagein-enter-to,
-.rl-pagein-leave-from {
-    /* transform: scale(1); */
-}
-
 .rl-pagein-enter-active,
 .rl-pagein-leave-active {
     transition: opacity 0.3s ease, transform 0.5s ease;

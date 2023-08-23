@@ -93,6 +93,7 @@ Route::delete('article/:id', 'Article/deleteById') -> middleware('check');
 
 // 角色路由
 Route::get('role', 'Role/getPage') -> middleware('check');
+Route::get('role/check', 'Role/checkToken') -> middleware('check');
 Route::get('role/:id', 'Role/getById') -> middleware('check');
 Route::post('role', 'Role/save') -> middleware('checkOwner');
 Route::post('login', 'Role/login');

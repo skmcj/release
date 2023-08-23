@@ -2,6 +2,6 @@
 
 return [
     'key' => 'sk845mcj',
-    'refresh_time' => 180,
-    'exp' => 1800
+    'refresh_time' => 300,
+    'exp' => 3600
 ];

@@ -43,6 +43,12 @@ class Role extends Model
         else return 0;
     }
 
+    public function getRoleTextAttr($val, $data) {
+        if($data['role'] === 0) return '所有者';
+        elseif($data['role'] === 1) return '管理员';
+        else return '游客';
+    }
+
     public function scopeUsername($query, $val) {
         $query -> where('username', $val);
     }
