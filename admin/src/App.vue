@@ -78,6 +78,7 @@ initCurrent();
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    column-gap: 8px;
   }
   .cl-item {
     display: flex;
@@ -85,6 +86,9 @@ initCurrent();
     .label {
       color: $rlt-title;
     }
+  }
+  .el-button + .el-button {
+    margin: 0;
   }
 }
 .page-mid {
@@ -121,6 +125,29 @@ initCurrent();
   align-items: center;
   justify-content: center;
 }
+.inline-center {
+  .cell {
+    text-align: center;
+  }
+}
+.dialog-footer {
+  button + button {
+    margin-left: 10px;
+  }
+}
+
+// 批量添加框提示
+.batch-tip {
+  color: $rlt-error;
+}
+.el-textarea {
+  &.is-error {
+    .el-textarea__inner,
+    .el-textarea__inner:focus {
+      box-shadow: 0 0 0 1px $rlt-error inset;
+    }
+  }
+}
 
 // el-input拟态风
 .el-input {
@@ -135,6 +162,23 @@ initCurrent();
           inset -2px -2px 3px 0 $wshadow70, inset 2px 2px 3px 0$bshadow20;
       }
     }
+  }
+}
+
+.el-dialog {
+  &.lradius {
+    border-radius: 12px;
+  }
+}
+
+textarea {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #8d8d8d;
+    border-radius: 3px;
   }
 }
 </style>

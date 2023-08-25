@@ -45,7 +45,7 @@ import Nav from '@/components/Nav.vue';
   // height: 100%;
   flex-grow: 1;
   overflow: auto;
-  box-shadow: inset 2px 2px 5px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: inset 2px 0 5px 0 rgba(0, 0, 0, 0.3);
   .main-content-inner {
     position: absolute;
     width: 100%;
@@ -54,7 +54,7 @@ import Nav from '@/components/Nav.vue';
     // padding: 18px 24px;
   }
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
     height: 10px;
   }
   &::-webkit-scrollbar-thumb {

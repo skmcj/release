@@ -23,6 +23,14 @@ export interface UserShortInfo {
   nickname: string;
 }
 
+// sentence
+export interface Sentence {
+  id?: string;
+  content: string;
+  disabled?: boolean;
+  showDate?: null | string;
+}
+
 // current
 export interface CurrentInfo {
   id?: string;

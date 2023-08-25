@@ -76,7 +76,7 @@ class SentenceController extends BaseController
      * 分页获取
      */
     public function getPage(int $page = 1, int $pageSize = 5, string $key = '') {
-        $list = Sentence::withSearch(['content'], ['content' => $key]) -> page($page, $pageSize) -> select();
+        $list = Sentence::withSearch(['content'], ['content' => $key]) -> order('update_time', 'desc') -> page($page, $pageSize) -> select();
         $total = Sentence::withSearch(['content'], ['content' => $key]) -> count();
         $data = new PageEntity($list, $total, $page, $pageSize);
         return result()::success($data);

@@ -58,6 +58,7 @@ const { routeinfo } = storeToRefs(useRouteInfoStore());
 
 <style lang="scss" scoped>
 .main-nav {
+  z-index: 7;
   width: 100%;
   height: 4.5rem;
   display: flex;
@@ -68,6 +69,7 @@ const { routeinfo } = storeToRefs(useRouteInfoStore());
   box-sizing: border-box;
   padding: 0 18px;
   padding-right: 36px;
+  box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, 0.3);
   .title {
     font-size: 1rem;
     font-weight: bold;

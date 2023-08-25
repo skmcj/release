@@ -34,10 +34,20 @@
           <el-slider v-model="form.level" style="width: 300px" />
         </el-form-item>
         <el-form-item label="展示年份：" prop="year">
-          <el-date-picker v-model="form.year" type="year" placeholder="选择年份" value-format="YYYY" />
+          <el-date-picker
+            v-model="form.year"
+            type="year"
+            placeholder="选择年份"
+            value-format="YYYY"
+            :disabled-date="(date: Date) => date.getFullYear() > (nowDay.getFullYear())" />
         </el-form-item>
         <el-form-item label="开始日期：" prop="startTime">
-          <el-date-picker v-model="form.startTime" type="date" placeholder="选择日期" value-format="YYYY-MM-DD" />
+          <el-date-picker
+            v-model="form.startTime"
+            type="date"
+            placeholder="选择日期"
+            value-format="YYYY-MM-DD"
+            :disabled-date="disabledDate" />
         </el-form-item>
       </el-form>
       <div class="page-form-bt">
@@ -69,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onBeforeMount, watch } from 'vue';
+import { reactive, ref, onBeforeMount } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { VueCropper } from 'vue-cropper';
 import 'vue-cropper/dist/index.css';
@@ -91,6 +101,13 @@ import { userViewParamsRef } from '@/stores/viewparams';
 import { showMessage } from '@/utils/commonUtil';
 import { uploadImageApi } from '@/api/imageApi';
 import { addUserApi, getUserByIdApi, editUserApi } from '@/api/userApi';
+
+// 禁止选择日期
+const disabledDate = (date: Date) => {
+  return date.getFullYear() != form.year;
+};
+
+const nowDay = new Date();
 
 const form = reactive<UserInfo>({
   nickname: '',

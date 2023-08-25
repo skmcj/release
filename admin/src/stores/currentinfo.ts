@@ -27,7 +27,24 @@ export const useCurrentInfoStore = defineStore(
       currentinfo.value.userId = id;
     }
 
-    return { currentinfo, setCurrent, getCurrentId, setCurrentId, getCurrentUserId, setCurrentUserId };
+    function getCurrentSentenceType() {
+      return currentinfo.value.sentenceType ?? 0;
+    }
+
+    function setCurrentSentenceType(tp: number) {
+      currentinfo.value.sentenceType = tp;
+    }
+
+    return {
+      currentinfo,
+      setCurrent,
+      getCurrentId,
+      setCurrentId,
+      getCurrentUserId,
+      setCurrentUserId,
+      getCurrentSentenceType,
+      setCurrentSentenceType
+    };
   },
   {
     persist: [
@@ -48,6 +65,8 @@ export const useCurrentInfoRefs = function () {
     getCurrentUserId: info.getCurrentUserId,
     setCurrentUserId: info.setCurrentUserId,
     getCurrentId: info.getCurrentId,
-    setCurrentId: info.setCurrentId
+    setCurrentId: info.setCurrentId,
+    getCurrentSentenceType: info.getCurrentSentenceType,
+    setCurrentSentenceType: info.setCurrentSentenceType
   };
 };
