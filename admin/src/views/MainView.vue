@@ -6,12 +6,14 @@
       <!-- 顶部标题栏 -->
       <Nav />
       <div class="main-content">
-        <!-- 内容视图 -->
-        <router-view v-slot="{ Component }">
-          <transition name="rl-pagein" mode="out-in">
-            <component :is="Component" />
-          </transition>
-        </router-view>
+        <div class="main-content-inner">
+          <!-- 内容视图 -->
+          <router-view v-slot="{ Component }">
+            <transition name="rl-pagein" mode="out-in">
+              <component :is="Component" />
+            </transition>
+          </router-view>
+        </div>
       </div>
     </div>
   </div>
@@ -38,19 +40,26 @@ import Nav from '@/components/Nav.vue';
   flex-direction: column;
 }
 .main-content {
-  width: 100%;
-  height: 100%;
+  position: relative;
+  // width: 100%;
+  // height: 100%;
+  flex-grow: 1;
   overflow: auto;
-  box-sizing: border-box;
-  padding: 18px 24px;
   box-shadow: inset 2px 2px 5px 0 rgba(0, 0, 0, 0.3);
+  .main-content-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    // box-sizing: border-box;
+    // padding: 18px 24px;
+  }
   &::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 10px;
+    height: 10px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: #8d8d8d;
-    border-radius: 2.5px;
+    border-radius: 5px;
   }
 }
 </style>

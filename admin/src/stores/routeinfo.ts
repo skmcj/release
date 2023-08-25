@@ -32,11 +32,8 @@ export const useRouteInfoStore = defineStore('routeinfo', () => {
   });
   function setRouteInfo(info: RouteInfo) {
     routeinfo.value = info;
-    activeIndex.value = menuMap[info.name];
+    activeIndex.value = menuMap[info.meta.bof];
     routeinfo.value.title = info.meta.title;
-  }
-  function setActiveIndex(index: number) {
-    activeIndex.value = index;
   }
 
   return { activeIndex, routeinfo, setRouteInfo };

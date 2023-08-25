@@ -2,6 +2,7 @@
 
 namespace app\model;
 
+use app\common\CommonUtil;
 use app\common\IDGenerator;
 use app\common\RegValidate;
 use app\common\Status;
@@ -18,6 +19,7 @@ class User extends Model
         'id'          => 'string',
         'nickname'    => 'string',
         'address'     => 'string',
+        'avatar'      => 'string',
         'sex'         => 'int',
         'level'       => 'int',
         'year'        => 'int',
@@ -66,6 +68,12 @@ class User extends Model
             validate(UserValidate::class)
             ->scene('add')
             ->check($data);
+            if(isset($data['avatar'])) {
+                $imgName = self::checkAvatar($data['avatar']);
+                if($imgName !== null) {
+                    $data['avatar'] = $imgName;
+                }
+            }
             self::create($data);
             return Status::ADD_OK();
         } catch(ValidateException $e) {
@@ -83,13 +91,28 @@ class User extends Model
             validate(UserValidate::class)
             ->scene('edit')
             ->check($data);
+
+            if(isset($data['avatar'])) {
+                $imgName = self::checkAvatar($data['avatar']);
+                if($imgName !== null) {
+                    $data['avatar'] = $imgName;
+                }
+            }
             // 过滤字段
-            self::update($data, ['id' => $data['id']], ['nickname', 'address', 'sex', 'level', 'year', 'author', 'start_time']);
+            self::update($data, ['id' => $data['id']], ['nickname', 'address', 'avatar', 'sex', 'level', 'year', 'author', 'start_time']);
             return Status::EDIT_OK();
         } catch(ValidateException $e) {
             return Status::create(413, $e -> getMessage());
         } catch(Exception $e) {
             return Status::SERVICE_ERR();
         }
+    }
+
+    private static function checkAvatar($avatar) {
+        if(RegValidate::validTemp($avatar)) {
+            $img = CommonUtil::saveImageByTmpUrl($avatar);
+            return $img -> getName();
+        }
+        return null;
     }
 }

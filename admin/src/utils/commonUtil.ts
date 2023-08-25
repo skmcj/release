@@ -10,25 +10,15 @@ interface MessageConfig {
 export const showMessage = function (
   message: string,
   type: messageType = 'info',
-  config: MessageConfig = {
-    duration: 2500,
-    showClose: true
-  }
+  { duration = 2500, showClose = true, onClose = () => {} } = {}
 ) {
-  config.onClose
-    ? ElMessage({
-        message: message,
-        type: type,
-        showClose: config.showClose,
-        duration: config.duration,
-        onClose: config.onClose
-      })
-    : ElMessage({
-        message: message,
-        type: type,
-        showClose: config.showClose,
-        duration: config.duration
-      });
+  ElMessage({
+    message: message,
+    type: type,
+    showClose: showClose,
+    duration: duration,
+    onClose: onClose
+  });
 };
 
 export const md5 = function (str: string): string {

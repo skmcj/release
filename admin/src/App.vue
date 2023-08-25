@@ -1,9 +1,28 @@
 <template>
-  <RouterView />
+  <el-config-provider :locale="locale">
+    <RouterView />
+  </el-config-provider>
 </template>
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
+import { useCurrentInfoStore } from '@/stores/currentinfo';
+import { getCurrentApi } from '@/api/currentApi';
+import { ElConfigProvider } from 'element-plus';
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
+
+const locale = zhCn;
+
+const initCurrent = () => {
+  const { setCurrent } = useCurrentInfoStore();
+  getCurrentApi().then(res => {
+    if (res.code === 214) {
+      setCurrent(res.data);
+    }
+  });
+};
+
+initCurrent();
 </script>
 
 <style lang="scss">
@@ -32,6 +51,77 @@ import { RouterView } from 'vue-router';
     color: $rlt-second;
   }
 }
+// page
+.page-view {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 18px 24px;
+}
+.page-inner {
+  border-radius: 12px;
+  background-color: $rlbg-page;
+  box-sizing: border-box;
+  padding: 18px 16px;
+}
+.page-top {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 8px 0;
+  .page-tl {
+    display: flex;
+    align-items: center;
+  }
+  .page-tr {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .cl-item {
+    display: flex;
+    align-items: center;
+    .label {
+      color: $rlt-title;
+    }
+  }
+}
+.page-mid {
+  margin: 24px 0;
+  .table-avatar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+  }
+  .sex-icon {
+    font-size: 2rem;
+    line-height: 2rem;
+    &.ir-boy {
+      color: $rlt-boy;
+    }
+    &.ir-girl {
+      color: $rlt-girl;
+    }
+    &.ir-sex {
+      color: $rlt-sex;
+    }
+  }
+}
+.page-bottom {
+  margin: auto;
+}
+.page-form-bt {
+  margin-top: 36px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 18px 0;
+  border-top: 1px solid $rlbd-default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 // el-input拟态风
 .el-input {
   &.ntair {

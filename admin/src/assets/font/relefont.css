@@ -22,6 +22,38 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ir-camera:before {
+  content: "\e61d";
+}
+
+.ir-rotate2:before {
+  content: "\e61c";
+}
+
+.ir-flip:before {
+  content: "\e65b";
+}
+
+.ir-refresh:before {
+  content: "\e629";
+}
+
+.ir-rotate:before {
+  content: "\e7bb";
+}
+
+.ir-sex:before {
+  content: "\e643";
+}
+
+.ir-boy:before {
+  content: "\e621";
+}
+
+.ir-girl:before {
+  content: "\e622";
+}
+
 .ir-ip:before {
   content: "\e653";
 }

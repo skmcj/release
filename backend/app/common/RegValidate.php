@@ -23,5 +23,13 @@ class RegValidate {
         return preg_match($patt, $date) > 0;
     }
 
+    /**
+     * 验证是否临时路径图片
+     */
+    public static function validTemp($url) {
+        $patt = config('common.img_tmp_reg');
+        return preg_match($patt, $url) > 0;
+    }
+
     
 }

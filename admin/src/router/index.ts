@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useRouteInfoStore } from '@/stores/routeinfo';
 import { useRoleInfoStore } from '@/stores/roleinfo';
-import { storeToRefs } from 'pinia';
 import LoginView from '@/views/LoginView.vue';
 import MainView from '@/views/MainView.vue';
 
@@ -11,69 +10,102 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: LoginView
+      component: LoginView,
+      meta: {
+        title: '登录',
+        bof: 'login'
+      }
     },
     {
       path: '/',
       name: 'main',
       component: MainView,
+      meta: {
+        title: '管理后台',
+        bof: 'main'
+      },
       children: [
         {
           path: '/',
           alias: ['/user', '/index'],
           name: 'user',
           meta: {
-            title: '用户管理'
+            title: '用户管理',
+            bof: 'user'
           },
-          component: () => import('@/views/UserView.vue')
+          component: () => import('@/views/user/UserView.vue')
+        },
+        {
+          path: '/user/add',
+          name: 'addUser',
+          meta: {
+            title: '用户管理 / 添加用户',
+            bof: 'user'
+          },
+          component: () => import('@/views/user/UserEditView.vue')
+        },
+        {
+          path: '/user/edit',
+          name: 'editUser',
+          meta: {
+            title: '用户管理 / 编辑用户',
+            bof: 'user'
+          },
+          component: () => import('@/views/user/UserEditView.vue')
         },
         {
           path: '/sentence',
           name: 'sentence',
           meta: {
-            title: '句子管理'
+            title: '句子管理',
+            bof: 'sentence'
           },
-          component: () => import('@/views/SentenceView.vue')
+          component: () => import('@/views/sentence/SentenceView.vue')
         },
         {
           path: '/image',
           name: 'image',
           meta: {
-            title: '图片管理'
+            title: '图片管理',
+            bof: 'image'
           },
-          component: () => import('@/views/ImageView.vue')
+          component: () => import('@/views/image/ImageView.vue')
         },
         {
           path: '/level',
           name: 'level',
           meta: {
-            title: '境界管理'
+            title: '境界管理',
+            bof: 'level'
           },
-          component: () => import('@/views/LevelView.vue')
+          component: () => import('@/views/level/LevelView.vue')
         },
         {
           path: '/comment',
           name: 'comment',
           meta: {
-            title: '留言管理'
+            title: '留言管理',
+            bof: 'comment'
           },
-          component: () => import('@/views/CommentView.vue')
+          component: () => import('@/views/comment/CommentView.vue')
         },
         {
           path: '/product',
           name: 'product',
           meta: {
-            title: '作品管理'
+            title: '作品管理',
+            bof: 'product'
           },
-          component: () => import('@/views/ProductView.vue')
+          component: () => import('@/views/product/ProductView.vue')
         },
         {
           path: '/role',
           name: 'role',
           meta: {
-            title: '角色管理'
+            title: '角色管理',
+            bof: 'role'
           },
-          component: () => import('@/views/RoleView.vue')
+          component: () => import('@/views/role/RoleView.vue')
         }
       ]
     }

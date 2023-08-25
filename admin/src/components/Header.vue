@@ -87,6 +87,7 @@ const menuList = [
   height: 100%;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   align-items: center;
   background-color: $rlh-bg;
   box-sizing: border-box;

@@ -1,11 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-
-interface RoleInfo {
-  username?: string;
-  role?: number;
-  roleText?: string;
-}
+import type { RoleInfo } from '@/types';
 
 export const useRoleInfoStore = defineStore(
   'roleinfo',

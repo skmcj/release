@@ -11,6 +11,11 @@ html {
     font-size: 16px;
 }
 
+::selection {
+    background-color: #83ccd2;
+    color: #61677c;
+}
+
 @font-face {
     font-family: "YouSheBiaoTiHei";
     font-weight: 400;

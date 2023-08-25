@@ -76,6 +76,45 @@ class CommonUtil {
     }
 
     /**
+     * 根据图片临时名称保存
+     */
+    public static function saveImageByTmpUrl($tmpImgUrl = '') {
+
+        if($tmpImgUrl === '') return null;
+        $patt = config('common.img_tmpn_reg');
+        $maches = '';
+        $mh = preg_match($patt, $tmpImgUrl, $maches);
+        if($mh <= 0) return null;
+        $tmpImgName = $maches[1];
+        if($tmpImgName === '') return null;
+
+        $tmpRoot = app()->getRootPath() . config('common.tmp_dir');
+        $root = app()->getRootPath() . config('common.storage_dir');
+        $host = config('common.img_host');
+        $dir = dechex(date('Ymd'));
+
+
+
+        // 保存图片的文件夹
+        $path = "{$root}image/{$dir}/";
+        // 临时图片路径
+        $tmpPath = "{$tmpRoot}{$tmpImgName}";
+        // 如果没有该文件夹，则创建
+        if(!is_dir($path))
+            mkdir($path, 777, true);
+
+        $imgName = basename($tmpImgName);
+        $imgPath = "{$path}{$imgName}";
+        // 将文件移动到持久存储路径
+        if(file_exists($tmpPath)) {
+            // 剪切到持久路径
+            $flag = rename($tmpPath, $imgPath);
+            if($flag) return new ImageEntity(filesize($imgPath), "image/{$dir}/{$imgName}", "{$host}image/{$dir}/{$imgName}", pathinfo($imgPath, PATHINFO_EXTENSION));
+        }
+        return null;
+    }
+
+    /**
      * 计算日期差值
      */
     public static function caleDateDiff(string $start, string $end) {

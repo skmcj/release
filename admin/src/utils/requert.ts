@@ -3,7 +3,7 @@ import type { AxiosRequestConfig, AxiosDefaults, HeadersDefaults, AxiosHeaderVal
 import { useRoleInfoStore } from '@/stores/roleinfo';
 import { showStatus } from './status';
 import { showMessage } from './commonUtil';
-import { useRouter } from 'vue-router';
+import router from '@/router';
 
 const request = axios.create({
   baseURL: 'http://localhost:8080/api',
@@ -38,15 +38,11 @@ request.interceptors.response.use(
       setToken(response.headers['authorization']);
     }
     const { data } = response;
-    if (data.code === 423) {
-      const router = useRouter();
+    if (data.code === 423 || data.code === 422) {
       const { clearLog } = useRoleInfoStore();
       clearLog();
-      showMessage('Token异常或失效，请重新登录', 'error', {
-        onClose: () => {
-          router.push('/login');
-        }
-      });
+      showMessage('Token异常或失效，请重新登录', 'error');
+      router.push('/login');
     }
     return data;
   },
