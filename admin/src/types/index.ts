@@ -23,6 +23,18 @@ export interface UserShortInfo {
   nickname: string;
 }
 
+export interface Social {
+  id?: string;
+  icon?: string;
+  label?: string;
+  link?: string;
+  disabled?: boolean;
+  sort?: number;
+  userId?: string;
+  createTime?: string;
+  updateTime?: string;
+}
+
 // sentence
 export interface Sentence {
   id?: string;

@@ -171,6 +171,42 @@ initCurrent();
   }
 }
 
+.el-select-dropdown {
+  &.icon-select-list {
+    .el-select-dropdown__list {
+      margin: auto;
+      width: 188px;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .el-select-dropdown__item {
+      position: relative;
+      border-radius: 5px;
+      padding: 0;
+      width: 34px;
+      text-align: center;
+      .ir-bilibili {
+        font-size: 12px;
+      }
+      &.selected {
+        &::after {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          content: '';
+          width: 64%;
+          height: 3px;
+          border-radius: 1.5px;
+          background-color: $rlc-primary;
+        }
+      }
+    }
+  }
+}
+
 textarea {
   &::-webkit-scrollbar {
     width: 6px;

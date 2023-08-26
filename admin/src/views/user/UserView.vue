@@ -45,6 +45,7 @@
         </el-table-column>
         <el-table-column align="center" label="操作">
           <template #default="{ row }">
+            <el-button link @click="linkRouter('/social', row.id)">社交</el-button>
             <el-button type="primary" link @click="linkRouter('/user/edit', row.id)">编辑</el-button>
             <el-popconfirm
               width="220"

@@ -1,0 +1,55 @@
+const icons = [
+  { label: 'Logo', value: 'logo' },
+  { label: 'github', value: 'github-fill' },
+  { label: 'github', value: 'github' },
+  { label: 'github', value: 'github-line' },
+  { label: 'github', value: 'github-alt' },
+  { label: 'git', value: 'git' },
+  { label: 'bilibili', value: 'bilibili' },
+  { label: '哔哩哔哩', value: 'bilibili-b' },
+  { label: '哔哩哔哩', value: 'bilibili-tv' },
+  { label: '微信', value: 'wechat' },
+  { label: '微信', value: 'wechat-line' },
+  { label: 'QQ', value: 'qq' },
+  { label: 'vue', value: 'vue' },
+  { label: 'CSS3', value: 'css3' },
+  { label: 'JS', value: 'js' },
+  { label: '爱发电', value: 'aifadian-line' },
+  { label: 'X', value: 'x' },
+  { label: '力扣', value: 'leetcode' },
+  { label: '爱发电', value: 'aifadian' },
+  { label: 'Soul', value: 'soul' },
+  { label: '博客园', value: 'bokey' },
+  { label: 'gitlab', value: 'gitlab' },
+  { label: 'coding', value: 'coding' },
+  { label: 'Steam', value: 'steam' },
+  { label: 'Epic', value: 'epic' },
+  { label: '谷歌邮箱', value: 'gmail' },
+  { label: 'YouTube', value: 'youtube' },
+  { label: '脸书', value: 'facebook' },
+  { label: '豆瓣', value: 'douban' },
+  { label: '知乎', value: 'zhihu' },
+  { label: '酷狗', value: 'kugou' },
+  { label: '微博', value: 'weibo' },
+  { label: '网易云', value: 'wangyiyun' },
+  { label: 'QQ音乐', value: 'qq-music' },
+  { label: 'CSDN', value: 'csdn' },
+  { label: '贴吧', value: 'tieba' },
+  { label: 'Telegram', value: 'telegram' },
+  { label: '知识星球', value: 'zhishixingqiu' },
+  { label: 'Minecraft', value: 'minecraft' },
+  { label: '抖音', value: 'douyin' },
+  { label: '推特', value: 'twitter' },
+  { label: '牛客', value: 'niuke' },
+  { label: '闲鱼', value: 'xianyu' },
+  { label: '小红书', value: 'xiaohongshu' },
+  { label: '码云', value: 'gitee' },
+  { label: '陌陌', value: 'momo' }
+];
+
+/**
+ * 获取社交按钮列表
+ */
+export const getSocialIcons = function () {
+  return icons;
+};

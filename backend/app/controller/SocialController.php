@@ -23,7 +23,7 @@ class SocialController extends BaseController
         if($social === null) {
             return result()::error(Status::COMMON_FIND_ERR());
         }
-        return result()::success($social);
+        return result()::success($social, Status::GET_OK());
     }
 
     /**
@@ -31,7 +31,7 @@ class SocialController extends BaseController
      */
     public function getByUserId($id = '') {
         $list = Social::userId($id) -> order('sort', 'desc') -> select();
-        return result()::success($list);
+        return result()::success($list, Status::GET_OK());
     }
 
     /**
@@ -40,18 +40,22 @@ class SocialController extends BaseController
      */
     public function getLinkByUserId($id = '') {
         $list = Social::userId($id) -> disabled(0) -> order('sort', 'desc') -> select();
-        return result()::success($list);
+        return result()::success($list, Status::GET_OK());
     }
 
     /**
      * 分页获取所有社交信息，后台管理
      */
-    public function getAll($page = 1, $pageSize = 5) {
+    public function getAll($page = 1, $pageSize = 5, $key = '') {
         if($page < 0 || $pageSize < 0) return result()::error(Status::COMMON_ERR());
-        $list = Social::page($page, $pageSize) -> order('sort', 'desc') -> select();
-        $total = Social::count();
+        $query = new Social();
+        if($key !== '') {
+            $query = Social::userId($key);
+        }
+        $list =  $query -> page($page, $pageSize) -> order('sort', 'desc') -> select();
+        $total = $query -> count();
         $data = new PageEntity($list, $total, $page, $pageSize);
-        return result()::success($data);
+        return result()::success($data, Status::GET_OK());
     }
 
     /**

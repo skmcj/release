@@ -58,7 +58,7 @@ class Social extends Model
                 ->scene('add')
                 ->check($data);
             self::create($data);
-            return Status::GET_OK();
+            return Status::ADD_OK();
         } catch(ValidateException $e) {
             return Status::create(411, $e -> getMessage());
         } catch(Exception $e) {

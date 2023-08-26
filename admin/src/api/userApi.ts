@@ -1,5 +1,5 @@
 import request from '@/utils/requert';
-import type { UserInfo, Page, UserShortInfo } from '@/types';
+import type { UserInfo, Page, UserShortInfo, Social } from '@/types';
 
 /**
  * 分页获取用户信息
@@ -52,4 +52,39 @@ export const delUserApi = function (id: string) {
  */
 export const getUserListApi = function () {
   return request.get<UserShortInfo[]>('/user/list');
+};
+
+// 用户社交信息
+/**
+ * 分页获取用户社交信息
+ * @param page
+ * @param pageSize
+ * @param key
+ */
+export const getSocialPageApi = function (page = 1, pageSize = 5, key = '') {
+  return request.get<Page<Social>>(`/social/all?page=${page}&pageSize=${pageSize}&key=${key}`);
+};
+
+/**
+ * 新增社交信息
+ * @param data
+ */
+export const addSocialApi = function (data: Social) {
+  return request.post('/social', data);
+};
+
+/**
+ * 修改社交信息
+ * @param data
+ */
+export const editSocialApi = function (data: Social) {
+  return request.put('/social', data);
+};
+
+/**
+ * 删除社交信息
+ * @param id
+ */
+export const delSocialApi = function (id: string) {
+  return request.delete(`/social/${id}`);
 };

@@ -54,6 +54,15 @@ const router = createRouter({
           component: () => import('@/views/user/UserEditView.vue')
         },
         {
+          path: '/social',
+          name: 'social',
+          meta: {
+            title: '用户管理 / 社交信息',
+            bof: 'user'
+          },
+          component: () => import('@/views/user/SocialView.vue')
+        },
+        {
           path: '/sentence',
           name: 'sentence',
           meta: {
