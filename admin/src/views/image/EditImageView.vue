@@ -23,25 +23,28 @@
             </el-select>
           </el-form-item>
           <el-form-item label="宽：" prop="w">
-            <el-input type="number" v-model.number="form.w" :min="0" style="width: 240px">
+            <el-input type="number" v-model.number="form.w" :min="0" style="width: 240px; margin-right: 8px">
               <template #suffix>
                 <span>px</span>
               </template>
             </el-input>
+            <LoadingIcon v-model="isWHLoading" close />
           </el-form-item>
           <el-form-item label="高：" prop="h">
-            <el-input type="number" v-model.number="form.h" :min="0" style="width: 240px">
+            <el-input type="number" v-model.number="form.h" :min="0" style="width: 240px; margin-right: 8px">
               <template #suffix>
                 <span>px</span>
               </template>
             </el-input>
+            <LoadingIcon v-model="isWHLoading" close />
           </el-form-item>
           <el-form-item label="大小：" prop="size">
-            <el-input type="number" v-model.number="form.size" :min="0" style="width: 240px">
+            <el-input type="number" v-model.number="form.size" :min="0" style="width: 240px; margin-right: 8px">
               <template #suffix>
                 <span>字节</span>
               </template>
             </el-input>
+            <LoadingIcon v-model="isSizeLoading" close />
           </el-form-item>
           <el-form-item prop="labels" class="tag-box">
             <!-- 标签内容 -->
@@ -124,6 +127,7 @@ import {
   type FormRules
 } from 'element-plus';
 import type { ImageInfo } from '@/types';
+import LoadingIcon from '@/components/icon/LoadingIcon.vue';
 import { addImageApi, editImageApi, getImageByIdApi, getImageSizeApi } from '@/api/imageApi';
 import { showMessage, calcWallhavenSmallImg, validateImgUrl, getImageType, getWebImgWH } from '@/utils/commonUtil';
 import { useViewParamsRef } from '@/stores/viewparams';
@@ -212,19 +216,28 @@ const urlInputBlur = () => {
   calcImageInfo(form.url ?? '');
 };
 
+// 加载按钮
+
+const isWHLoading = ref(false);
+const isSizeLoading = ref(false);
+
 // 计算图片宽高大小
 const calcImageInfo = (url: string) => {
   if (!url) return;
   if (validateImgUrl(url)) {
+    isWHLoading.value = true;
+    isSizeLoading.value = true;
     getWebImgWH(url).then((res: any) => {
       if (res) {
         form.w = res.w;
         form.h = res.h;
+        isWHLoading.value = false;
       }
     });
     getImageSizeApi(url).then(res => {
       if (res.data) {
         form.size = res.data;
+        isSizeLoading.value = false;
       }
     });
     const t = getImageType(url);

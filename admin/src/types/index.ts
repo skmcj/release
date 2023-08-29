@@ -80,6 +80,21 @@ export interface ImageInfo {
   updateTime?: string;
 }
 
+// 境界
+export interface LevelInfo {
+  id?: string;
+  labels?: string[];
+  tip?: string;
+  sort?: number;
+  createTime?: string;
+  updateTime?: string;
+}
+
+export interface LevelShortInfo {
+  id: string;
+  tip: string;
+}
+
 // page
 export interface Page<T = any> {
   list: T[];

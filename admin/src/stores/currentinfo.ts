@@ -27,6 +27,14 @@ export const useCurrentInfoStore = defineStore(
       currentinfo.value.userId = id;
     }
 
+    function getCurrentLevelId() {
+      return currentinfo.value.levelId ?? '';
+    }
+
+    function setCurrentLevelId(id: string) {
+      currentinfo.value.levelId = id;
+    }
+
     function getCurrentSentenceType() {
       return currentinfo.value.sentenceType ?? 0;
     }
@@ -53,7 +61,9 @@ export const useCurrentInfoStore = defineStore(
       getCurrentSentenceType,
       setCurrentSentenceType,
       getCurrentImageType,
-      setCurrentImageType
+      setCurrentImageType,
+      getCurrentLevelId,
+      setCurrentLevelId
     };
   },
   {
@@ -79,6 +89,8 @@ export const useCurrentInfoRefs = function () {
     getCurrentSentenceType: info.getCurrentSentenceType,
     setCurrentSentenceType: info.setCurrentSentenceType,
     getCurrentImageType: info.getCurrentImageType,
-    setCurrentImageType: info.setCurrentImageType
+    setCurrentImageType: info.setCurrentImageType,
+    getCurrentLevelId: info.getCurrentLevelId,
+    setCurrentLevelId: info.setCurrentLevelId
   };
 };

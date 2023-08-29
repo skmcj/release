@@ -21,7 +21,7 @@ class LevelController extends BaseController
         if($data === null) {
             return result()::error(Status::GET_ERR());
         }
-        return result()::success($data);
+        return result()::success($data, Status::GET_OK());
     }
 
     /**
@@ -32,7 +32,7 @@ class LevelController extends BaseController
         if($data === null) {
             return result()::error(Status::GET_ERR());
         }
-        return result()::success($data);
+        return result()::success($data, Status::GET_OK());
     }
 
     /**
@@ -45,7 +45,7 @@ class LevelController extends BaseController
         }
         $total = Level::count();
         $page = new PageEntity($data, $total, $page, $pageSize);
-        return result()::success($page);
+        return result()::success($page, Status::GET_OK());
     }
 
 

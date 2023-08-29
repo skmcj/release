@@ -167,6 +167,41 @@ initCurrent();
     gap: 5px 6px;
   }
 }
+.levels {
+  .cell {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px 6px;
+  }
+  .el-tag--light {
+    @for $i from 1 to 12 {
+      &:nth-child(#{$i}) {
+        background-color: mix($rlc-white, map-get($rlc-map, level#{$i}), 90%);
+        border-color: mix($rlc-white, map-get($rlc-map, level#{$i}), 80%);
+        color: map-get($rlc-map, level#{$i});
+      }
+    }
+  }
+  .el-tag--dark {
+    @for $i from 1 to 12 {
+      &:nth-child(#{$i}) {
+        background-color: map-get($rlc-map, level#{$i});
+        border-color: map-get($rlc-map, level#{$i});
+        color: $rlc-white;
+      }
+    }
+  }
+  .el-tag--plain {
+    @for $i from 1 to 12 {
+      &:nth-child(#{$i}) {
+        background-color: transparent;
+        border-color: mix($rlc-white, map-get($rlc-map, level#{$i}), 50%);
+        color: map-get($rlc-map, level#{$i});
+      }
+    }
+  }
+}
 .tip-icon {
   margin: 0 6px;
   font-size: 0.7rem;

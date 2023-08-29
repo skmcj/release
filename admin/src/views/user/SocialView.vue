@@ -236,7 +236,7 @@ const initForm = () => {
 };
 let editForm: Social = { icon: '', label: '' };
 const backupEdit = (data: Social) => {
-  Object.assign(editForm, data);
+  editForm = JSON.parse(JSON.stringify(data));
 };
 const openDialog = (type: 'add' | 'edit', data: any = null) => {
   dialogType = type;
