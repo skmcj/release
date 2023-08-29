@@ -9,6 +9,7 @@ use app\pojo\ImageEntity;
 use app\pojo\PageEntity;
 use think\facade\Filesystem;
 use think\exception\ValidateException;
+use think\Http;
 
 class ImageController extends BaseController
 {
@@ -159,10 +160,10 @@ class ImageController extends BaseController
             $query = new Image();
         }
 
-        $list = $query -> page($page, $pageSize) -> select();
+        $list = $query -> order('update_time', 'desc') -> page($page, $pageSize) -> select();
         $total = $query -> count();
         $data = new PageEntity($list, $total, $page, $pageSize);
-        return result()::success($data);
+        return result()::success($data, Status::GET_OK());
     }
 
     /**
@@ -197,5 +198,20 @@ class ImageController extends BaseController
         $flag = Image::destroy($idList);
         if(!$flag) return result()::error(Status::DEL_ERR());
         return result()::success(null, Status::DEL_OK());
+    }
+
+    public function getImageSize($url = '') {
+        if($url === '') return result()::error(Status::GET_ERR());
+
+        // 获取响应头信息E
+        $headers = get_headers($url, 1);
+
+        // 提取 Content-Length（资源大小）
+        if (isset($headers['Content-Length'])) {
+            $contentLength = $headers['Content-Length'];
+            return result()::success((int)$contentLength, Status::GET_OK());
+        } else {
+            return result()::error(Status::GET_ERR());
+        }
     }
 }

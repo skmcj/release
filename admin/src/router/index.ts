@@ -81,6 +81,33 @@ const router = createRouter({
           component: () => import('@/views/image/ImageView.vue')
         },
         {
+          path: '/image/add',
+          name: 'addImage',
+          meta: {
+            title: '图片管理 | 添加图片',
+            bof: 'image'
+          },
+          component: () => import('@/views/image/EditImageView.vue')
+        },
+        {
+          path: '/image/edit',
+          name: 'editImage',
+          meta: {
+            title: '图片管理 | 编辑图片',
+            bof: 'image'
+          },
+          component: () => import('@/views/image/EditImageView.vue')
+        },
+        {
+          path: '/image/batch',
+          name: 'batchImage',
+          meta: {
+            title: '图片管理 | 批量添加',
+            bof: 'image'
+          },
+          component: () => import('@/views/image/BatchImageView.vue')
+        },
+        {
           path: '/level',
           name: 'level',
           meta: {

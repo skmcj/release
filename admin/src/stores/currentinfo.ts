@@ -35,6 +35,14 @@ export const useCurrentInfoStore = defineStore(
       currentinfo.value.sentenceType = tp;
     }
 
+    function getCurrentImageType() {
+      return currentinfo.value.imageType ?? 0;
+    }
+
+    function setCurrentImageType(tp: number) {
+      currentinfo.value.imageType = tp;
+    }
+
     return {
       currentinfo,
       setCurrent,
@@ -43,7 +51,9 @@ export const useCurrentInfoStore = defineStore(
       getCurrentUserId,
       setCurrentUserId,
       getCurrentSentenceType,
-      setCurrentSentenceType
+      setCurrentSentenceType,
+      getCurrentImageType,
+      setCurrentImageType
     };
   },
   {
@@ -67,6 +77,8 @@ export const useCurrentInfoRefs = function () {
     getCurrentId: info.getCurrentId,
     setCurrentId: info.setCurrentId,
     getCurrentSentenceType: info.getCurrentSentenceType,
-    setCurrentSentenceType: info.setCurrentSentenceType
+    setCurrentSentenceType: info.setCurrentSentenceType,
+    getCurrentImageType: info.getCurrentImageType,
+    setCurrentImageType: info.setCurrentImageType
   };
 };

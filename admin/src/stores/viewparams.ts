@@ -8,6 +8,9 @@ export const useViewParamsStore = defineStore('viewparams', () => {
   // 用户昵称
   const nickname = ref('');
 
+  // 图片ID
+  const imageId = ref('');
+
   const setUserId = function (id: string) {
     userId.value = id;
   };
@@ -16,14 +19,19 @@ export const useViewParamsStore = defineStore('viewparams', () => {
     nickname.value = name;
   };
 
-  return { userId, setUserId, nickname, setNickname };
+  const setImageId = function (id: string) {
+    imageId.value = id;
+  };
+
+  return { userId, setUserId, nickname, setNickname, imageId, setImageId };
 });
 
-export const userViewParamsRef = function () {
+export const useViewParamsRef = function () {
   const store = useViewParamsStore();
   return {
     ...storeToRefs(store),
     setUserId: store.setUserId,
-    setNickname: store.setNickname
+    setNickname: store.setNickname,
+    setImageId: store.setImageId
   };
 };

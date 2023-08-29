@@ -97,7 +97,7 @@ import {
   type FormRules
 } from 'element-plus';
 import type { UserInfo } from '@/types';
-import { userViewParamsRef } from '@/stores/viewparams';
+import { useViewParamsRef } from '@/stores/viewparams';
 import { showMessage } from '@/utils/commonUtil';
 import { uploadImageApi } from '@/api/imageApi';
 import { addUserApi, getUserByIdApi, editUserApi } from '@/api/userApi';
@@ -140,7 +140,7 @@ const back = () => {
 const confirmText = ref('确认添加');
 
 // 页面传参
-const { userId } = userViewParamsRef();
+const { userId } = useViewParamsRef();
 onBeforeMount(() => {
   const name = route.name;
   if (userId.value && name === 'editUser') {

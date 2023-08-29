@@ -177,12 +177,12 @@ const ccfBtnFlag = ref(false);
 
 const typeList = [
   {
-    id: 'e584dfec9756800de07aa88300038776',
+    id: 'a7350f74ca1af81f106d6012ced18f05',
     value: 0,
     label: '日常'
   },
   {
-    id: '1567a46e79f69f159edcbeba19683b9f',
+    id: 'adfabd78d407607ea0a2fa6d545fd1b9',
     value: 1,
     label: '随机'
   }
@@ -201,7 +201,7 @@ const updateCurrent = () => {
     sentenceType: currentType.value
   }).then(res => {
     if (res.code === 213) {
-      showMessage('居中展示类型修改成功', 'success');
+      showMessage('句子展示类型修改成功', 'success');
       setCurrentSentenceType(currentType.value);
       changeCurrent();
     } else {

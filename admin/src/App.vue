@@ -53,7 +53,7 @@ initCurrent();
 }
 // page
 .page-view {
-  width: 100%;
+  min-width: 100%;
   display: inline-flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -91,6 +91,20 @@ initCurrent();
     margin: 0;
   }
 }
+.page-ltop {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px 0;
+}
+.page-rtop {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px 0;
+}
 .page-mid {
   margin: 24px 0;
   .table-avatar {
@@ -125,6 +139,10 @@ initCurrent();
   align-items: center;
   justify-content: center;
 }
+.page-lrbox {
+  display: flex;
+  justify-content: space-between;
+}
 .inline-center {
   .cell {
     text-align: center;
@@ -135,10 +153,34 @@ initCurrent();
     margin-left: 10px;
   }
 }
+.preview-img {
+  &.el-table__cell .cell {
+    text-overflow: unset;
+  }
+}
+.labels {
+  .cell {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px 6px;
+  }
+}
+.tip-icon {
+  margin: 0 6px;
+  font-size: 0.7rem;
+  transition: color 0.3s ease;
+  &:hover {
+    color: $rlc-warning;
+  }
+}
 
 // 批量添加框提示
 .batch-tip {
+  line-height: 1.5rem;
   color: $rlt-error;
+  margin-left: 5px;
 }
 .el-textarea {
   &.is-error {
@@ -204,6 +246,12 @@ initCurrent();
         }
       }
     }
+  }
+}
+
+.tag-box {
+  .el-form-item__content {
+    gap: 5px 6px;
   }
 }
 

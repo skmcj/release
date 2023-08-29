@@ -48,7 +48,9 @@ Route::post('sentence', 'Sentence/save') -> middleware('check');
 Route::put('sentence', 'Sentence/edit') -> middleware('check');
 Route::delete('sentence', 'Sentence/deleteByIds') -> middleware('check');
 
+
 // 每日一图
+Route::get('image/size', 'Image/getImageSize') -> cache(3600);
 Route::get('image/page', 'Image/getPage') -> middleware('check');
 Route::get('image/random', 'Image/getRandom');
 Route::get('image/daily', 'Image/getDaily');
@@ -57,6 +59,7 @@ Route::post('image/batch', 'Image/saveBatch') -> middleware('check');
 Route::post('image', 'Image/save') -> middleware('check');
 Route::put('image', 'Image/edit') -> middleware('check');
 Route::delete('image', 'Image/deleteByIds') -> middleware('check');
+
 
 // 留言路由
 Route::get('comment/page', 'Comment/getPage') -> middleware('check');

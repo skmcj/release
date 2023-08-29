@@ -61,6 +61,25 @@ export interface ImageURes {
   url: string;
 }
 
+export type ImageShowType = 'pc' | 'phone' | 'other';
+export type ImageType = 'jpg' | 'png' | 'gif' | 'jpeg' | 'apng' | 'avif' | 'svg' | 'webp' | 'jif' | 'ico' | 'tiff';
+
+export interface ImageInfo {
+  id?: string;
+  name?: string;
+  url?: string;
+  type?: ImageShowType;
+  labels?: string[];
+  w?: number;
+  h?: number;
+  size?: number;
+  disabled?: boolean;
+  imageType?: ImageType;
+  showDate?: null | string;
+  createTime?: string;
+  updateTime?: string;
+}
+
 // page
 export interface Page<T = any> {
   list: T[];
