@@ -135,6 +135,15 @@ const router = createRouter({
           component: () => import('@/views/product/ProductView.vue')
         },
         {
+          path: '/article',
+          name: 'article',
+          meta: {
+            title: '文章管理',
+            bof: 'article'
+          },
+          component: () => import('@/views/article/ArticleView.vue')
+        },
+        {
           path: '/role',
           name: 'role',
           meta: {

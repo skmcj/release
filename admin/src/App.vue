@@ -148,6 +148,16 @@ initCurrent();
     text-align: center;
   }
 }
+.clean {
+  .cell {
+    .el-button + .el-button {
+      margin: 0 3px;
+    }
+    .el-button {
+      margin: 0 3px;
+    }
+  }
+}
 .dialog-footer {
   button + button {
     margin-left: 10px;
@@ -289,7 +299,6 @@ initCurrent();
     gap: 5px 6px;
   }
 }
-
 textarea {
   &::-webkit-scrollbar {
     width: 6px;

@@ -90,6 +90,22 @@ export interface LevelInfo {
   updateTime?: string;
 }
 
+// 留言
+export interface CommentInfo {
+  id?: string;
+  nickname?: string;
+  content?: string;
+  email?: string;
+  visible?: boolean;
+  disabled?: boolean;
+  ip?: string;
+  address?: string;
+  showDate?: string;
+  createTime?: string;
+  updateTime?: string;
+  iprf?: boolean;
+}
+
 export interface LevelShortInfo {
   id: string;
   tip: string;

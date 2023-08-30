@@ -73,6 +73,12 @@ const menuList = [
   },
   {
     id: 'e63748d5992d7',
+    icon: 'ir-detail-line',
+    text: '文章管理',
+    path: '/article'
+  },
+  {
+    id: 'e63748d5992d8',
     icon: 'ir-role',
     text: '角色管理',
     path: '/role'

@@ -88,10 +88,8 @@ class CommentController extends BaseController
      * 添加
      * @param string $ip 用于测试使用
      */
-    public function save($ip = '') {
-        if($ip === '') {
-            $ip = CommonUtil::getClientIp(0, true);
-        }
+    public function save() {
+        $ip = CommonUtil::getClientIp(0, true);
 
         $data = $this -> request -> post();
         $address = CommonUtil::getIpLocationV2($ip);
@@ -102,19 +100,49 @@ class CommentController extends BaseController
     }
 
     /**
+     * 添加
+     * @param string $ip 用于测试使用
+     */
+    public function saveBk() {
+        $data = $this -> request -> post();
+        if(empty($data['ip'])) {
+            $data['ip'] = CommonUtil::getClientIp(0, true);
+        }
+        $address = CommonUtil::getIpLocationV2($data['ip']);
+        $data['address'] = $address !== null ? $address['lct'] : '';
+        $status = Comment::add($data);
+        return result()::success(null, $status);
+    }
+
+    /**
      * 编辑
      */
-    public function edit($ip = '') {
-        // TODO: 测试
-        if($ip === '') {
-            $ip = CommonUtil::getClientIp(0, true);
-        }
+    public function edit() {
+        $ip = CommonUtil::getClientIp(0, true);
 
         $data = $this -> request -> put();
 
         $address = CommonUtil::getIpLocationV2($ip);
         $data['ip'] = $ip;
         $data['address'] = $address !== null ? $address['lct'] : '';
+
+        $status = Comment::edit($data);
+        return result()::success(null, $status);
+    }
+
+    /**
+     * 编辑
+     */
+    public function editBk() {
+        $data = $this -> request -> put();
+        if(isset($data['iprf']) && $data['iprf'] === true) {
+            $data['ip'] = CommonUtil::getClientIp(0, true);
+            $address = CommonUtil::getIpLocationV2($data['ip']);
+            $data['address'] = $address !== null ? $address['lct'] : '';
+        } elseif(!empty($data['ip'])) {
+			$address = CommonUtil::getIpLocationV2($data['ip']);
+            $data['address'] = $address !== null ? $address['lct'] : '';
+        }
 
         $status = Comment::edit($data);
         return result()::success(null, $status);

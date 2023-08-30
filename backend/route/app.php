@@ -65,6 +65,8 @@ Route::delete('image', 'Image/deleteByIds') -> middleware('check');
 Route::get('comment/page', 'Comment/getPage') -> middleware('check');
 Route::get('comment/:id', 'Comment/getById');
 Route::get('comment', 'Comment/getComment');
+Route::post('comment/bk', 'Comment/saveBK') -> middleware('check');
+Route::put('comment/bk', 'Comment/editBK') -> middleware('check');
 Route::post('comment', 'Comment/save');
 Route::put('comment', 'Comment/edit') -> middleware('check');
 Route::delete('comment/:id', 'Comment/deleteById') -> middleware('check');
