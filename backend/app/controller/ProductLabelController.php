@@ -59,6 +59,6 @@ class ProductLabelController extends BaseController
         $list = $query -> order('sort', 'desc') -> page($page, $pageSize) -> select();
         $total = $query -> count();
         $data = new PageEntity($list, $total, $page, $pageSize);
-        return result()::success($data);
+        return result()::success($data, Status::GET_OK());
     }
 }

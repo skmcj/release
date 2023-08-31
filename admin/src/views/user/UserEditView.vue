@@ -60,7 +60,7 @@
         <vue-cropper
           ref="cropper"
           :canMoveBox="false"
-          :img="avatarsl"
+          :img="avatarUrl"
           fixedBox
           autoCrop
           centerBox
@@ -214,7 +214,7 @@ const edit = () => {
 };
 
 // 头像
-const avatarsl = ref('');
+const avatarUrl = ref('');
 const avatarInput = ref();
 const cropper = ref();
 const openImage = () => {
@@ -232,7 +232,7 @@ const selectFile = (e: any) => {
   reader.readAsDataURL(file);
   reader.onload = e => {
     let imgcode = e.target?.result;
-    avatarsl.value = imgcode as string;
+    avatarUrl.value = imgcode as string;
     avatarVisible.value = true;
   };
 };

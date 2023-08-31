@@ -39,7 +39,7 @@ class ProductController extends BaseController
 
     public function getIDList() {
         $list = Product::scope('sm') -> order('comp_date', 'desc') -> select();
-        return result()::success($list);
+        return result()::success($list, Status::GET_OK());
     }
 
     /**

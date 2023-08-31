@@ -214,6 +214,106 @@ html {
     color: #1e78eb;
 }
 
+.icon-color.ir-aries {
+    color: #ee7959;
+}
+
+.icon-color.ir-taurus {
+    color: #88abda;
+}
+
+.icon-color.ir-gemini {
+    color: #da9233;
+}
+
+.icon-color.ir-cacer {
+    color: #d4dde1;
+}
+
+.icon-color.ir-leo {
+    color: #ffd900;
+}
+
+.icon-color.ir-virgo {
+    color: #68945c;
+}
+
+.icon-color.ir-libra {
+    color: #a73766;
+}
+
+.icon-color.ir-scorpio {
+    color: #a67eb7;
+}
+
+.icon-color.ir-sagittarius {
+    color: #bed2bb;
+}
+
+.icon-color.ir-capricom {
+    color: #a4c9cc;
+}
+
+.icon-color.ir-aquarius {
+    color: #4994c4;
+}
+
+.icon-color.ir-pisces {
+    color: #f6ad49;
+}
+
+.icon-color.ir-aries-line {
+    color: #ee7959;
+}
+
+.icon-color.ir-taurus-line {
+    color: #88abda;
+}
+
+.icon-color.ir-gemini-line {
+    color: #da9233;
+}
+
+.icon-color.ir-cacer-line {
+    color: #d4dde1;
+}
+
+.icon-color.ir-leo-line {
+    color: #ffd900;
+}
+
+.icon-color.ir-virgo-line {
+    color: #68945c;
+}
+
+.icon-color.ir-libra-line {
+    color: #a73766;
+}
+
+.icon-color.ir-scorpio-line {
+    color: #a67eb7;
+}
+
+.icon-color.ir-sagittarius-line {
+    color: #bed2bb;
+}
+
+.icon-color.ir-capricom-line {
+    color: #a4c9cc;
+}
+
+.icon-color.ir-aquarius-line {
+    color: #4994c4;
+}
+
+.icon-color.ir-pisces-line {
+    color: #f6ad49;
+}
+
+.icon-color {
+    color: #61677c;
+}
+
 /* 划入 */
 .rl-pagein-enter-active,
 .rl-pagein-leave-active {

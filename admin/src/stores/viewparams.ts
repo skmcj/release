@@ -1,30 +1,53 @@
 import { ref } from 'vue';
 import { defineStore, storeToRefs } from 'pinia';
 
-export const useViewParamsStore = defineStore('viewparams', () => {
-  // 用户ID
-  const userId = ref('');
+export const useViewParamsStore = defineStore(
+  'viewparams',
+  () => {
+    // 用户ID
+    const userId = ref('');
 
-  // 用户昵称
-  const nickname = ref('');
+    // 用户昵称
+    const nickname = ref('');
 
-  // 图片ID
-  const imageId = ref('');
+    // 图片ID
+    const imageId = ref('');
 
-  const setUserId = function (id: string) {
-    userId.value = id;
-  };
+    // 作品ID
+    const productId = ref('');
 
-  const setNickname = function (name: string) {
-    nickname.value = name;
-  };
+    const setUserId = function (id: string) {
+      userId.value = id;
+    };
 
-  const setImageId = function (id: string) {
-    imageId.value = id;
-  };
+    const setNickname = function (name: string) {
+      nickname.value = name;
+    };
 
-  return { userId, setUserId, nickname, setNickname, imageId, setImageId };
-});
+    const setImageId = function (id: string) {
+      imageId.value = id;
+    };
+
+    const setProductId = function (id: string) {
+      productId.value = id;
+    };
+
+    const getProductId = function () {
+      return productId.value;
+    };
+
+    return { userId, setUserId, nickname, setNickname, imageId, setImageId, productId, setProductId, getProductId };
+  },
+  {
+    persist: [
+      {
+        key: 'viewparams',
+        storage: sessionStorage,
+        paths: undefined
+      }
+    ]
+  }
+);
 
 export const useViewParamsRef = function () {
   const store = useViewParamsStore();
@@ -32,6 +55,8 @@ export const useViewParamsRef = function () {
     ...storeToRefs(store),
     setUserId: store.setUserId,
     setNickname: store.setNickname,
-    setImageId: store.setImageId
+    setImageId: store.setImageId,
+    setProductId: store.setProductId,
+    getProductId: store.getProductId
   };
 };

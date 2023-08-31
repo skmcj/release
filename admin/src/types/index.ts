@@ -111,6 +111,45 @@ export interface LevelShortInfo {
   tip: string;
 }
 
+// product
+export interface ProductInfo {
+  id?: string;
+  name?: string;
+  tip?: string;
+  logo?: string;
+  logoUrl?: string;
+  stars?: string;
+  disabled?: boolean;
+  articleId?: string;
+  compDate?: string;
+  createTime?: string;
+  updateTime?: string;
+}
+
+export interface ProductLabel {
+  id?: string;
+  productId?: string;
+  icon?: string;
+  label?: string;
+  color?: string;
+  link?: string;
+  sort?: number;
+  disabled?: boolean;
+  createTime?: string;
+  updateTime?: string;
+}
+
+export interface ProductShortInfo {
+  id: string;
+  name: string;
+}
+
+// 文章
+export interface ArticleShortInfo {
+  id: string;
+  title: string;
+}
+
 // page
 export interface Page<T = any> {
   list: T[];

@@ -3,12 +3,12 @@ import type { ImageInfo, ImageURes, Page } from '@/types';
 
 /**
  * 上传图片
- * @param blob 图片blob数据
+ * @param file 图片blob数据
  * @param imgName 图片名称
  */
-export const uploadImageApi = function (blob: Blob, imgName: string = '') {
+export const uploadImageApi = function (file: Blob | File, imgName: string = '') {
   const formData = new FormData();
-  formData.append('image', blob, imgName ?? `${Date.now()}.png`);
+  formData.append('image', file, imgName ?? `${Date.now()}.png`);
   const header = {
     'Content-Type': 'multipart/form-data'
   };

@@ -135,6 +135,33 @@ const router = createRouter({
           component: () => import('@/views/product/ProductView.vue')
         },
         {
+          path: '/product/label',
+          name: 'productLabel',
+          meta: {
+            title: '作品管理 | 标签管理',
+            bof: 'product'
+          },
+          component: () => import('@/views/product/ProductLabelView.vue')
+        },
+        {
+          path: '/product/add',
+          name: 'addProduct',
+          meta: {
+            title: '作品管理 | 添加作品',
+            bof: 'product'
+          },
+          component: () => import('@/views/product/EditProductView.vue')
+        },
+        {
+          path: '/product/edit',
+          name: 'editProduct',
+          meta: {
+            title: '作品管理 | 编辑作品',
+            bof: 'product'
+          },
+          component: () => import('@/views/product/EditProductView.vue')
+        },
+        {
           path: '/article',
           name: 'article',
           meta: {
