@@ -69,7 +69,7 @@ class ArticleController extends BaseController
 
     public function getList() {
       $list = Article::disabled(0) -> scope('sm') -> order('update_time', 'desc') -> select();
-      return result()::success($list);
+      return result()::success($list, Status::GET_OK());
     }
 
     public function getPage($page = 1, $pageSize = 5, $key = '') {
@@ -88,6 +88,17 @@ class ArticleController extends BaseController
       $data = Article::find($id);
       if($data === null) return result()::error(Status::GET_ERR());
       return result()::success($data, Status::GET_OK());
+    }
+
+    /**
+     * 获取文章内容
+     */
+    public function getContentById($id) {
+      $article = Article::id($id) -> find();
+      if($article === null) return result()::error(Status::GET_ERR('文章不存在'));
+      $res = CommonUtil::readArticle($article -> getData('path'));
+      if(!$res) return result()::error(Status::GET_ERR('文章获取失败'));
+      return result()::success($res, Status::GET_OK());
     }
 
     /**
@@ -117,7 +128,7 @@ class ArticleController extends BaseController
       if($article === null) {
         return result()::error(Status::EDIT_ERR());
       }
-      $edata = CommonUtil::editArticle($article -> path, $content);
+      $edata = CommonUtil::editArticle($article -> getData('path'), $content);
       Article::editCount($id, $edata['count']);
       return result()::success($edata['count'], Status::EDIT_OK());
     }

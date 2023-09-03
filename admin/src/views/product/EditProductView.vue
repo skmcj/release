@@ -55,6 +55,7 @@ import { onBeforeMount, reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElForm, ElFormItem, ElInput, ElSwitch, ElDatePicker, ElSelect, ElOption, ElButton } from 'element-plus';
 import { uploadImageApi } from '@/api/imageApi';
+import { getArticleListApi } from '@/api/articleApi';
 
 // 文件上传
 const logoInput = ref();
@@ -81,6 +82,14 @@ const uploadImage = (file: File, filename: string) => {
 // 文章ID列表
 const articleIDList = ref<ArticleShortInfo[]>([]);
 
+const getArticleIDList = () => {
+  getArticleListApi().then(res => {
+    if (res.code === 214) {
+      articleIDList.value = res.data;
+    }
+  });
+};
+
 const nowDay = new Date(new Date().toLocaleDateString()).getTime();
 
 const form = reactive<ProductInfo>({});
@@ -103,6 +112,7 @@ const confirmText = ref('确认添加');
 // 页面传参
 const { productId } = useViewParamsRef();
 onBeforeMount(() => {
+  getArticleIDList();
   const name = route.name;
   if (productId.value && name === 'editProduct') {
     getProductById(productId.value);

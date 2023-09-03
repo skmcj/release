@@ -24,6 +24,22 @@ html {
     src: url('./font/YouSheBiaoTiHei.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: "canger-xwz";
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+    src: url('./font/canger-xwz.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "zcool-kuaile";
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+    src: url('./font/zcool-kuaile.ttf') format('truetype');
+}
+
 @media (min-width: 1024px) {}
 
 .icon-color.ir-logo {

@@ -247,6 +247,31 @@ class CommonUtil {
     }
 
     /**
+     * 删除文章
+     */
+    public static function deleteArticle($name = '') {
+        if($name === '') throw new ErrorException('文件名为空');
+        $filepath = config('common.article_dir').$name.'.md';
+        if(file_exists($filepath)) {
+            $res = unlink($filepath);
+            return $res;
+        } else {
+            return false;
+        }
+    }
+
+    public static function readArticle($name = '') {
+        if($name === '') throw new ErrorException('文件名为空');
+        $filepath = config('common.article_dir').$name.'.md';
+        if(file_exists($filepath)) {
+            $res = file_get_contents($filepath);
+            return $res;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * 重命名文章
      */
     public static function renameArticle($oldName = '', $newName = '') {

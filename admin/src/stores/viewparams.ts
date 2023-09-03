@@ -16,6 +16,9 @@ export const useViewParamsStore = defineStore(
     // 作品ID
     const productId = ref('');
 
+    // 文章ID
+    const articleId = ref('');
+
     const setUserId = function (id: string) {
       userId.value = id;
     };
@@ -36,7 +39,28 @@ export const useViewParamsStore = defineStore(
       return productId.value;
     };
 
-    return { userId, setUserId, nickname, setNickname, imageId, setImageId, productId, setProductId, getProductId };
+    const setArticleId = function (id: string) {
+      articleId.value = id;
+    };
+
+    const getArticleId = function () {
+      return articleId.value;
+    };
+
+    return {
+      userId,
+      setUserId,
+      nickname,
+      setNickname,
+      imageId,
+      setImageId,
+      productId,
+      setProductId,
+      getProductId,
+      articleId,
+      getArticleId,
+      setArticleId
+    };
   },
   {
     persist: [
@@ -57,6 +81,8 @@ export const useViewParamsRef = function () {
     setNickname: store.setNickname,
     setImageId: store.setImageId,
     setProductId: store.setProductId,
-    getProductId: store.getProductId
+    getProductId: store.getProductId,
+    getArticleId: store.getArticleId,
+    setArticleId: store.setArticleId
   };
 };

@@ -150,6 +150,26 @@ export interface ArticleShortInfo {
   title: string;
 }
 
+export interface ArticleInfo {
+  id?: string;
+  title?: string;
+  path?: string;
+  cate?: string | null;
+  cover?: string;
+  tags?: string[];
+  description?: string;
+  count?: number;
+  eyes?: number;
+  disabled?: boolean;
+  createTime?: string;
+  updateTime?: string;
+}
+
+export interface ArticleContent {
+  id: string;
+  content: string;
+}
+
 // page
 export interface Page<T = any> {
   list: T[];

@@ -171,6 +171,33 @@ const router = createRouter({
           component: () => import('@/views/article/ArticleView.vue')
         },
         {
+          path: '/article/add',
+          name: 'addArticle',
+          meta: {
+            title: '文章管理 | 添加文章',
+            bof: 'article'
+          },
+          component: () => import('@/views/article/EditArticleView.vue')
+        },
+        {
+          path: '/article/edit',
+          name: 'editArticle',
+          meta: {
+            title: '文章管理 | 编辑文章',
+            bof: 'article'
+          },
+          component: () => import('@/views/article/EditArticleView.vue')
+        },
+        {
+          path: '/article/editor',
+          name: 'articleEditor',
+          meta: {
+            title: '文章管理 | 编辑器',
+            bof: 'article'
+          },
+          component: () => import('@/views/article/ArticleEditor.vue')
+        },
+        {
           path: '/role',
           name: 'role',
           meta: {

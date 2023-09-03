@@ -69,31 +69,31 @@ class Status {
         return new Status(403, '请求失败，请检查请求方法是否正确');
     }
 
-    public static function ADD_OK() {
-        return new Status(211, '添加成功');
+    public static function ADD_OK($msg = '添加成功') {
+        return new Status(211, $msg);
     }
-    public static function DEL_OK() {
-        return new Status(212, '删除成功');
+    public static function DEL_OK($msg = '删除成功') {
+        return new Status(212, $msg);
     }
-    public static function EDIT_OK() {
-        return new Status(213, '修改成功');
+    public static function EDIT_OK($msg = '修改成功') {
+        return new Status(213, $msg);
     }
-    public static function GET_OK() {
-        return new Status(214, '查询成功');
+    public static function GET_OK($msg = '查询成功') {
+        return new Status(214, $msg);
     }
 
     
-    public static function ADD_ERR() {
-        return new Status(411, '添加失败');
+    public static function ADD_ERR($msg = '添加失败') {
+        return new Status(411, $msg);
     }
-    public static function DEL_ERR() {
-        return new Status(412, '删除失败');
+    public static function DEL_ERR($msg = '删除失败') {
+        return new Status(412, $msg);
     }
-    public static function EDIT_ERR() {
-        return new Status(413, '修改失败');
+    public static function EDIT_ERR($msg = '修改失败') {
+        return new Status(413, $msg);
     }
-    public static function GET_ERR() {
-        return new Status(414, '查询失败');
+    public static function GET_ERR($msg = '查询失败') {
+        return new Status(414, $msg);
     }
 
 

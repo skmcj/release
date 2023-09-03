@@ -90,6 +90,7 @@ Route::delete('plabel/:id', 'ProductLabel/deleteById') -> middleware('check');
 Route::get('article/page', 'Article/getPage') -> middleware('check');
 Route::get('article/list', 'Article/getList') -> middleware('check');
 Route::get('article/id/:id', 'Article/getById') -> middleware('check');
+Route::get('article/content/:id', 'Article/getContentById') -> middleware('check');
 Route::get('article/:name', 'Article/getProfile');
 Route::post('article', 'Article/save') -> middleware('check');
 Route::put('article/edit', 'Article/editArticle') -> middleware('check');

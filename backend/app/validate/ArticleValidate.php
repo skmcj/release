@@ -49,7 +49,11 @@ class ArticleValidate extends Validate
      */
     protected $scene = [
         'add' => ['title', 'path', 'cate', 'cover', 'tags', 'description', 'disabled'],
-        'count' => ['id', 'count'],
-        'edit' => ['id', 'title', 'path', 'cate', 'cover', 'tags', 'description', 'disabled']
+        'count' => ['id', 'count']
     ];
+
+    public function sceneEdit() {
+        return $this -> only(['id', 'title', 'path', 'cate', 'cover', 'tags', 'description', 'disabled'])
+            -> remove('title', 'require');
+    }
 }

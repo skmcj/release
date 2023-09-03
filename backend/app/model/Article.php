@@ -67,7 +67,11 @@ class Article extends Model
     public function scopeDisabled($query, $val) {
         $query -> where('disabled', $val);
     }
-    
+
+    public function scopeId($query, $val) {
+        $query -> where('id', $val);
+    }
+
     /**
      * 获取缩略信息
      */
@@ -131,6 +135,13 @@ class Article extends Model
                 $newPath = CommonUtil::renameArticle($article -> getData('path'), $data['title']);
                 $data['path'] = $newPath;
             }
+            if(!empty($data['cover'])) {
+                // 如果不为网络图片
+                if(!RegValidate::validUrl($data['cover'])) {
+                    $img = CommonUtil::saveImageByTmp($data['cover']);
+                    $data['cover'] = $img -> getName();
+                }
+            }
             self::update($data, ['id' => $data['id']], ['title', 'path', 'cate', 'cover', 'tags', 'description', 'disabled']);
             return Status::EDIT_OK();
         } catch(ValidateException $e) {
@@ -144,8 +155,12 @@ class Article extends Model
     public static function deleteById($id) {
         $list = Product::articleId($id) -> select();
         if(count($list) > 0) return Status::create(412, '该文章还存在绑定的作品，不可删除！');
+        $article = self::id($id) -> find();
+        if($article === null) return Status::DEL_ERR('文章不存在');
         $flag = self::destroy($id);
         if(!$flag) return Status::DEL_ERR();
+        // 删除文章
+        CommonUtil::deleteArticle($article -> getData('path'));
         return Status::DEL_OK();
     }
     

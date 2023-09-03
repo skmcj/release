@@ -31,7 +31,7 @@
         </el-table-column>
         <el-table-column prop="articleId" label="介绍文档" width="81" class-name="inline-center">
           <template #default="{ row }">
-            <el-button v-if="row.articleId" type="primary" link>查看</el-button>
+            <el-button v-if="row.articleId" type="primary" link @click="viewArticle(row.articleId)">查看</el-button>
           </template>
         </el-table-column>
         <el-table-column prop="updateTime" label="更新时间" width="180" />
@@ -88,6 +88,7 @@ import { delProductApi, editProductApi, getProductPageApi } from '@/api/productA
 import type { ProductInfo } from '@/types';
 import { showMessage } from '@/utils/commonUtil';
 import { useViewParamsStore } from '@/stores/viewparams';
+import { getArticleByIdApi } from '@/api/articleApi';
 
 const router = useRouter();
 
@@ -97,6 +98,23 @@ const { setProductId } = useViewParamsStore();
 const linkRouter = (link: string | any, id: string | undefined = undefined) => {
   if (id) setProductId(id);
   router.push(link);
+};
+const linkPage = (link: string) => {
+  if (link) window.open(link, '_blank');
+};
+
+/**
+ * 跳转查看文章
+ * @param id
+ */
+const viewArticle = (id: string) => {
+  getArticleByIdApi(id).then(res => {
+    if (res.code === 214) {
+      linkPage(res.data.path);
+    } else {
+      showMessage(res.msg, 'warning');
+    }
+  });
 };
 
 const searchKey = ref('');
