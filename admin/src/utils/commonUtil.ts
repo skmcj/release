@@ -128,3 +128,51 @@ export const getImageType = function (url: string) {
     return res[1] as ImageType;
   } else return '';
 };
+
+/**
+ * 验证用户名
+ * @param username
+ */
+export const validateUsername = function (username: string) {
+  const UN_REG = /^[a-zA-Z0-9_-]{8,255}$/;
+  return UN_REG.test(username);
+};
+
+/**
+ * 验证密码
+ * @param password
+ */
+export const validatePassword = function (password: string) {
+  const PW_REG = /^[a-zA-Z0-9_,.;`*+&%$#@!<>-]{8,255}$/;
+  return PW_REG.test(password);
+};
+
+/**
+ * 用于element-plus表单验证
+ * @param rule
+ * @param value
+ * @param callback
+ */
+export const checkUsername = function (rule: any, value: any, callback: any) {
+  if (!value) callback(new Error('用户名不能为空'));
+  else if (!validateUsername(value)) {
+    callback(new Error('存在非法字符！用户名只能由字母、数字、_和-组成'));
+  } else {
+    callback();
+  }
+};
+
+/**
+ * 用于element-plus表单验证
+ * @param rule
+ * @param value
+ * @param callback
+ */
+export const checkPassword = function (rule: any, value: any, callback: any) {
+  if (!value) callback(new Error('密码不能为空'));
+  else if (!validateUsername(value)) {
+    callback(new Error('存在非法字符！密码只能由字母、数字和常见特殊符号组成'));
+  } else {
+    callback();
+  }
+};

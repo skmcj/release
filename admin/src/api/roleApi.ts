@@ -27,3 +27,43 @@ export const logoutApi = function () {
 export const checkLoginApi = function () {
   return request.get<RoleInfo>('/role/check');
 };
+
+/**
+ * 分页获取角色信息
+ * @param page
+ * @param pageSize
+ */
+export const getRolePageApi = function (page = 1, pageSize = 5) {
+  return request.get('/role', {
+    params: {
+      page,
+      pageSize
+    }
+  });
+};
+
+/**
+ * 添加角色
+ * @param data
+ */
+export const addRoleApi = function (data: RoleInfo) {
+  data['password'] && (data['password'] = md5(data['password']));
+  return request.post('/role', data);
+};
+
+/**
+ * 修改角色
+ * @param data
+ */
+export const editRoleApi = function (data: RoleInfo) {
+  data['password'] && (data['password'] = md5(data['password']));
+  return request.put('/role', data);
+};
+
+/**
+ * 删除角色
+ * @param id
+ */
+export const delRoleApi = function (id: string) {
+  return request.delete(`/role/${id}`);
+};

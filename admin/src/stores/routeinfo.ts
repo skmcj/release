@@ -20,7 +20,8 @@ const menuMap: MenuMap = {
   level: 3,
   comment: 4,
   product: 5,
-  role: 6
+  article: 6,
+  role: 7
 };
 
 export const useRouteInfoStore = defineStore('routeinfo', () => {

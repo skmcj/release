@@ -1,8 +1,11 @@
 // role
 export interface RoleInfo {
+  id?: string;
   username?: string;
+  password?: string;
   role?: number;
   roleText?: string;
+  disabled?: boolean;
 }
 
 // user

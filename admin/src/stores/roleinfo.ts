@@ -27,7 +27,11 @@ export const useRoleInfoStore = defineStore(
       token.value = '';
     }
 
-    return { roleinfo, setRoleInfo, loginFlag, setLoginFlag, token, setToken, clearLog };
+    function getRole() {
+      return roleinfo.value.role as number;
+    }
+
+    return { roleinfo, setRoleInfo, loginFlag, setLoginFlag, token, setToken, clearLog, getRole };
   },
   {
     persist: [

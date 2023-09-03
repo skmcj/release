@@ -22,6 +22,10 @@ class Role extends Model
         'create_time' => 'datetime',
         'update_time' => 'datetime'
     ];
+    
+    protected $append = [
+		'roleText'
+    ];
 
     public static function onBeforeInsert($data) {
         if($data -> id === null || $data -> id === '') {
