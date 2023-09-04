@@ -19,9 +19,15 @@ class Current extends Model
         'level_id'      => 'string',
         'sentence_type' => 'int',
         'image_type'    => 'int',
+        'gray_mode'     => 'int',
+        'gray_date'     => 'string',
         'sort'          => 'int',
         'create_time'   => 'datetime',
         'update_time'   => 'datetime'
+    ];
+
+    protected $type = [
+        'gray_date' => 'array'
     ];
 
     public static function onBeforeInsert($data) {
@@ -65,7 +71,7 @@ class Current extends Model
             validate(CurrentValidate::class)
                 -> scene('edit')
                 -> check($data);
-            self::update($data, ['id' => $data['id']], ['user_id', 'level_id', 'sentence_type', 'iamge_type', 'sort', 'disabled']);
+            self::update($data, ['id' => $data['id']], ['user_id', 'level_id', 'sentence_type', 'image_type', 'gray_mode', 'gray_date', 'sort', 'disabled']);
             return Status::EDIT_OK();
         } catch (ValidateException $e) {
             return Status::create(411, $e -> getMessage());

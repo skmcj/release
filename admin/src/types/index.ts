@@ -54,6 +54,8 @@ export interface CurrentInfo {
   levelId?: string;
   sentenceType?: number;
   imageType?: number;
+  grayMode?: number;
+  grayDate?: string[];
 }
 
 // image

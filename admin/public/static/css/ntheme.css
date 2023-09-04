@@ -260,3 +260,28 @@
     padding: 3px 0;
     color: #61677c;
 }
+
+/* 表格 */
+.editormd-preview .editormd-preview-container table {
+    overflow: hidden;
+    display: table;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--bg);
+    box-shadow: -0.5px -0.5px 0px 0px var(--wshadow0), 0.5px 0.5px 0px 0px var(--bshadow15), -3px -3px 6px 0 var(--wshadow70), 3px 3px 6px 0 var(--bshadow15);
+    border-collapse: separate;
+    border-spacing: 8px 6px;
+}
+
+.editormd-preview .editormd-preview-container table tr,
+.editormd-preview .editormd-preview-container table td,
+.editormd-preview .editormd-preview-container table th {
+    border: none;
+    background-color: transparent;
+}
+
+.editormd-preview .editormd-preview-container table td {
+    box-shadow: -0.5px -0.5px 0px 0px var(--wshadow0), 0.5px 0.5px 0px 0px var(--bshadow15), inset -3px -3px 6px 0 var(--wshadow70), inset 3px 3px 6px 0 var(--bshadow15);
+    color: var(--primary-text);
+    border-radius: 6px;
+}

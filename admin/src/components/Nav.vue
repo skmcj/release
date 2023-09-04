@@ -3,7 +3,7 @@
     <span class="title">{{ routeinfo.title }}</span>
     <el-popover placement="bottom" :width="120" trigger="hover">
       <template #reference>
-        <div class="avatar">{{ firstA(roleinfo.username) }}</div>
+        <div class="avatar" @click="linkToSetting">{{ firstA(roleinfo.username) }}</div>
       </template>
       <div class="avatar-role-info" v-if="loginFlag">
         <div class="info-item">
@@ -31,12 +31,18 @@ import { useRouter } from 'vue-router';
 import { logoutApi } from '@/api/roleApi';
 import { showMessage } from '@/utils/commonUtil';
 
+// 提取第一个字母
 const firstA = (str: string = 'unknown') => {
   if (!str) str = 'unknown';
   return str[0];
 };
 
 const router = useRouter();
+
+const linkToSetting = () => {
+  if (!loginFlag) return;
+  router.push('/setting');
+};
 
 const logout = () => {
   logoutApi()

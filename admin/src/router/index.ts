@@ -205,6 +205,15 @@ const router = createRouter({
             bof: 'role'
           },
           component: () => import('@/views/role/RoleView.vue')
+        },
+        {
+          path: '/setting',
+          name: 'setting',
+          meta: {
+            title: '常规设置',
+            bof: 'setting'
+          },
+          component: () => import('@/views/setting/SettingView.vue')
         }
       ]
     }

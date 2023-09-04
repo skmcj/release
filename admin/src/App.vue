@@ -294,6 +294,25 @@ initCurrent();
   }
 }
 
+.picker-date {
+  .el-date-picker__header {
+    span:nth-child(2) {
+      /*第三个标签是span的标签，把它隐藏*/
+      display: none;
+    }
+    .el-date-picker__prev-btn {
+      button:nth-child(1) {
+        display: none;
+      }
+    }
+    .el-date-picker__next-btn {
+      button:nth-child(2) {
+        display: none;
+      }
+    }
+  }
+}
+
 .tag-box {
   .el-form-item__content {
     gap: 5px 6px;
