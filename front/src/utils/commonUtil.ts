@@ -241,3 +241,49 @@ export const empty = function (obj: any): boolean {
   }
   return flag;
 };
+
+/**
+ * 判断链接是否是wallhaven壁纸完整链接
+ * @param url
+ */
+export const isWallhavenFullImg = function (url: string): boolean {
+  const reg = /^https?:\/\/w\.wallhaven\.cc\/full\/.+\.(gif|png|jpg|jpeg)$/i;
+  return reg.test(url);
+};
+
+/**
+ * 获取wallhaven完整链接的预览图地址
+ * @param url
+ */
+export const calcWallhavenSmallImg = function (url: string): string {
+  if (isWallhavenFullImg(url)) {
+    const reg = /^https?:\/\/w\.wallhaven\.cc\/full\/.+?-(.*?)\.(gif|png|jpg|jpeg)$/i;
+    const list = url.match(reg);
+    if (list?.length && list.length > 1) {
+      return `https://th.wallhaven.cc/small/${list[1].slice(0, 2)}/${list[1]}.jpg`;
+    } else {
+      return url;
+    }
+  } else {
+    return url;
+  }
+};
+
+/**
+ * 输出标签
+ * @param icon
+ * @param tip
+ * @param link
+ * @param color
+ */
+export const printInfo = function (
+  tip: string = 'SKMCJ的发布页',
+  link: string = 'https://github.com/skmcj',
+  color: string = '#83ccd2'
+) {
+  console.log(
+    `%c ${tip} %c ${link}`,
+    `color: white; background: ${color}; padding:5px 0;border-radius: 5px 0 0 5px`,
+    `padding:4px;border:1px solid ${color};border-radius: 0 5px 5px 0;`
+  );
+};

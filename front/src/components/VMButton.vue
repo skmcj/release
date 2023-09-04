@@ -74,7 +74,11 @@ const emits = defineEmits(['onClick']);
     & + .vm-btn_text {
       margin-left: 6px;
     }
+    &.ir-bilibili {
+      font-size: 12px;
+    }
   }
+
   .vm-btn_text {
     font-size: 16px;
   }

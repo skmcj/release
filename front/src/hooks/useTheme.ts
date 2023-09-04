@@ -1,7 +1,7 @@
 import { ref } from 'vue';
-import { changeThemeMode } from '@/utils/commonUtil';
+import { changeThemeMode, getCookieItem } from '@/utils/commonUtil';
 
-const theme = ref('');
+const theme = ref(getCookieItem('theme'));
 
 const useTheme = () => {
   const setTheme = (newTheme: string) => {

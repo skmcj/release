@@ -9,7 +9,7 @@
     :style="bStyle">
     <div class="vm-image-inner" v-if="type === 'default'">
       <div class="vm-image-box" v-if="loaded" @click.stop="previewImage">
-        <img :src="imgSrc" alt="每日一图" ref="imgDom" />
+        <img :src="smImgSrc" alt="每日一图" ref="imgDom" />
       </div>
       <div class="vm-image-mask" v-if="!loaded">
         <MNLSLoading :active="loading" />
@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue';
-import { loadImage, downloadImg, getPropsStyle } from '@/utils/commonUtil';
+import { loadImage, downloadImg, getPropsStyle, calcWallhavenSmallImg } from '@/utils/commonUtil';
 import MNLSLoading from './MNLSLoading.vue';
 import VMButton from '@/components/VMButton.vue';
 
@@ -87,6 +87,7 @@ const bStyle = computed(() => {
 
 const imgDom = ref<HTMLElement>();
 const imgSrc = ref('');
+const smImgSrc = ref('');
 const isPreview = ref(false);
 
 const loadTip = ref('蒙那粒砂正在向你袭来···');
@@ -97,6 +98,17 @@ const loaded = ref(false);
 watch(
   () => props.url,
   val => {
+    const sm = calcWallhavenSmallImg(val);
+    loadImage(sm)
+      .then(res => {
+        smImgSrc.value = res.src;
+        loaded.value = true;
+      })
+      .catch(err => {
+        // console.log(err);
+        loading.value = false;
+        loadTip.value = '她，迷路了(｀ﾟДﾟ´)ゞ';
+      });
     loadImage(val)
       .then(res => {
         imgSrc.value = res.src;

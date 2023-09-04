@@ -53,9 +53,32 @@ const bStyle = computed(() => {
 });
 
 onBeforeMount(() => {
-  // 开发阶段暂时关闭
+  calClock();
   // dclock();
 });
+
+// 校准时间
+const calClock = () => {
+  const now = new Date();
+  const pre = new Date();
+  time.value = formatDate(now, props.format);
+  let next = null;
+  switch (props.ping) {
+    case 'h':
+      pre.setHours(pre.getHours() + 1);
+      next = new Date(formatDate(pre, 'yyyy-MM-dd HH'));
+      setTimeout(dclock, next.getTime() - now.getTime());
+      break;
+    case 'm':
+      pre.setMinutes(pre.getMinutes() + 1);
+      next = new Date(formatDate(pre, 'yyyy-MM-dd HH:mm'));
+      setTimeout(dclock, next.getTime() - now.getTime());
+      break;
+    case 's':
+      setTimeout(dclock, 500);
+      break;
+  }
+};
 
 /**
  * 控制时钟运行

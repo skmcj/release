@@ -69,7 +69,7 @@ const emits = defineEmits(['update:modelValue']);
     -webkit-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
     transition: opacity 0.3s ease-in-out;
-    opacity: 0.5;
+    opacity: 0.3;
   }
   input:checked ~ .vm-check-inner {
     box-shadow: -0.5px -0.5px 0px 0px var(--wshadow0), 0.5px 0.5px 0px 0px var(--bshadow15),

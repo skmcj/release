@@ -10,8 +10,8 @@
           <VMButton
             v-for="item of socialList"
             :key="item.id"
+            class="icon-color"
             :icon-class="`ir-${item.icon}`"
-            :color="`var(--${item.icon}-ic)`"
             width="32px"
             height="32px"
             radius="16px"
@@ -95,7 +95,7 @@ const isDark = ref(false);
 const { theme, setTheme } = useTheme();
 
 // 留言
-const commentVisible = ref(true);
+const commentVisible = ref(false);
 const openLWord = () => {
   commentVisible.value = true;
 };

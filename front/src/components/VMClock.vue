@@ -39,8 +39,7 @@ const cStyle = computed(() => {
 });
 
 onMounted(() => {
-  // 开发阶段暂时关闭
-  // clock();
+  clock();
 });
 
 // 控制时钟转动

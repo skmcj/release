@@ -26,9 +26,9 @@ import ESMessage from './EasyMessage';
 import { validateEmail } from '@/utils/validateUtil';
 import { setCommentApi } from '@/api/indexApi';
 
-const nickname = ref('测试者');
-const email = ref('test@test.com');
-const text = ref('一条测试留言' + Date.now());
+const nickname = ref('');
+const email = ref('');
+const text = ref('');
 const visible = ref(false);
 
 // 初始化表单

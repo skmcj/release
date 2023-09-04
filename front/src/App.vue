@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import { getCurrentApi } from '@/api/indexApi';
-import { setSStoreItem } from '@/utils/commonUtil';
+import { printInfo, setSStoreItem } from '@/utils/commonUtil';
 import Pc from '@/views/Pc.vue';
 import H5 from '@/views/H5.vue';
 const isMobile = /Mobile|Android|iPhone/i.test(navigator.userAgent);
@@ -19,6 +19,8 @@ getCurrentApi()
     setSStoreItem('imgType', data.imageType);
   })
   .catch(err => {});
+
+printInfo();
 </script>
 
 <style></style>

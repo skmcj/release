@@ -13,15 +13,9 @@
               <VMButton
                 v-for="item of socialList"
                 :key="item.id"
-                class="top-mess-item"
+                class="top-mess-item icon-color"
                 :icon-class="`ir-${item.icon}`"
-                :color="`var(--${item.icon}-ic)`"
                 @on-click="() => openLink(item.link)"></VMButton>
-              <!-- <VMButton
-                class="top-mess-item"
-                icon-class="ir-bilibili-tv"
-                color="var(--bilibili-tv-ic)"
-                @on-click="() => openLink('https://www.bilibili.com/bangumi/media/md28228814')"></VMButton> -->
             </div>
             <div class="top-mess_mode show-title" data-title="切换主题">
               <VMSwitch

@@ -63,6 +63,294 @@
     opacity: 0;
 }
 
+.icon-color .ir-logo {
+    color: #fedc5e;
+}
+
+.icon-color .ir-bilibili {
+    color: #fb7299;
+}
+
+.icon-color .ir-bilibili-tv {
+    color: #00b3ef;
+}
+
+.icon-color .ir-bilibili-b {
+    color: #00b3ef;
+}
+
+.icon-color .ir-github {
+    color: #24292e;
+}
+
+.icon-color .ir-github-line {
+    color: #24292e;
+}
+
+.icon-color .ir-github-fill {
+    color: #24292e;
+}
+
+.icon-color .ir-github-alt {
+    color: #24292e;
+}
+
+.icon-color .ir-git {
+    color: #f54d27;
+}
+
+.icon-color .ir-qq {
+    color: #1a1a1a;
+}
+
+.icon-color .ir-mail {
+    color: #f7af08;
+}
+
+.icon-color .ir-wechat {
+    color: #2aae67;
+}
+
+.icon-color .ir-wechat-line {
+    color: #2aae67;
+}
+
+.icon-color .ir-vue {
+    color: #42b883;
+}
+
+.icon-color .ir-css3 {
+    color: #019fe8;
+}
+
+.icon-color .ir-js {
+    color: #f7df1e;
+}
+
+.icon-color .ir-aifadian-line {
+    color: #946ce6;
+}
+
+.icon-color .ir-x {
+    color: #000;
+}
+
+.icon-color .ir-leetcode {
+    color: #ffa116;
+}
+
+.icon-color .ir-aifadian {
+    color: #946ce6;
+}
+
+.icon-color .ir-soul {
+    color: #000;
+}
+
+.icon-color .ir-bokey {
+    color: #2e7acc;
+}
+
+.icon-color .ir-gitlab {
+    color: #e24329;
+}
+
+.icon-color .ir-coding {
+    color: #231f20;
+}
+
+.icon-color .ir-steam {
+    color: #13376b;
+}
+
+.icon-color .ir-epic {
+    color: #333;
+}
+
+.icon-color .ir-gmail {
+    color: #e94436;
+}
+
+.icon-color .ir-youtube {
+    color: #fe0202;
+}
+
+.icon-color .ir-facebook {
+    color: #1877F2;
+}
+
+.icon-color .ir-douban {
+    color: #007711;
+}
+
+.icon-color .ir-zhihu {
+    color: #006dff;
+}
+
+.icon-color .ir-kugou {
+    color: #1f89ed;
+}
+
+.icon-color .ir-weibo {
+    color: #e2262a;
+}
+
+.icon-color .ir-wangyiyun {
+    color: #c20c0c;
+}
+
+.icon-color .ir-qq-music {
+    color: #0fbe73;
+}
+
+.icon-color .ir-csdn {
+    color: #fc5531;
+}
+
+.icon-color .ir-tieba {
+    color: #3385ff;
+}
+
+.icon-color .ir-telegram {
+    color: #0099FF;
+}
+
+.icon-color .ir-zhishixingqiu {
+    color: #16b998;
+}
+
+.icon-color .ir-minecraft {
+    color: #3b8526;
+}
+
+.icon-color .ir-douyin {
+    color: #f61b55;
+}
+
+.icon-color .ir-twitter {
+    color: #1DA1F2;
+}
+
+.icon-color .ir-niuke {
+    color: #00dc84;
+}
+
+.icon-color .ir-xianyu {
+    color: #fed802;
+}
+
+.icon-color .ir-xiaohongshu {
+    color: #ff2e4d;
+}
+
+.icon-color .ir-gitee {
+    color: #c71d23;
+}
+
+.icon-color .ir-momo {
+    color: #1e78eb;
+}
+
+.icon-color .ir-aries {
+    color: #ee7959;
+}
+
+.icon-color .ir-taurus {
+    color: #88abda;
+}
+
+.icon-color .ir-gemini {
+    color: #da9233;
+}
+
+.icon-color .ir-cacer {
+    color: #d4dde1;
+}
+
+.icon-color .ir-leo {
+    color: #ffd900;
+}
+
+.icon-color .ir-virgo {
+    color: #68945c;
+}
+
+.icon-color .ir-libra {
+    color: #a73766;
+}
+
+.icon-color .ir-scorpio {
+    color: #a67eb7;
+}
+
+.icon-color .ir-sagittarius {
+    color: #bed2bb;
+}
+
+.icon-color .ir-capricom {
+    color: #a4c9cc;
+}
+
+.icon-color .ir-aquarius {
+    color: #4994c4;
+}
+
+.icon-color .ir-pisces {
+    color: #f6ad49;
+}
+
+.icon-color .ir-aries-line {
+    color: #ee7959;
+}
+
+.icon-color .ir-taurus-line {
+    color: #88abda;
+}
+
+.icon-color .ir-gemini-line {
+    color: #da9233;
+}
+
+.icon-color .ir-cacer-line {
+    color: #d4dde1;
+}
+
+.icon-color .ir-leo-line {
+    color: #ffd900;
+}
+
+.icon-color .ir-virgo-line {
+    color: #68945c;
+}
+
+.icon-color .ir-libra-line {
+    color: #a73766;
+}
+
+.icon-color .ir-scorpio-line {
+    color: #a67eb7;
+}
+
+.icon-color .ir-sagittarius-line {
+    color: #bed2bb;
+}
+
+.icon-color .ir-capricom-line {
+    color: #a4c9cc;
+}
+
+.icon-color .ir-aquarius-line {
+    color: #4994c4;
+}
+
+.icon-color .ir-pisces-line {
+    color: #f6ad49;
+}
+
+.icon-color {
+    color: #61677c;
+}
+
 /* transition 动画 */
 
 /* 淡入 */
