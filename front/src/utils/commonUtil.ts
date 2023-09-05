@@ -17,6 +17,29 @@ export const changeThemeMode = function (mode: number = 0) {
 };
 
 /**
+ * 设置灰度模式
+ * @param mode
+ * @param grayDate
+ */
+export const setGrayMode = function (mode: number = 0, grayDate: string[] = []) {
+  const html = document.documentElement;
+  if (mode === 0) {
+    html.classList.remove('gray');
+  } else if (mode === 1) {
+    html.classList.add('gray');
+  } else {
+    const date = formatDate(new Date(), 'MM-dd');
+    const gdate = grayDate.join('|');
+    const reg = new RegExp(date);
+    if (reg.test(gdate)) {
+      html.classList.add('gray');
+    } else {
+      html.classList.remove('gray');
+    }
+  }
+};
+
+/**
  * 打开link
  * @param link
  * @param target
@@ -286,4 +309,18 @@ export const printInfo = function (
     `color: white; background: ${color}; padding:5px 0;border-radius: 5px 0 0 5px`,
     `padding:4px;border:1px solid ${color};border-radius: 0 5px 5px 0;`
   );
+};
+
+export const printSKMCJ = function () {
+  const info = `
+ ________  ___  __    _____ ______   ________        ___     
+|\\   ____\\|\\  \\|\\  \\ |\\   _ \\  _   \\|\\   ____\\      |\\  \\    
+\\ \\  \\___|\\ \\  \\/  /|\\ \\  \\\\\\__\\ \\  \\ \\  \\___|      \\ \\  \\   
+ \\ \\_____  \\ \\   ___  \\ \\  \\\\|__| \\  \\ \\  \\       __ \\ \\  \\  
+  \\|____|\\  \\ \\  \\\\ \\  \\ \\  \\    \\ \\  \\ \\  \\____ |\\  \\\\_\\  \\ 
+    ____\\_\\  \\ \\__\\\\ \\__\\ \\__\\    \\ \\__\\ \\_______\\ \\________\\
+   |\\_________\\|__| \\|__|\\|__|     \\|__|\\|_______|\\|________|
+   \\|_________|
+  `;
+  console.log(`%c${info}`, `color: #68945C`);
 };

@@ -42,18 +42,18 @@ interface ToolbarCustomIcons {
   // lowercase: string; "<a href=\"javascript:;\" title=\"Lowercase\" unselectable=\"on\"><i class=\"fa\" name=\"lowercase\" style=\"font-size:24px;margin-top: -10px;\">a</i></a>",
   // "ucwords": string; "<a href=\"javascript:;\" title=\"ucwords\" unselectable=\"on\"><i class=\"fa\" name=\"ucwords\" style=\"font-size:20px;margin-top: -3px;\">Aa</i></a>"
 }
-
-type ToolHandlesFunc = function(cm?: Object, icon?: Object, cursor?: Object, selection?: String): any
+/**
+* @param {any}      cm         CodeMirror对象
+* @param {any}      icon       图标按钮jQuery元素对象
+* @param {any}      cursor     CodeMirror的光标对象，可获取光标所在行和位置
+* @param {String}      selection  编辑器选中的文本
+*/
+type ToolHandlesFunc = (cm?: any, icon?: any, cursor?: any, selection?: String) => any
 
 interface ToolbarHandlers {
   // ucwords?: function() : ToolbarHandlers.ucwords;
   // lowercase?: function() : ToolbarHandlers.lowercase;
-  /**
-   * @param {Object}      cm         CodeMirror对象
-   * @param {Object}      icon       图标按钮jQuery元素对象
-   * @param {Object}      cursor     CodeMirror的光标对象，可获取光标所在行和位置
-   * @param {String}      selection  编辑器选中的文本
-   */
+  
   [key: string] : ToolHandlesFunc;
 }
 

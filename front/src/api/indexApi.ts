@@ -82,6 +82,8 @@ export interface Current {
   levelId: string;
   sentenceType: number;
   imageType: number;
+  grayMode: number;
+  grayDate: string[];
 }
 
 export interface UserInfo {

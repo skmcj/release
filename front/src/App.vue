@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import { getCurrentApi } from '@/api/indexApi';
-import { printInfo, setSStoreItem } from '@/utils/commonUtil';
+import { printInfo, printSKMCJ, setGrayMode, setSStoreItem } from '@/utils/commonUtil';
 import Pc from '@/views/Pc.vue';
 import H5 from '@/views/H5.vue';
 const isMobile = /Mobile|Android|iPhone/i.test(navigator.userAgent);
@@ -17,9 +17,13 @@ getCurrentApi()
     setSStoreItem('levelId', data.levelId);
     setSStoreItem('stType', data.sentenceType);
     setSStoreItem('imgType', data.imageType);
+    setSStoreItem('gray', data.grayMode);
+    setSStoreItem('grayDate', data.grayDate);
+    setGrayMode(data.grayMode, data.grayDate);
   })
   .catch(err => {});
 
+printSKMCJ();
 printInfo();
 </script>
 
