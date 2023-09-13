@@ -1,8 +1,9 @@
 <p align=center>
   <a href="https://github.com/skmcj/release">
-    <img src="https://s.cky.qystu.cc/gh/skmcj/pic-bed@main/common/logo.png" alt="个人发布页" style="width: 200px">
+    <img src="https://static.ltgcm.top/md/20230911214858.png" alt="个人发布页" style="width: 200px">
   </a>
 </p>
+
 
 <p align=center style="font-weight: bold;">
    作品发布页
@@ -12,12 +13,23 @@
 
 用于展示个人作品的发布信息
 
+- 可用于展示自己的网络信息
+- 分享有意思的句子
+- 分享好看的图片
+- 收集网友的留言
+- 发布自己的作品，以一种较为美观的形式展示自己的作品
+- ··· ···
 
 
-## 大致UI
 
-如无不可抗力等意外的话，设计风格应该采用拟态，大致UI如下：
+## 效果预览
 
-![light](https://s.cky.qystu.cc/gh/skmcj/pic-bed@main/img/20230718172404.png)
+包含明暗两种模式
 
-![dark](https://s.cky.qystu.cc/gh/skmcj/pic-bed@main/img/20230718172426.png)
+![light-pc](https://static.ltgcm.top/md/20230913182819.png)
+
+![dark-pc](https://static.ltgcm.top/md/20230913182741.png)
+
+<div algin="center">
+    <img style="width: 50%;" alt="light" src="https://static.ltgcm.top/md/20230913182115.png" /><img style="width: 50%;" alt="dark" src="https://static.ltgcm.top/md/20230913182225.png" />
+</div>

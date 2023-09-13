@@ -6,7 +6,7 @@ import { showMessage } from './commonUtil';
 import router from '@/router';
 
 const request = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: import.meta.env.VITE_BASE_URL,
   withCredentials: true
 });
 

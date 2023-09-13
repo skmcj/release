@@ -1,5 +1,6 @@
 {
     "name": "skmcj/release-api",
+    "version": "1.0.0",
     "description": "the api by thinkphp",
     "type": "project",
     "keywords": [

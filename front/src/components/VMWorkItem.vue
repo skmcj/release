@@ -14,7 +14,7 @@
         </div>
         <span class="vm-work-item-tip">{{ tip ?? '暂时没有相关介绍' }}</span>
       </div>
-      <div class="vm-work-item-labels" v-if="labels && labels.length > 0">
+      <div class="vm-work-item-labels">
         <div
           class="label"
           v-for="item of labels"

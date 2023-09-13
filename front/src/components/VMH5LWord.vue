@@ -65,7 +65,11 @@ const getComment = (page = 1) => {
       const data = res.data.data;
       if (!data) return;
       if (data.list.length > 0) {
-        commentList.value.push(...data.list);
+        if (page === 1) {
+          commentList.value = data.list;
+        } else {
+          commentList.value.push(...data.list);
+        }
       }
       totalPage.value = data.totalPage;
     })
@@ -89,6 +93,10 @@ const props = withDefaults(defineProps<VMH5LWordProps>(), {
 const mode = ref(0);
 const changeMode = (val: number = 0) => {
   mode.value = val;
+  if (!mode.value) {
+    currentPage.value = 1;
+    getComment(1);
+  }
 };
 
 const emits = defineEmits(['update:modelValue']);

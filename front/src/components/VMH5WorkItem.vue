@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="tip">{{ tip ?? '暂时没有相关介绍' }}</div>
-        <div class="labels" v-if="labels && labels.length > 0">
+        <div class="labels">
           <div
             class="label"
             v-for="item of labels"

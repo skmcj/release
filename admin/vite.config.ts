@@ -18,5 +18,6 @@ export default defineConfig({
         additionalData: `@use "@/styles/element/index.scss" as *;@use "@/styles/index.scss" as *;`
       }
     }
-  }
+  },
+  base: '/admin/'
 });

@@ -36,7 +36,7 @@
           style="overflow: visible"
           width="216"
           height="216"
-          :href="avatar ?? avatarUrl"
+          :href="avatarPath"
           transform="matrix(0.5 0 0 0.5 430 78)"></image>
       </g>
     </g>
@@ -45,6 +45,10 @@
 
 <script setup lang="ts">
 import avatarUrl from '@/assets/images/default-avatar.png';
+import { loadImage } from '@/utils/commonUtil';
+import { ref, watch } from 'vue';
+
+const avatarPath = ref(avatarUrl);
 
 interface HeaderSvgProps {
   avatar?: string;
@@ -53,6 +57,19 @@ interface HeaderSvgProps {
 const props = withDefaults(defineProps<HeaderSvgProps>(), {
   avatar: undefined
 });
+
+watch(
+  () => props.avatar,
+  val => {
+    loadImage(val ?? avatarUrl)
+      .then(res => {
+        avatarPath.value = res.src;
+      })
+      .catch(err => {
+        // console.log(err);
+      });
+  }
+);
 </script>
 
 <style lang="less">

@@ -1,6 +1,6 @@
 const BaseUrl = {
   // Local: '/src/assets/data',
-  LocalHost: 'http://localhost:8080/api'
+  LocalHost: import.meta.env.VITE_BASE_URL
 };
 
 export type Method =

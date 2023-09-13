@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue';
+import { nextTick, onBeforeMount, ref } from 'vue';
 import VMLWordItem from './VMLWordItem.vue';
 import VMLWordForm from './VMLWordForm.vue';
 import { getCommentApi, type Comment } from '@/api/indexApi';
@@ -51,7 +51,11 @@ const getComment = (page = 1) => {
       const data = res.data.data;
       if (!data) return;
       if (data.list.length > 0) {
-        commentList.value.push(...data.list);
+        if (page === 1) {
+          commentList.value = data.list;
+        } else {
+          commentList.value.push(...data.list);
+        }
       }
       totalPage.value = data.totalPage;
     })
@@ -66,6 +70,10 @@ const clickMore = () => {
 // 翻转版面
 const rotate = () => {
   isActive.value = !isActive.value;
+  if (!isActive.value) {
+    currentPage.value = 1;
+    getComment(1);
+  }
 };
 </script>
 
