@@ -7,7 +7,7 @@
       <div class="vm-work-list">
         <VMH5WorkItem
           width="40vw"
-          height="52vw"
+          height="57vw"
           v-for="item of workList"
           :key="item.id"
           :labels="item.labels"

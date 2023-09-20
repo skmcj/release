@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^admin /admin/index.html [L]
+RewriteRule ^api/(.*)$ /bk-api/public/index.php/$1 [L,P]
+RewriteRule ^article/(.*)$ /api/article/$1 [L,P]
+RewriteRule ^oss/(.*)$ /bk-api/public/storage/$1 [L,P]
+RewriteRule ^static/(.*)$ /bk-api/public/static/$1 [L,P]
+RewriteRule ^tmp/(.*)$ /bk-api/public/tmp/$1 [L,P]

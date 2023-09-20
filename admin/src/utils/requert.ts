@@ -16,7 +16,7 @@ request.interceptors.request.use(
     // 在发送请求之前做些什么
     const { token } = useRoleInfoStore();
     if (token) {
-      config.headers['Authorization'] = token;
+      config.headers['authorization'] = token;
     }
     return config;
   },
@@ -39,9 +39,11 @@ request.interceptors.response.use(
     }
     const { data } = response;
     if (data.code === 423 || data.code === 422) {
+      console.log('token失效', data);
       const { clearLog } = useRoleInfoStore();
       clearLog();
       showMessage('Token异常或失效，请重新登录', 'error');
+      // router.replace('/login');
       router.push('/login');
     }
     return data;
