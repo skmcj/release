@@ -85,19 +85,19 @@
   	}
   }
   # 本地存储转发
-  location /oss {
+  location ~ /oss {
   	if (!-f $request_filename) {
   		rewrite  ^/oss/(.*)$  /backend/public/storage/$1  last;
   	}
   }
   # 静态资源转发
-  location /static {
+  location ~ /static {
   	if (!-f $request_filename) {
   		rewrite  ^/static/(.*)$  /backend/public/static/$1  last;
   	}
   }
   # 上传文件缓存转发
-  location /tmp {
+  location ~ /tmp {
   	if (!-f $request_filename) {
   		rewrite  ^/tmp/(.*)$  /backend/public/tmp/$1  last;
   	}

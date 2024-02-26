@@ -4,6 +4,7 @@ namespace app\controller;
 
 use app\BaseController;
 use app\common\CommonUtil;
+use app\common\RegValidate;
 use app\common\Status;
 use app\model\Article;
 use app\pojo\PageEntity;
@@ -34,6 +35,9 @@ class ArticleController extends BaseController
        * ---
        * 开始时将以上配置从源文档分类解析处理
        */
+      if(RegValidate::validUrlCode($name)) {
+          $name = urldecode($name);
+      }
       $theme = $this -> request -> cookie('theme');
       try {
         // 获取文章信息

@@ -149,6 +149,8 @@
 | update_time | datetime |      |      |      | 更新时间               |
 
 > 所有者：拥有全部权限，可添加管理
+>
+> ``UPDATE `role` SET `username`='root_admin', `password`=MD5('123456') WHERE id='14762905601838761';``
 
 - 前台展示设置表-current
 

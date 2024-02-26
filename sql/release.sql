@@ -180,29 +180,6 @@ CREATE TABLE `product_label`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for role
--- ----------------------------
-DROP TABLE IF EXISTS `role`;
-CREATE TABLE `role`  (
-  `id` bigint NOT NULL COMMENT 'id',
-  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户名',
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
-  `role` int NULL DEFAULT 1 COMMENT '角色，0-所有者；1-管理',
-  `disabled` int NULL DEFAULT 0 COMMENT '状态，0-正常；1-禁用',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of role
--- 根用户：可自行设置
--- username: root_admin
--- password: 123456（md5加密）
--- ----------------------------
-INSERT INTO `role` VALUES (14762905601838761, 'root_admin', 'e10adc3949ba59abbe56e057f20f883e', 0, 0, '2023-08-16 17:45:57', '2023-08-16 17:45:57');
-
--- ----------------------------
 -- Table structure for sentence
 -- ----------------------------
 DROP TABLE IF EXISTS `sentence`;
@@ -285,6 +262,29 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (11506737211245885, 'SKMCJ', 'Make In China', 'image/134b296/500185af02bceff5de648708f89b6e5a.jpg', 1, 21, 2023, 'SKMCJ', '2023-08-07 00:00:00', '2023-08-07 18:03:40', '2023-08-08 12:52:51');
+INSERT INTO `user` VALUES (11506737211245885, 'SKMCJ', 'Make In China', 'https://img.touxiangwu.com/zb_users/upload/2023/09/202309251695624893557075.jpg', 1, 21, 2023, 'SKMCJ', '2023-08-07 00:00:00', '2023-08-07 18:03:40', '2023-08-08 12:52:51');
+
+-- ----------------------------
+-- Table structure for role
+-- ----------------------------
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role`  (
+  `id` bigint NOT NULL COMMENT 'id',
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户名',
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
+  `role` int NULL DEFAULT 1 COMMENT '角色，0-所有者；1-管理',
+  `disabled` int NULL DEFAULT 0 COMMENT '状态，0-正常；1-禁用',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of role
+-- 根用户：可自行设置以下值，如是上线项目，建议不用设置过简单；也可后期打开数据库修改
+-- username: root_admin
+-- password: 123456（md5加密）
+-- ----------------------------
+INSERT INTO `role` VALUES (14762905601838761, 'root_admin', MD5(123456), 0, 0, '2023-08-16 17:45:57', '2023-08-16 17:45:57');
 
 SET FOREIGN_KEY_CHECKS = 1;

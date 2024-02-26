@@ -30,7 +30,7 @@ class CommonUtil {
         $tmpPath = "{$tmpRoot}{$tmpImgName}";
         // 如果没有该文件夹，则创建
         if(!is_dir($path))
-            mkdir($path, 777, true);
+            mkdir($path, 0777, true);
         $imgName = basename($tmpImgName);
         $imgPath = "{$path}{$imgName}";
         // 将文件移动到持久存储路径
@@ -62,7 +62,7 @@ class CommonUtil {
         $tmpPath = "{$tmpRoot}{$tmpImgName}";
         // 如果没有该文件夹，则创建
         if(!is_dir($path))
-            mkdir($path, 777, true);
+            mkdir($path, 0777, true);
 
         $imgName = basename($tmpImgName);
         $imgPath = "{$path}{$imgName}";
@@ -101,7 +101,7 @@ class CommonUtil {
         $tmpPath = "{$tmpRoot}{$tmpImgName}";
         // 如果没有该文件夹，则创建
         if(!is_dir($path))
-            mkdir($path, 777, true);
+            mkdir($path, 0777, true);
 
         $imgName = basename($tmpImgName);
         $imgPath = "{$path}{$imgName}";

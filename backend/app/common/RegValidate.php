@@ -14,6 +14,14 @@ class RegValidate {
         $patt = '/^(((ht|f)tps?):\/\/)([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/';
         return preg_match($patt, $url) > 0;
     }
+    
+    /**
+     * 验证是否为 中文URL编码
+     */
+    public static function validUrlCode($url) {
+        $patt = '/(%[0-9a-fA-f]{2})+/';
+        return preg_match($patt, $url) > 0;
+    }
 
     /**
      * 验证日期 yyyy-MM-dd
